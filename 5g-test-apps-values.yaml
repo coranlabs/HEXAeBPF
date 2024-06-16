@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+# Copyright 2019-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+images:
+  repository: "registry.opennetworking.org/docker.io/"
+  #tags:
+  #  dbtestapp: "dbtestapp:0.0.1-dev"
+config:
+  dbtestapp:
+    replica: 2
+
+mongodb:
+  usePassword: false
+  persistence:
+    enabled: false
+  #enable following 2 lines if cluster needs to be enabled
+  architecture: replicaset
+  replicaCount: 2

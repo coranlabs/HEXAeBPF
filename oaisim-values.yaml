@@ -1,0 +1,23 @@
+# Copyright 2019-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+config:
+  enb:
+    mme:
+      address: 192.168.251.3
+    networks:
+      s1u:
+        interface: enb
+      s1_mme:
+        interface: enb
+  plmn:
+    mcc: "208"
+    mnc: "01"
+    mnc_length: 2
+  ue:
+    sim:
+      msin: "0167891201"
+      api_key: "465b5ce8b199b49faa5f0a2ee238a6bc"
+      opc: "d4416644f6154936193433dd20a0ace0"
+      msisdn: "1122334456"

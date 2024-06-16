@@ -1,0 +1,1059 @@
++ cd /free5gc
++ cat config/pcfcfg.conf
+configuration:
+  defaultBdtRefId: BdtPolicyId-
+  mongodb:
+    name: free5gc
+    url: mongodb://mongodb-arbiter-headless
+  nrfUri: http://nrf:29510
+  pcfName: PCF
+  plmnList:
+  - plmnId:
+      mcc: "208"
+      mnc: "93"
+  - plmnId:
+      mcc: "333"
+      mnc: "88"
+  sbi:
+    bindingIPv4: 0.0.0.0
+    port: 29507
+    registerIPv4: pcf
+    scheme: http
+  serviceList:
+  - serviceName: npcf-am-policy-control
+  - serviceName: npcf-smpolicycontrol
+    suppFeat: 3fff
+  - serviceName: npcf-bdtpolicycontrol
+  - serviceName: npcf-policyauthorization
+    suppFeat: 3
+  - serviceName: npcf-eventexposure
+  - serviceName: npcf-ue-policy-control
+info:
+  description: PCF initial local configuration
+  version: 1.0.0
+logger:
+  AMF:
+    ReportCaller: false
+    debugLevel: info
+  AUSF:
+    ReportCaller: false
+    debugLevel: info
+  Aper:
+    ReportCaller: false
+    debugLevel: info
+  CommonConsumerTest:
+    ReportCaller: false
+    debugLevel: info
+  FSM:
+    ReportCaller: false
+    debugLevel: info
+  MongoDBLibrary:
+    ReportCaller: false
+    debugLevel: info
+  N3IWF:
+    ReportCaller: false
+    debugLevel: info
+  NAS:
+    ReportCaller: false
+    debugLevel: info
+  NGAP:
+    ReportCaller: false
+    debugLevel: info
+  NRF:
+    ReportCaller: false
+    debugLevel: info
+  NamfComm:
+    ReportCaller: false
+    debugLevel: info
+  NamfEventExposure:
+    ReportCaller: false
+    debugLevel: info
+  NsmfPDUSession:
+    ReportCaller: false
+    debugLevel: info
+  NudrDataRepository:
+    ReportCaller: false
+    debugLevel: info
+  OpenApi:
+    ReportCaller: false
+    debugLevel: info
+  PCF:
+    ReportCaller: false
+    debugLevel: info
+  PFCP:
+    ReportCaller: false
+    debugLevel: info
+  PathUtil:
+    ReportCaller: false
+    debugLevel: info
+  SMF:
+    ReportCaller: false
+    debugLevel: info
+  UDM:
+    ReportCaller: false
+    debugLevel: info
+  UDR:
+    ReportCaller: false
+    debugLevel: info
+  WEBUI:
+    ReportCaller: false
+    debugLevel: info+ GOTRACEBACK=crash ./pcf/pcf -pcfcfg config/pcfcfg.conf
+HEXA_pcf
+2024-06-12T08:58:44Z[36m [INFO][HEXA_PCF][App] [0mPCF version:  
+	Not specify ldflags (which link version) during go build
+	go version: go1.19.13 linux/amd64
+2024-06-12T08:58:44Z[36m [INFO][HEXA_PCF][Init] [0mPCF Log level is set to [info] level
+2024-06-12T08:58:44Z[36m [INFO][LIB][Path] [0mset log level : info
+2024-06-12T08:58:44Z[36m [INFO][LIB][Path] [0mset report call : false
+2024-06-12T08:58:44Z[36m [INFO][HEXA_PCF][CFG] [0mconfig version [1.0.0]
+2024-06-12T08:58:44Z[36m [INFO][HEXA_PCF][Init] [0mMANAGED_BY_CONFIG_POD is true
+2024-06-12T08:58:44Z[36m [INFO][CONN][GRPC] [0mConfig Client : Creating
+2024-06-12T08:58:44Z[36m [INFO][CONN][GRPC] [0mDialing GRPC Connection -  webui:9876
+2024-06-12T08:58:44Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:58:54Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:04Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:14Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:24Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:34Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:44Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:54Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024/06/12 09:00:04 INFO: [core] [Channel #1] Channel created
+2024/06/12 09:00:04 INFO: [core] [Channel #1] original dial target is: "webui:9876"
+2024/06/12 09:00:04 INFO: [core] [Channel #1] parsed dial target is: resolver.Target{URL:url.URL{Scheme:"webui", Opaque:"9876", User:(*url.Userinfo)(nil), Host:"", Path:"", RawPath:"", OmitHost:false, ForceQuery:false, RawQuery:"", Fragment:"", RawFragment:""}}
+2024/06/12 09:00:04 INFO: [core] [Channel #1] fallback to scheme "passthrough"
+2024/06/12 09:00:04 INFO: [core] [Channel #1] parsed dial target is: passthrough:///webui:9876
+2024/06/12 09:00:04 INFO: [core] [Channel #1] Channel authority set to "webui:9876"
+2024/06/12 09:00:04 INFO: [core] [Channel #1] Resolver state updated: {
+  "Addresses": [
+    {
+      "Addr": "webui:9876",
+      "ServerName": "",
+      "Attributes": null,
+      "BalancerAttributes": null,
+      "Metadata": null
+    }
+  ],
+  "Endpoints": [
+    {
+      "Addresses": [
+        {
+          "Addr": "webui:9876",
+          "ServerName": "",
+          "Attributes": null,
+          "BalancerAttributes": null,
+          "Metadata": null
+        }
+      ],
+      "Attributes": null
+    }
+  ],
+  "ServiceConfig": null,
+  "Attributes": null
+} (resolver returned new addresses)
+2024/06/12 09:00:04 INFO: [core] [Channel #1] Channel switches to new LB policy "pick_first"
+2024/06/12 09:00:04 INFO: [core] [pick-first-lb 0xc0001bc690] Received new config {
+  "shuffleAddressList": false
+}, resolver state {
+  "Addresses": [
+    {
+      "Addr": "webui:9876",
+      "ServerName": "",
+      "Attributes": null,
+      "BalancerAttributes": null,
+      "Metadata": null
+    }
+  ],
+  "Endpoints": [
+    {
+      "Addresses": [
+        {
+          "Addr": "webui:9876",
+          "ServerName": "",
+          "Attributes": null,
+          "BalancerAttributes": null,
+          "Metadata": null
+        }
+      ],
+      "Attributes": null
+    }
+  ],
+  "ServiceConfig": null,
+  "Attributes": null
+}
+2024/06/12 09:00:04 INFO: [core] [Channel #1 SubChannel #2] Subchannel created
+2024/06/12 09:00:04 INFO: [core] [Channel #1] Channel Connectivity change to CONNECTING
+2024/06/12 09:00:04 INFO: [core] [Channel #1] Channel exiting idle mode
+2024/06/12 09:00:04 INFO: [core] [Channel #1 SubChannel #2] Subchannel Connectivity change to CONNECTING
+2024/06/12 09:00:04 INFO: [core] [Channel #1 SubChannel #2] Subchannel picks a new address "webui:9876" to connect
+2024-06-12T09:00:04Z[36m [INFO][HEXA_PCF][Init] [0mServer started
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0mSubscribing to Config POD
+2024-06-12T09:00:04Z[31m [ERRO][CONN][GRPC] [0mConnectivity status: Not Ready
+2024/06/12 09:00:04 INFO: [core] [pick-first-lb 0xc0001bc690] Received SubConn state update: 0xc0001bc7b0, {ConnectivityState:CONNECTING ConnectionError:<nil>}
+2024-06-12T09:00:04Z[36m [INFO][HEXA_PCF][Util] [0mpcfconfig Info: Version[1.0.0] Description[PCF initial local configuration]
+2024/06/12 09:00:04 INFO: [core] [Channel #1 SubChannel #2] Subchannel Connectivity change to READY
+2024/06/12 09:00:04 INFO: [core] [pick-first-lb 0xc0001bc690] Received SubConn state update: 0xc0001bc7b0, {ConnectivityState:READY ConnectionError:<nil>}
+2024/06/12 09:00:04 INFO: [core] [Channel #1] Channel Connectivity change to READY
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0mConnectivity status: Ready
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0mConfig Message received
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0mInitial Config Received:
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Network Slice                               |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Name                | hexa-slice-01         |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Sst                 | 1                     |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Sd                  | 010203                |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Device Group        | 5g-ue-01              |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| IP Domain Details   | pool1                 |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DnnMbrUplink        | 20000000              |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DnnMbrDownlink      | 200000000             |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007487       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007488       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007489       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007490       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007491       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007492       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007401       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| IMSI_LIST           | 001010100007494       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007495       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007496       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007497       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007498       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007499       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007500       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Device Group        | 5g-ue-02              |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| IP Domain Details   | pool2                 |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DnnMbrUplink        | 10000000              |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| DnnMbrDownlink      | 400000000             |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007501       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007502       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007503       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007504       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007505       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| IMSI_LIST           | 001010100007506       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007507       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007508       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007509       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007510       |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Site                | hexa                  |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| GNB                 | hexa-gnb-01           |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| TAC                 | 1                     |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| GNB                 | hexa-gnb-02           |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| TAC                 | 2                     |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| MCC                 | 001                   |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| MNC                 | 01                    |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| UPF                 | hexa-upf              |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | IPV4                  |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Flow Direction      | BIDIRECTIONAL         |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Flow Status         | ENABLED               |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Rule ID             | ALLOW-ALL             |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m| Priority            | 250                   |
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][CONN][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mReceived updateConfig in the pcf app :
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Network Slice                               |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Name                | hexa-slice-01         |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Sst                 | 1                     |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Sd                  | 010203                |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Device Group        | 5g-ue-01              |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| IP Domain Details   | pool1                 |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DnnMbrUplink        | 20000000              |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DnnMbrDownlink      | 200000000             |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007487       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007488       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007489       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007490       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007491       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007492       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007401       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| IMSI_Supported      | 001010100007494       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007495       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007496       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007497       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007498       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007499       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007500       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Device Group        | 5g-ue-02              |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| IP Domain Details   | pool2                 |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DnnMbrUplink        | 10000000              |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| DnnMbrDownlink      | 400000000             |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007501       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007502       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007503       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007504       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007505       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| IMSI_Supported      | 001010100007506       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007507       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007508       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007509       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|                     | 001010100007510       |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Site                | hexa                  |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| GNB                 | hexa-gnb-01           |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| TAC                 | 1                     |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| GNB                 | hexa-gnb-02           |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| TAC                 | 2                     |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| MCC                 | 001                   |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| MNC                 | 01                    |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| UPF                 | hexa-upf              |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Traffic Class       | IPV4                  |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Flow Direction      | BIDIRECTIONAL         |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Flow Status         | ENABLED               |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Rule ID             | ALLOW-ALL             |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m| Priority            | 250                   |
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mNetwork Slice Name  hexa-slice-01
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mReceived Slice with OperationType: Add from ConfigPod
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007487] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007488] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007489] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007490] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007491] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007492] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007401] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007494] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007495] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007496] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007497] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007498] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007499] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007500] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 20000 Kbps
+      MaxbrDl: 200 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007501] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007502] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007503] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007504] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007505] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007506] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007507] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007508] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007509] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Context][imsi-001010100007510] [0mSubscriber Detals: pccpolicy[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 8             | 6                    |               |                   | Uplink: 10000 Kbps, Downlink: 400 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+ 
+ policyname[ALLOW-ALL]: &{[{permit out ip from any to assigned <nil> 2 false    BIDIRECTIONAL}]  0 1 250  false [1] [TcId-2] [] [] }
+      RuleId: 1
+      Precedence: 250
+         FlowInfo[0]:
+            FlowDesc: permit out ip from any to assigned
+            TrafficClass: 
+            FlowDir: BIDIRECTIONAL
+   QosDecs[1]:
+      QosId: 1
+      5Qi: 9
+      MaxbrUl: 10000 Kbps
+      MaxbrDl: 400 Mbps
+      GbrUl: 
+      GbrDl: 
+      PriorityLevel: 0
+      Arp PriorityLevel: 6
+      Arp PreemptCap: MAY_PREEMPT
+      Arp PreemptVuln: PREEMPTABLE
+   TrafficDecs[TcId-2]:
+      TcId: TcId-2
+      FlowStatus: ENABLED
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mUpdated Slice level DnnList[1010203]: hexa hexa
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mDnnList Present in PCF: [hexa]
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mNetwork Slice [1010203] has site name: hexa
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mUpdated Slice level Plmn[1010203]: {{001 01}}
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mPlmnList Present in PCF: [{{001 01}}]
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][GRPC] [0mSend config trigger to main routine first time config
+2024-06-12T09:00:05Z[36m [INFO][HEXA_PCF][Init] [0mConfig update trigger true received in PCF App
+2024-06-12T09:00:11Z[36m [INFO][HEXA_PCF][Consumer] [0mPCF register to NRF - created Success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_PCF][Init] [0mStarted KeepAlive Timer: 86400 sec
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][Ampolicy] [0mHandle AM Policy Create Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][GIN] [0m| 201 |  192.168.84.206 | POST    | /npcf-am-policy-control/v1/policies |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mHandle CreateSmPolicy
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mSupi[001010100007487] exist in PcfSubscriberPolicyData
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mPccPolicy in SM Policy Decision[1010203]: 
+   SessionPolicy[hexa]: 
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| SessRule Name  | SessionRuleId  | AuthQos5Qi    | Arp PL               | Arp PC        | Arp PV            | AuthSessAmbr                          |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+| hexa-1         | hexa-1         | 9             | 6                    |               |                   | Uplink: 20000 Kbps, Downlink: 200 Mbps |
++----------------+----------------+---------------+----------------------+---------------+-------------------+---------------------------------------+
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mSM Policy Decision Sent to SMF:
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mSessRules            : map[hexa-1:0xc00090cc00]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mPccRules             : map[ALLOW-ALL:0xc000563ee0]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mQosDecs              : map[1:0xc00044f600]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mTraffContDecs        : map[TcId-2:0xc00066c460]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][SMpolicy] [0mPolicyCtrlReqTriggers: [PLMN_CH RES_MO_RE AC_TY_CH UE_IP_CH PS_DA_OFF DEF_QOS_CH SE_AMBR_CH QOS_NOTIF RAT_TY_CH]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_PCF][GIN] [0m| 201 |  192.168.84.245 | POST    | /npcf-smpolicycontrol/v1/sm-policies |

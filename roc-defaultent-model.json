@@ -1,0 +1,58 @@
+{
+  "default-target": "defaultent",
+  "Updates": {
+    "site-2.1.0": [
+      {
+        "description": "Global Default Site",
+        "display-name": "Global Default Site",
+        "site-id": "defaultent-defaultsite",
+        "imsi-definition": {
+          "mcc": "000",
+          "mnc": "00",
+          "enterprise": 0,
+          "format": "SSSSSSSSSSSSSSS"
+        },
+        "device-group": [
+          {
+            "display-name": "Unknown Inventory",
+            "device-group-id": "defaultent-defaultsite-default",
+            "mbr": {
+              "uplink": 1000000,
+              "downlink": 1000000
+            },
+            "traffic-class": "class-1",
+            "ip-domain": "defaultent-defaultip"
+          }
+        ],
+        "ip-domain": [
+          {
+            "admin-status": "ENABLE",
+            "description": "Global Default IP Domain",
+            "display-name": "Global Default IP Domain",
+            "dns-primary": "8.8.8.1",
+            "dns-secondary": "8.8.8.2",
+            "dnn": "dnnglobal",
+            "ip-domain-id": "defaultent-defaultip",
+            "mtu": 57600,
+            "subnet": "192.168.0.0/24"
+          }
+        ]
+      }
+    ],
+    "traffic-class-2.1.0": [
+      {
+        "traffic-class-id": "class-1",
+        "description": "Default traffic-class for defaultent",
+        "display-name": "Class 1",
+        "qci": 10,
+        "arp": 1,
+        "pelr": 10,
+        "pdb": 100
+      }
+    ]
+  },
+  "Deletes": {},
+  "Extensions": {
+    "transaction-strategy-111": 1
+  }
+}
