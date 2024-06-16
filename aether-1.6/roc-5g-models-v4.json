@@ -1,0 +1,234 @@
+{
+    "default-target": "connectivity-service-v4",
+    "Updates": {
+        "application-4.0.0": {
+            "application": [
+                {
+                    "display-name": "TestApp",
+                    "enterprise": "aiab-enterprise",
+                    "address": "1.1.1.1",
+                    "endpoint": [
+                        {
+                            "endpoint-id": "aiab-testapp-endpt",
+                            "display-name": "Test App port",
+                            "port-end": 40000,
+                            "port-start": 40000,
+                            "protocol": "UDP",
+                            "mbr": {
+                                "uplink": 1000000,
+                                "downlink": 1000000
+                            },
+                            "traffic-class": "aiab-class-1"
+                        }
+                    ],
+                    "id": "aiab-testapp"
+                }
+            ]
+        },
+        "connectivity-service-4.0.0": {
+            "connectivity-service": [
+                {
+                    "core-5g-endpoint": "http://webui.omec.svc:5000/config",
+                    "description": "5G Integration Test",
+                    "display-name": "ROC 5G Test Connectivity Service",
+                    "id": "aiab-cs"
+                }
+            ]
+        },
+        "device-group-4.0.0": {
+            "device-group": [
+                {
+                    "display-name": "Unknown-Inventory",
+                    "id": "defaultent-defaultsite-default",
+                    "ip-domain": "defaultent-defaultip",
+                    "site": "defaultent-defaultsite",
+                    "device": {
+                        "mbr": {
+                            "uplink": 1000000,
+                            "downlink": 1000000
+                        },
+                        "traffic-class": "aiab-class-1"
+                    }
+                },
+                {
+                    "display-name": "AiaB-Inventory",
+                    "id": "aiab-site-default",
+                    "ip-domain": "aiab-ip-pool",
+                    "site": "aiab-site",
+                    "device": {
+                        "mbr": {
+                            "uplink": 1000000,
+                            "downlink": 1000000
+                        },
+                        "traffic-class": "aiab-class-1"
+                    }
+                },
+                {
+                    "display-name": "AiaB Users",
+                    "id": "aiab-device-group",
+                    "imsis": [
+                        {
+                            "imsi-range-from": 7487,
+                            "imsi-range-to": 7501,
+                            "imsi-id": "aiab-imsis",
+                            "display-name": "Valid IMSIs"                        }
+                    ],
+                    "ip-domain": "aiab-ip-pool",
+                    "device": {
+                        "mbr": {
+                            "uplink": 1000000,
+                            "downlink": 1000000
+                        },
+                        "traffic-class": "aiab-class-1"
+                    },
+                    "site": "aiab-site"
+                }
+            ]
+        },
+        "enterprise-4.0.0": {
+            "enterprise": [
+                {
+                    "description": "This Enterprise holds discovered IMSIs that cannot be associated elsewhere.",
+                    "display-name": "Default Enterprise",
+                    "id": "defaultent"
+                },
+                {
+                    "connectivity-service": [
+                        {
+                            "connectivity-service": "aiab-cs",
+                            "enabled": true
+                        }
+                    ],
+                    "description": "AiaB Enterprise",
+                    "display-name": "AiaB Corp.",
+                    "id": "aiab-enterprise"
+                }
+            ]
+        },
+        "ip-domain-4.0.0": {
+            "ip-domain": [
+               {
+                    "admin-status": "ENABLE",
+                    "description": "Global Default IP Domain",
+                    "display-name": "Global Default IP Domain",
+                    "dns-primary": "8.8.8.1",
+                    "dns-secondary": "8.8.8.2",
+                    "dnn": "dnnglobal",
+                    "id": "defaultent-defaultip",
+                    "mtu": 57600,
+                    "subnet": "192.168.0.0/24",
+                    "enterprise": "defaultent"
+                },
+                {
+                    "admin-status": "ENABLE",
+                    "display-name": "IP pool",
+                    "dnn": "internet",
+                    "dns-primary": "8.8.8.8",
+                    "id": "aiab-ip-pool",
+                    "mtu": 1460,
+                    "subnet": "172.250.0.0/16",
+                    "enterprise": "aiab-enterprise"
+                }
+            ]
+        },
+        "site-4.0.0": {
+            "site": [
+                {
+                    "description": "Global Default Site",
+                    "display-name": "Global Default Site",
+                    "enterprise": "defaultent",
+                    "id": "defaultent-defaultsite",
+                    "imsi-definition": {
+                        "mcc": "000",
+                        "mnc": "00",
+                        "enterprise": 0,
+                        "format": "SSSSSSSSSSSSSSS"
+                    }
+                },
+                {
+                    "description": "AiaB test site",
+                    "display-name": "AiaB site",
+                    "enterprise": "aiab-enterprise",
+                    "id": "aiab-site",
+                    "imsi-definition": {
+                        "mcc": "208",
+                        "mnc": "93",
+                        "enterprise": 1,
+                        "format": "CCCNNEESSSSSSSS"
+                    },
+                    "small-cell": [
+                        {
+                            "small-cell-id": "gnb1",
+                            "display-name": "gNodeB 1",
+                            "address": "aiab-gnb1",
+                            "enable": true,
+                            "tac": "0001"
+                        }
+                    ]
+                }
+            ]
+        },
+        "traffic-class-4.0.0": {
+            "traffic-class": [
+                {
+                    "description": "High Priority TC",
+                    "display-name": "Class 1",
+                    "id": "aiab-class-1",
+                    "pdb": 100,
+                    "arp": 1,
+                    "pelr": 3,
+                    "qci": 1
+                }
+            ]
+        },
+        "upf-4.0.0": {
+            "upf": [
+                {
+                    "address": "upf",
+                    "description": "AiaB UPF",
+                    "display-name": "AiaB UPF",
+                    "id": "aiab-upf",
+                    "site": "aiab-site",
+                    "enterprise": "aiab-enterprise",
+                    "port": 8805,
+                    "config-endpoint": "http://upf-http.omec.svc:8080"
+                }
+            ]
+        },
+        "vcs-4.0.0": {
+            "vcs": [
+                {
+                    "default-behavior": "ALLOW-ALL",
+                    "description": "AiaB Virtual Connectivity Service",
+                    "display-name": "AiaB VCS",
+                    "device-group": [
+                        {
+                            "device-group": "aiab-device-group",
+                            "enable": true
+                        }
+                    ],
+                    "enterprise": "aiab-enterprise",
+                    "id": "aiab-vcs",
+                    "sd": 66051,
+                    "sst": 1,
+                    "upf": "aiab-upf",
+                    "site": "aiab-site",
+                    "slice": {
+                        "mbr": {
+                          "uplink": 10000000,
+                          "downlink": 5000000,
+                          "uplink-burst-size": 600000,
+                          "downlink-burst-size": 600000
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "Deletes": {},
+    "Extensions": {
+        "model-version-101": "4.0.0",
+        "model-type-102": "Aether"
+    }
+}
+

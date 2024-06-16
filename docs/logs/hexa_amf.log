@@ -1,0 +1,367 @@
+2024-06-12T08:58:43Z[36m [INFO][HEXA_AMF][App] [0m========================================
+2024-06-12T08:58:43Z[36m [INFO][HEXA_AMF][App] [0m##############|HEXA AMF|###############
+2024-06-12T08:58:43Z[36m [INFO][HEXA_AMF][App] [0m========================================
+2024-06-12T08:58:43Z[36m [INFO][HEXA_AMF][Init] [0mAMF Log level is set to [info] level
+2024-06-12T08:58:43Z[36m [INFO][LIB][NAS] [0mset log level : info
+2024-06-12T08:58:43Z[36m [INFO][LIB][NAS] [0mset report call : false
+2024-06-12T08:58:43Z[36m [INFO][LIB][NGAP] [0mset log level : info
+2024-06-12T08:58:43Z[36m [INFO][LIB][NGAP] [0mset report call : false
+2024-06-12T08:58:43Z[36m [INFO][LIB][FSM] [0mset log level : info
+2024-06-12T08:58:43Z[36m [INFO][LIB][FSM] [0mset report call : false
+2024-06-12T08:58:43Z[36m [INFO][LIB][Aper] [0mset log level : info
+2024-06-12T08:58:43Z[36m [INFO][LIB][Aper] [0mset report call : false
+2024-06-12T08:58:43Z[36m [INFO][LIB][Path] [0mset log level : info
+2024-06-12T08:58:43Z[36m [INFO][LIB][Path] [0mset report call : false
+2024-06-12T08:58:43Z[36m [INFO][HEXA_AMF][CFG] [0mconfig version [1.0.0]
+2024-06-12T08:58:43Z[36m [INFO][HEXA_AMF][Init] [0mReading Amf related configuration from ROC
+2024-06-12T08:58:43Z[36m [INFO][CONN][GRPC] [0mConfig Client : Creating
+2024-06-12T08:58:43Z[36m [INFO][CONN][GRPC] [0mDialing GRPC Connection -  webui:9876
+2024-06-12T08:58:43Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:58:53Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:03Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:13Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:23Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:33Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:43Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:53Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel created
+2024/06/12 09:00:03 INFO: [core] [Channel #1] original dial target is: "webui:9876"
+2024/06/12 09:00:03 INFO: [core] [Channel #1] parsed dial target is: resolver.Target{URL:url.URL{Scheme:"webui", Opaque:"9876", User:(*url.Userinfo)(nil), Host:"", Path:"", RawPath:"", OmitHost:false, ForceQuery:false, RawQuery:"", Fragment:"", RawFragment:""}}
+2024/06/12 09:00:03 INFO: [core] [Channel #1] fallback to scheme "passthrough"
+2024/06/12 09:00:03 INFO: [core] [Channel #1] parsed dial target is: passthrough:///webui:9876
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel authority set to "webui:9876"
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Resolver state updated: {
+  "Addresses": [
+    {
+      "Addr": "webui:9876",
+      "ServerName": "",
+      "Attributes": null,
+      "BalancerAttributes": null,
+      "Metadata": null
+    }
+  ],
+  "Endpoints": [
+    {
+      "Addresses": [
+        {
+          "Addr": "webui:9876",
+          "ServerName": "",
+          "Attributes": null,
+          "BalancerAttributes": null,
+          "Metadata": null
+        }
+      ],
+      "Attributes": null
+    }
+  ],
+  "ServiceConfig": null,
+  "Attributes": null
+} (resolver returned new addresses)
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel switches to new LB policy "pick_first"
+2024/06/12 09:00:03 INFO: [core] [pick-first-lb 0xc00021d4a0] Received new config {
+  "shuffleAddressList": false
+}, resolver state {
+  "Addresses": [
+    {
+      "Addr": "webui:9876",
+      "ServerName": "",
+      "Attributes": null,
+      "BalancerAttributes": null,
+      "Metadata": null
+    }
+  ],
+  "Endpoints": [
+    {
+      "Addresses": [
+        {
+          "Addr": "webui:9876",
+          "ServerName": "",
+          "Attributes": null,
+          "BalancerAttributes": null,
+          "Metadata": null
+        }
+      ],
+      "Attributes": null
+    }
+  ],
+  "ServiceConfig": null,
+  "Attributes": null
+}
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel created
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel Connectivity change to CONNECTING
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel exiting idle mode
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel Connectivity change to CONNECTING
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel picks a new address "webui:9876" to connect
+2024-06-12T09:00:03Z[36m [INFO][HEXA_AMF][Init] [0mServer started
+2024/06/12 09:00:03 INFO: [core] [pick-first-lb 0xc00021d4a0] Received SubConn state update: 0xc00021d650, {ConnectivityState:CONNECTING ConnectionError:<nil>}
+2024-06-12T09:00:03Z[36m [INFO][CONN][GRPC] [0mSubscribing to Config POD
+2024-06-12T09:00:03Z[31m [ERRO][CONN][GRPC] [0mConnectivity status: Not Ready
+2024-06-12T09:00:03Z[36m [INFO][HEXA_AMF][Util] [0mamfconfig Info: Version[1.0.0] Description[AMF initial configuration]
+2024-06-12T09:00:03Z[36m [INFO][HEXA_AMF][Util] [0mNfId Instance: 8ed77048-56e1-4d9f-b5ab-657021ead068
+2024/06/12 09:00:03 ChunkId in the range of 0 to 16384 
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel Connectivity change to READY
+2024/06/12 09:00:03 INFO: [core] [pick-first-lb 0xc00021d4a0] Received SubConn state update: 0xc00021d650, {ConnectivityState:READY ConnectionError:<nil>}
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel Connectivity change to READY
+Started Pod Down goroutine
+2024-06-12T09:00:03Z[36m [INFO][HEXA_AMF][Context] [0mMondbName: hexa-amf, Url: mongodb://mongodb-arbiter-headless
+2024-06-12T09:00:03Z[36m [INFO][HEXA_AMF][Context] [0mSuccessfully connected to Mongodb
+2024-06-12T09:00:03Z[36m [INFO][HEXA_AMF][NGAP] [0mListen on 127.0.0.1/[::1%lo]/[fe80::1416:9aff:fefe:7023%eth0]/192.168.84.206:38412
+2024-06-12T09:00:03Z[36m [INFO][LIB][MonDB] [0mCreated index :  supi_1  on keyField :  supi  for Collection :  amf.data.amfState
+2024-06-12T09:00:03Z[36m [INFO][LIB][MonDB] [0mCreated index :  guti_1  on keyField :  guti  for Collection :  amf.data.amfState
+2024-06-12T09:00:03Z[36m [INFO][LIB][MonDB] [0mCreated index :  tmsi_1  on keyField :  tmsi  for Collection :  amf.data.amfState
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0mConnectivity status: Ready
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0mConfig Message received
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0mInitial Config Received:
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Network Slice                               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Name                | hexa-slice-01         |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Sst                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Sd                  | 010203                |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Device Group        | 5g-ue-01              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IP Domain Details   | pool1                 |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrUplink        | 20000000              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrDownlink      | 200000000             |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007487       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007488       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007489       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007490       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007491       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007492       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007401       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IMSI_LIST           | 001010100007494       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007495       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007496       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007497       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007498       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007499       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007500       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Device Group        | 5g-ue-02              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IP Domain Details   | pool2                 |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrUplink        | 10000000              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrDownlink      | 400000000             |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007501       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007502       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007503       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007504       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007505       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IMSI_LIST           | 001010100007506       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007507       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007508       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007509       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007510       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Site                | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| GNB                 | hexa-gnb-01           |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| TAC                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| GNB                 | hexa-gnb-02           |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| TAC                 | 2                     |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MCC                 | 001                   |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MNC                 | 01                    |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| UPF                 | hexa-upf              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | IPV4                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Flow Direction      | BIDIRECTIONAL         |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Flow Status         | ENABLED               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Rule ID             | ALLOW-ALL             |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Priority            | 250                   |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mReceived updateConfig in the amf app :
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Network Slice                               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Name                | hexa-slice-01         |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Sst                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Sd                  | 010203                |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Device Group        | 5g-ue-01              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| IP Domain Details   | pool1                 |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DnnMbrUplink        | 20000000              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DnnMbrDownlink      | 200000000             |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007487       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007488       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007489       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007490       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007491       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007492       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007401       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| IMSI_Supported      | 001010100007494       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007495       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007496       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007497       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007498       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007499       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007500       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Device Group        | 5g-ue-02              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| IP Domain Details   | pool2                 |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DnnMbrUplink        | 10000000              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| DnnMbrDownlink      | 400000000             |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007501       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007502       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007503       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007504       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007505       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| IMSI_Supported      | 001010100007506       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007507       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007508       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007509       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|                     | 001010100007510       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Site                | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| GNB                 | hexa-gnb-01           |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| TAC                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| GNB                 | hexa-gnb-02           |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| TAC                 | 2                     |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| MCC                 | 001                   |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| MNC                 | 01                    |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| UPF                 | hexa-upf              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Traffic Class       | IPV4                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Flow Direction      | BIDIRECTIONAL         |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Flow Status         | ENABLED               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Rule ID             | ALLOW-ALL             |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Priority            | 250                   |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mNetwork Slice Name  hexa-slice-01
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mNetwork Slice has site name:  hexa
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mPlmn:: 00101
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m+-------------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Recieved from ROC      | PLMN  |  SST  |   SD   |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| SupportedPlmnList      | 00101 |  1    | 010203 |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m+-------------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| Recieved from HEXA AMF| PLMN  |  SST  |   SD   |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m| SupportedPlmnList      | 00101 |  1    | 010203 |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0m+-------------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mTai list present in Slice {0xc0006b9b60 1} []
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mTai list present in Slice {0xc0006b9b80 2} [{0xc0006b9b60 1}]
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mGnb Updated in existing Plmn, SupportTAILIst received from Roc:  [{0xc0006b9b60 1} {0xc0006b9b80 2}]
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][GRPC] [0mSupportTAILIst in HEXA-AMF [{0xc0006b9b60 1} {0xc0006b9b80 2}]
+2024-06-12T09:00:04Z[36m [INFO][HEXA_AMF][Util] [0mamfconfig Info: Version[1.0.0] Description[AMF initial configuration]
+2024/06/12 09:00:06 chunk entry: []
+2024-06-12T09:00:11Z[36m [INFO][DRSM][App] [0mKeepalive insert d.podMaps map[hexa-amf-5c44dd979b-qz7jc:0xc0003de5b0]
+2024-06-12T09:00:11Z[36m [INFO][HEXA_AMF][Init] [0mStarted KeepAlive Timer: 86400 sec
+2024-06-12T09:00:11Z[36m [INFO][HEXA_AMF][CFG] [0mSent Register NF Instance with updated profile
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0m===============================================
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0m################|GNB DETECTED|#################
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0m===============================================
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0mSCTP Accept from: | 192.168.1.246:33465 |
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0mCreate a new NG connection for: | 192.168.1.246:33465 |
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle NG Setup request
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0mSupported Tai List in HEXA-AMF Plmn: &{001 01}, Tac: 0x000001 Tac: 1
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0mSupported Tai List in HEXA-AMF Plmn: &{001 01}, Tac: 0x000002 Tac: 2
+2024-06-12T09:07:12Z[36m [INFO][HEXA_AMF][NGAP] [0mSend NG-Setup response
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mRanUe is not exist
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m===============================================
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m################|UE DETECTED|##################
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m===============================================
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle Initial UE Message
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mRanUe is not exist
+2024/06/12 09:07:17 Adding chunk 161 success 
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][Context] [0mAllocate AmfUeNgapID : 165863
+2024-06-12T09:07:17Z[36m [INFO][DRSM][App] [0mreceived Chunk Doc: &{chunkid-161 chunkid-161 hexa-amf-5c44dd979b-qz7jc 192.168.84.206 8ed77048-56e1-4d9f-b5ab-657021ead068 0001-01-01 00:00:00 +0000 UTC chunk}
+2024/06/12 09:07:17 id received: chunkid-161 value
+2024-06-12T09:07:17Z[36m [INFO][DRSM][App] [0mChunk id 161, podChunks map[161:0xc0006ce2d0]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][Comm] [0mSecurity header type: PlainNas Message
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][Context] [0mAllocate TMSI : 165862
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mAntype from new RanUe : 3GPP_ACCESS
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mNew EventChannel created
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mupdated nashandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mupdated nashandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mHandle Nas Message
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mHandle Registration Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mAuthentication procedure
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mSend Authentication Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mSend Downlink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mUecontext found. queuing ngap message to uechannel
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mupdated ngaphandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle Uplink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mUplink NAS Transport (RAN UE NGAP ID: 1)
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mHandle Authentication Failure
+2024-06-12T09:07:17Z[33m [WARN][HEXA_AMF][GMM] [0mAuthentication Failure 5GMM Cause: Synch Failure
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mSend Authentication Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mSend Downlink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mUecontext found. queuing ngap message to uechannel
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mupdated ngaphandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle Uplink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mUplink NAS Transport (RAN UE NGAP ID: 1)
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mHandle Authentication Response
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mSend Security Mode Command
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mSend Downlink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mUecontext found. queuing ngap message to uechannel
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mupdated ngaphandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle Uplink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mUplink NAS Transport (RAN UE NGAP ID: 1)
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mHandle Security Mode Complete
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mHandle InitialRegistration
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mRequestedNssai: [{ServingSnssai:0xc000c45278 HomeSnssai:<nil>}]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][Comm] [0mHandle AMF Status Change Subscribe Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][Comm] [0mnew AMF Status Subscription[165861]
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GIN] [0m| 201 |  192.168.84.222 | POST    | /namf-comm/v1/subscriptions |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m+---------+---------+
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m| PLMN ID |   TAC   |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m|  00101  |  000001 |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m+---------+---------+
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m+---------+---------+
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m| PLMN ID |   TAC   |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m|  00101  |  000001 |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0m+---------+---------+
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mSend Registration Accept
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mSend Initial Context Setup Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mUecontext found. queuing ngap message to uechannel
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mupdated ngaphandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle Initial Context Setup Response
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mUecontext found. queuing ngap message to uechannel
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mupdated ngaphandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle Uplink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mUplink NAS Transport (RAN UE NGAP ID: 1)
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mHandle Registration Complete
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mUecontext found. queuing ngap message to uechannel
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mupdated ngaphandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle Uplink Nas Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mUplink NAS Transport (RAN UE NGAP ID: 1)
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mHandle UL NAS Transport
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mTransport 5GSM Message to SMF
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GMM] [0mcreate smContext[pduSessionID: 1] Success
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][Producer] [0mHandle N1N2 Message Transfer Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mupdated sbihandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m===============================================
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m################|PDU CREATED|##################
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m===============================================
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mSend PDU Session Resource Setup Request
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m+--------------------+---------------------------+
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m|AMF_UE_NGAP_ID  |165863                         |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m|IMSI            |imsi-001010100007487           |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m|MCC             |001                            |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m|MNC             |01                             |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m|TAC             |000001                         |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0m+--------------------+---------------------------+
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][GIN] [0m| 200 |  192.168.84.245 | POST    | /namf-comm/v1/ue-contexts/imsi-001010100007487/n1-n2-messages |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mUecontext found. queuing ngap message to uechannel
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NAS] [0mupdated ngaphandler
+2024-06-12T09:07:17Z[36m [INFO][HEXA_AMF][NGAP] [0mHandle PDU Session Resource Setup Response

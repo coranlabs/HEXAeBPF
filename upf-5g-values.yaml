@@ -1,0 +1,46 @@
+# Copyright 2023-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+enable: true
+resources:
+  enabled: false
+images:
+  repository: "registry.opennetworking.org/docker.io/"
+  # uncomment below section to add update bess image tag
+  #tags:
+  #  bess: <bess image tag>
+  #  pfcpiface: <pfcp image tag>
+config:
+  upf:
+    name: "oaisim"
+    sriov:
+      enabled: false #default sriov is disabled in AIAB setup
+    hugepage:
+      enabled: false #should be enabled if dpdk is enabled
+    #can be any other plugin as well, remember this plugin dictates how IP address are assigned.
+    cniPlugin: macvlan
+    ipam: static
+    routes:
+      - to: ${NODE_IP}
+        via: 169.254.1.1
+    enb:
+      subnet: ${RAN_SUBNET} #this is your gNB network
+    access:
+      iface: ${DATA_IFACE}
+      ip: 192.168.252.${IP_ID}/24
+    core:
+      iface: ${DATA_IFACE}
+      ip: 192.168.250.${IP_ID}/24
+    cfgFiles:
+      upf.json:
+        mode: af_packet #this mode means no dpdk
+        hwcksum: true
+        log_level: "trace"
+        gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
+        cpiface:
+          dnn: "internet" #keep it matching with Slice dnn
+          hostname: "upf"
+          #http_port: "8080"
+          enable_ue_ip_alloc: false # if true then it means UPF allocates address from below pool
+          ue_ip_pool: "172.${IP_UE_ID}.0.0/16" # UE ip pool is used if enable_ue_ip_alloc is set to true
