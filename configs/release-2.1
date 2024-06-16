@@ -1,0 +1,17 @@
+# Copyright 2021-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+SD_CORE_CHART            := aether/sd-core --version 0.12.5
+
+# For installing the ROC
+AETHER_ROC_UMBRELLA_CHART := aether/aether-roc-umbrella --version 2.1.36
+ATOMIX_CHART              := atomix/atomix --version 1.1.2
+ONOS_OPERATOR_CHART       := onosproject/onos-operator --version 0.5.6
+
+# Config files to use
+ROC_VALUES     := $(MAKEDIR)/aether-2.1/roc-values.yaml
+ROC_4G_MODELS  := $(MAKEDIR)/aether-2.1/roc-4g-models.json
+ROC_5G_MODELS  := $(MAKEDIR)/aether-2.1/roc-5g-models.json
+4G_CORE_VALUES := $(MAKEDIR)/aether-2.1/sd-core-4g-values.yaml
+5G_CORE_VALUES := $(MAKEDIR)/aether-2.1/sd-core-5g-values.yaml

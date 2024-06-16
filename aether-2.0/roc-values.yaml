@@ -1,0 +1,89 @@
+# Copyright 2019-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+global:
+  storage:
+    controller: "atomix-controller.kube-system:5679"
+  store:
+    consensus:
+      enabled: true
+      clusters: 1
+      replicas: 1
+      partitions: 1
+
+import:
+  aether-roc-gui:
+    v2_1:
+      enabled: false
+    v3:
+      enabled: false
+    v4:
+      enabled: false
+  sdcore-adapter:
+    v2_1:
+      enabled: false
+    v3:
+      enabled: false
+    v4:
+      enabled: false
+  sdcore-test-dummy:
+    enabled: false
+  prometheus:
+    acc:
+      enabled: false
+    amp:
+      enabled: false
+    ace:
+      enabled: false
+  demo-exporter:
+    enabled: false
+  prom-label-proxy:
+    acc:
+      enabled: false
+    amp:
+      enabled: false
+  subscriber-proxy:
+    enabled: false
+
+onos-gui:
+  ingress:
+    enabled: false
+  service:
+    type: NodePort
+
+aether-roc-gui-v2:
+  ingress:
+    enabled: false
+  grafana:
+    proxyEnabled: false
+  prometheus:
+    acc:
+      proxyEnabled: false
+    amp:
+      proxyEnabled: false
+    site: []
+  service:
+    type: NodePort
+
+prometheus-amp:
+  alertmanager:
+    persistentVolume:
+      enabled: false
+  server:
+    persistentVolume:
+      enabled: false
+prometheus-acc:
+  alertmanager:
+    persistentVolume:
+      enabled: false
+  server:
+    persistentVolume:
+      enabled: false
+prometheus-ace:
+  alertmanager:
+    persistentVolume:
+      enabled: false
+  server:
+    persistentVolume:
+      enabled: false

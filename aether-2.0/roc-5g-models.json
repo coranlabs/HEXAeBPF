@@ -1,0 +1,392 @@
+{
+    "default-target": "connectivity-service-v2",
+    "Updates": {
+        "connectivity-services-2.0.0": {
+            "connectivity-service": [
+                {
+                    "core-5g-endpoint": "http://webui.omec.svc:5000/config",
+                    "description": "5G Integration Test",
+                    "display-name": "ROC 5G Test Connectivity Service",
+                    "connectivity-service-id": "aiab-cs"
+                }
+            ]
+        },
+        "enterprises-2.0.0": {
+            "enterprise": [
+                {
+                    "description": "This Enterprise holds discovered IMSIs that cannot be associated elsewhere.",
+                    "display-name": "Default Enterprise",
+                    "enterprise-id": "defaultent",
+                    "site": [
+                        {
+                            "description": "Global Default Site",
+                            "display-name": "Global Default Site",
+                            "site-id": "defaultent-defaultsite",
+                            "imsi-definition": {
+                                "mcc": "000",
+                                "mnc": "00",
+                                "enterprise": 0,
+                                "format": "SSSSSSSSSSSSSSS"
+                            },
+                            "device-group": [
+                                {
+                                    "display-name": "Unknown Inventory",
+                                    "device-group-id": "defaultent-defaultsite-default",
+                                    "mbr": {
+                                        "uplink": 1000000,
+                                        "downlink": 1000000
+                                    },
+                                    "traffic-class": "class-1",
+                                    "ip-domain": "defaultent-defaultip"
+                                }
+                            ],
+                            "ip-domain": [
+                                {
+                                    "admin-status": "ENABLE",
+                                    "description": "Global Default IP Domain",
+                                    "display-name": "Global Default IP Domain",
+                                    "dns-primary": "8.8.8.1",
+                                    "dns-secondary": "8.8.8.2",
+                                    "dnn": "dnnglobal",
+                                    "ip-domain-id": "defaultent-defaultip",
+                                    "mtu": 57600,
+                                    "subnet": "192.168.0.0/24"
+                                }
+                            ]
+                        }
+                    ],
+                    "traffic-class": [
+                        {
+                            "traffic-class-id": "class-1",
+                            "description": "High Priority TC",
+                            "display-name": "Class 1",
+                            "qci": 10,
+                            "arp": 1,
+                            "pelr": 10,
+                            "pdb": 100
+                        }
+                    ]
+                },
+                {
+                    "connectivity-service": [
+                        {
+                            "connectivity-service": "aiab-cs",
+                            "enabled": true
+                        }
+                    ],
+                    "description": "AiaB Enterprise",
+                    "display-name": "AiaB Corp.",
+                    "enterprise-id": "aiab-enterprise",
+                    "application": [],
+                    "site": [
+                        {
+                            "description": "AiaB test site",
+                            "display-name": "AiaB site",
+                            "site-id": "aiab-site",
+                            "imsi-definition": {
+                                "mcc": "208",
+                                "mnc": "93",
+                                "enterprise": 1,
+                                "format": "CCCNNEESSSSSSSS"
+                            },
+                            "device": [
+                                {
+                                    "device-id": "aiab-ue-1",
+                                    "display-name": "UE 1",
+                                    "sim-card": "aiab-sim-1"
+                                },
+                                {
+                                    "device-id": "aiab-ue-2",
+                                    "display-name": "UE 2",
+                                    "sim-card": "aiab-sim-2"
+                                },
+                                {
+                                    "device-id": "aiab-ue-3",
+                                    "display-name": "UE 3",
+                                    "sim-card": "aiab-sim-3"
+                                },
+                                {
+                                    "device-id": "aiab-ue-4",
+                                    "display-name": "UE 4",
+                                    "sim-card": "aiab-sim-4"
+                                },
+                                {
+                                    "device-id": "aiab-ue-5",
+                                    "display-name": "UE 5",
+                                    "sim-card": "aiab-sim-5"
+                                },
+                                {
+                                    "device-id": "aiab-ue-6",
+                                    "display-name": "UE 6",
+                                    "sim-card": "aiab-sim-6"
+                                },
+                                {
+                                    "device-id": "aiab-ue-7",
+                                    "display-name": "UE 7",
+                                    "sim-card": "aiab-sim-7"
+                                },
+                                {
+                                    "device-id": "aiab-ue-8",
+                                    "display-name": "UE 8",
+                                    "sim-card": "aiab-sim-8"
+                                },
+                                {
+                                    "device-id": "aiab-ue-9",
+                                    "display-name": "UE 9",
+                                    "sim-card": "aiab-sim-9"
+                                },
+                                {
+                                    "device-id": "aiab-ue-10",
+                                    "display-name": "UE 10",
+                                    "sim-card": "aiab-sim-10"
+                                },
+                                {
+                                    "device-id": "aiab-ue-11",
+                                    "display-name": "UE 11",
+                                    "sim-card": "aiab-sim-11"
+                                },
+                                {
+                                    "device-id": "aiab-ue-12",
+                                    "display-name": "UE 12",
+                                    "sim-card": "aiab-sim-12"
+                                },
+                                {
+                                    "device-id": "aiab-ue-13",
+                                    "display-name": "UE 13",
+                                    "sim-card": "aiab-sim-13"
+                                },
+                                {
+                                    "device-id": "aiab-ue-14",
+                                    "display-name": "UE 14",
+                                    "sim-card": "aiab-sim-14"
+                                },
+                                {
+                                    "device-id": "aiab-ue-15",
+                                    "display-name": "UE 15",
+                                    "sim-card": "aiab-sim-15"
+                                }
+                            ],
+                            "sim-card": [
+                                {
+                                    "sim-id": "aiab-sim-1",
+                                    "display-name": "UE 1 Sim",
+                                    "imsi": 208930100007487
+                                },
+                                {
+                                    "sim-id": "aiab-sim-2",
+                                    "display-name": "UE 2 Sim",
+                                    "imsi": 208930100007488
+                                },
+                                {
+                                    "sim-id": "aiab-sim-3",
+                                    "display-name": "UE 3 Sim",
+                                    "imsi": 208930100007489
+                                },
+                                {
+                                    "sim-id": "aiab-sim-4",
+                                    "display-name": "UE 4 Sim",
+                                    "imsi": 208930100007490
+                                },
+                                {
+                                    "sim-id": "aiab-sim-5",
+                                    "display-name": "UE 5 Sim",
+                                    "imsi": 208930100007491
+                                },
+                                {
+                                    "sim-id": "aiab-sim-6",
+                                    "display-name": "UE 6 Sim",
+                                    "imsi": 208930100007492
+                                },
+                                {
+                                    "sim-id": "aiab-sim-7",
+                                    "display-name": "UE 7 Sim",
+                                    "imsi": 208930100007493
+                                },
+                                {
+                                    "sim-id": "aiab-sim-8",
+                                    "display-name": "UE 8 Sim",
+                                    "imsi": 208930100007494
+                                },                                {
+                                    "sim-id": "aiab-sim-9",
+                                    "display-name": "UE 9 Sim",
+                                    "imsi": 208930100007495
+                                },
+                                {
+                                    "sim-id": "aiab-sim-10",
+                                    "display-name": "UE 10 Sim",
+                                    "imsi": 208930100007496
+                                },
+                                {
+                                    "sim-id": "aiab-sim-11",
+                                    "display-name": "UE 11 Sim",
+                                    "imsi": 208930100007497
+                                },
+                                {
+                                    "sim-id": "aiab-sim-12",
+                                    "display-name": "UE 12 Sim",
+                                    "imsi": 208930100007498
+                                },
+                                {
+                                    "sim-id": "aiab-sim-13",
+                                    "display-name": "UE 13 Sim",
+                                    "imsi": 208930100007499
+                                },
+                                {
+                                    "sim-id": "aiab-sim-14",
+                                    "display-name": "UE 14 Sim",
+                                    "imsi": 208930100007500
+                                },
+                                {
+                                    "sim-id": "aiab-sim-15",
+                                    "display-name": "UE 15 Sim",
+                                    "imsi": 208930100007501
+                                }
+                            ],
+                            "device-group": [
+                                {
+                                    "display-name": "AiaB Users",
+                                    "device-group-id": "aiab-device-group",
+                                    "device": [
+                                        {
+                                            "device-id": "aiab-ue-1",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-2",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-3",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-4",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-5",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-6",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-7",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-8",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-9",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-10",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-11",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-12",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-13",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-14",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-15",
+                                            "enable": true
+                                        }
+                                    ],
+                                    "ip-domain": "aiab-ip-pool",
+                                    "mbr": {
+                                        "uplink": 1000000,
+                                        "downlink": 1000000
+                                    },
+                                    "traffic-class": "aiab-class-1"
+                                }
+                            ],
+                            "ip-domain": [
+                                {
+                                    "admin-status": "ENABLE",
+                                    "display-name": "IP pool",
+                                    "dnn": "internet",
+                                    "dns-primary": "8.8.8.8",
+                                    "ip-domain-id": "aiab-ip-pool",
+                                    "mtu": 1460,
+                                    "subnet": "172.250.0.0/16"
+                                }
+                            ],
+                            "small-cell": [
+                                {
+                                    "small-cell-id": "gnb1",
+                                    "display-name": "gNodeB 1",
+                                    "address": "aiab-gnb1",
+                                    "enable": true,
+                                    "tac": "0001"
+                                }
+                            ],
+                            "upf": [
+                                {
+                                    "address": "upf",
+                                    "display-name": "AiaB UPF",
+                                    "upf-id": "aiab-upf",
+                                    "port": 8805,
+                                    "config-endpoint": "http://upf-http.omec.svc:8080"
+                                }
+                            ],
+                            "slice": [
+                                {
+                                    "default-behavior": "ALLOW-ALL",
+                                    "display-name": "AiaB Slice",
+                                    "device-group": [
+                                        {
+                                            "device-group": "aiab-device-group",
+                                            "enable": true
+                                        }
+                                    ],
+                                    "filter": [],
+                                    "slice-id": "aiab-vcs",
+                                    "sd": 66051,
+                                    "sst": 1,
+                                    "upf": "aiab-upf",
+                                    "mbr": {
+                                        "uplink": 10000000,
+                                        "downlink": 5000000
+                                    },
+                                    "priority-traffic-rule": []
+                                }
+                            ]
+                        }
+                    ],
+                    "traffic-class": [
+                        {
+                            "description": "High Priority TC",
+                            "display-name": "Class 1",
+                            "traffic-class-id": "aiab-class-1",
+                            "pdb": 100,
+                            "arp": 1,
+                            "pelr": 3,
+                            "qci": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Deletes": {},
+    "Extensions": {
+        "model-version-101": "2.0.x",
+        "model-type-102": "Aether"
+    }
+}

@@ -1,0 +1,15 @@
+# Copyright 2021-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Support testing local Helm charts
+SD_CORE_CHART            := $(WORKSPACE)/cord/sdcore-helm-charts/sdcore-helm-charts
+5G_RAN_SIM_CHART         := $(WORKSPACE)/cord/sdcore-helm-charts/5g-ran-sim
+5G_TEST_APPS_CHART       := $(WORKSPACE)/cord/sdcore-helm-charts/5g-test-apps
+ENODEBD_CHART            := $(WORKSPACE)/cord/aether-helm-charts/apps/enodebd
+
+# Support testing aether-roc-umbrella chart
+AETHER_ROC_UMBRELLA_CHART := $(WORKSPACE)/cord/roc-helm-charts/aether-roc-umbrella
+ATOMIX_CHART              := atomix/atomix
+ONOS_OPERATOR_CHART       := onosproject/onos-operator
+
