@@ -1,0 +1,230 @@
+# Copyright 2019-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+5g-control-plane:
+  enable5G: true
+  mongodb:
+    usePassword: false
+    persistence:
+      enabled: false
+  resources:
+    enabled: false
+
+  config:
+    managedByConfigPod:
+      enabled: true
+      # syncUrl: http://sdcore-adapter-v4.aether-roc.svc:8080/synchronize
+    smf:
+      cfgFiles:
+        # https://github.com/free5gc/free5gc/blob/main/config/pcfcfg.yaml
+        smfcfg.conf:
+          configuration:
+            mongodb:       # the mongodb connected by this PCF
+              name: smf # name of the mongodb
+              url: mongodb://mongodb:27017
+    pcf:
+      cfgFiles:
+        # https://github.com/free5gc/free5gc/blob/main/config/pcfcfg.yaml
+        pcfcfg.conf:
+          info:
+            version: 1.0.0
+            description: PCF initial local configuration
+          configuration:
+            mongodb:       # the mongodb connected by this PCF
+              name: free5gc                  # name of the mongodb
+              url: mongodb://mongodb:27017
+    nrf:
+      cfgFiles:
+        # https://github.com/free5gc/free5gc/blob/main/config/nrfcfg.yaml
+        nrfcfg.conf:
+          configuration:
+            MongoDBName: free5gc # database name in MongoDB
+            MongoDBUrl: mongodb://mongodb:27017
+            #MongoDBUrl: mongodb://mongodb:27017 #works with db in omec name space
+
+omec-sub-provision:
+  enable: true
+  config:
+    simapp:
+      cfgFiles:
+        simapp.yaml:
+          configuration:
+            provision-network-slice: true
+            sub-provision-endpt:
+              addr: webui
+              port: 5000
+            subscribers:
+            - ueId-start: 208930100007487
+              ueId-end: 208930100007501
+              plmnId: 20893
+              opc: "981d464c7c52eb6e5036234984ad0bcf"
+              op: ""
+              key: "5122250214c33e723a5dd523fc145fc0"
+              sequenceNumber: "16f3b3f70fc2"
+            device-groups:
+            - name:  "5g-gnbsim-user"
+              imsis:
+                - "208930100007487"
+                - "208930100007488"
+                - "208930100007489"
+                - "208930100007490"
+                - "208930100007491"
+                - "208930100007492"
+                - "208930100007493"
+                - "208930100007494"
+                - "208930100007495"
+                - "208930100007496"
+                - "208930100007497"
+                - "208930100007498"
+                - "208930100007499"
+                - "208930100007500"
+                - "208930100007501"
+              ip-domain-name: "pool1"
+              ip-domain-expanded:
+                dnn: internet
+                dns-primary: "8.8.8.8"
+                mtu: 1460
+                ue-ip-pool: "172.250.0.0/16"
+                ue-dnn-qos:
+                  dnn-mbr-downlink: 20000000
+                  dnn-mbr-uplink: 4000000
+                  bitrate-unit: bps
+                  traffic-class:  #default bearer QCI/ARP
+                    name: "platinum"
+                    qci: 9
+                    arp: 6
+                    pdb: 300
+                    pelr: 6
+              site-info: "aiab"
+            network-slices:
+            - name: "default"
+              slice-id:
+                sd: "010203"
+                sst: 1
+              site-device-group:
+              - "5g-gnbsim-user"
+              application-filtering-rules:
+              - rule-name: "ALLOW-ALL"
+                priority: 250
+                action: "permit"
+                endpoint: "0.0.0.0/0"
+              site-info:
+                gNodeBs:
+                - name: "aiab-gnb1"
+                  tac: 1
+                plmn:
+                  mcc: "208"
+                  mnc: "93"
+                site-name: "aiab"
+                upf:
+                  upf-name: "upf"
+                  upf-port: 8805
+
+omec-user-plane:
+  enable: true
+  resources:
+    enabled: false
+
+  config:
+    upf:
+      name: "oaisim"
+      sriov:
+        enabled: false
+      hugepage:
+        enabled: false
+      cniPlugin: simpleovs
+      ipam: static
+      cfgFiles:
+        upf.json:
+          mode: af_packet
+          cpiface:
+            dnn: "internet"
+            hostname: "upf"
+            enable_ue_ip_alloc: false
+            ue_ip_pool: 172.250.0.0/16
+
+5g-ran-sim:
+  enable: true
+  resources:
+    enabled: false
+
+  config:
+    gnbsim:
+      yamlCfgFiles:
+        gnb.conf: |
+          info:
+            version: 1.0.0
+            description: gNodeB sim initial configuration
+          configuration:
+            gnbs: # pool of gNodeBs
+              gnb1:
+                n2IpAddr: # gNB N2 interface IP address used to connect to AMF
+                n2Port: 9487 # gNB N2 Port used to connect to AMF
+                n3IpAddr: 192.168.251.5 # gNB N3 interface IP address used to connect to UPF
+                n3Port: 2152 # gNB N3 Port used to connect to UPF
+                name: gnb1 # gNB name that uniquely identify a gNB within application
+                globalRanId:
+                  plmnId:
+                    mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                    mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                  gNbId:
+                    bitLength: 24
+                    gNBValue: 000102 # gNB identifier (3 bytes hex string, range: 000000~FFFFFF)
+                supportedTaList:
+                - tac: 000001 # Tracking Area Code (3 bytes hex string, range: 000000~FFFFFF)
+                  broadcastPlmnList:
+                    - plmnId:
+                        mcc: 208
+                        mnc: 93
+                      taiSliceSupportList:
+                          - sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+                            sd: 010203 # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+                defaultAmf:
+                  hostName: amf # Host name of AMF
+                  ipAddr: # AMF IP address
+                  port: 38412 # AMF port
+
+            profiles: # profile information
+              - profileType: register # profile type
+                profileName: profile1 # uniqely identifies a profile within application
+                enable: false # Set true to execute the profile, false otherwise.
+                gnbName: gnb1 # gNB to be used for this profile
+                startImsi: 208930100007487 #First IMSI. Subsequent values will be used if ueCount is mo    re than 1
+                ueCount: 5 # Number of UEs for for which the profile will be executed
+                plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+              - profileType: pdusessest
+                profileName: profile2
+                enable: true
+                gnbName: gnb1
+                startImsi: 208930100007492
+                ueCount: 5
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+                dataPktCount: 5 # Number of UL user data packets to be transmitted. Common for all UEs
+              - profileType: anrelease
+                profileName: profile3
+                enable: false
+                gnbName: gnb1
+                startImsi: 208930100007497
+                ueCount: 5
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+              - profileType: deregister
+                profileName: profile4
+                enable: false
+                gnbName: gnb1
+                startImsi: 208930100007497
+                ueCount: 5
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+          logger:
+            logLevel: info # how detailed the log will be, values: trace, debug, info, warn, error, fatal, panic
+
+omec-control-plane:
+  enable4G: false

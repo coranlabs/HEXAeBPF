@@ -1,0 +1,256 @@
+# Copyright 2019-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+5g-control-plane:
+  enable5G: true
+  images:
+    repository: "registry.opennetworking.org/docker.io/"
+
+  mongodb:
+    usePassword: false
+    persistence:
+      enabled: false
+  resources:
+    enabled: false
+
+  config:
+    managedByConfigPod:
+      enabled: true
+      # syncUrl: http://sdcore-adapter-v2.aether-roc.svc:8080/synchronize
+    smf:
+      cfgFiles:
+        # https://github.com/free5gc/free5gc/blob/main/config/pcfcfg.yaml
+        smfcfg.conf:
+          configuration:
+            mongodb:       # the mongodb connected by this PCF
+              name: smf # name of the mongodb
+              url: mongodb://mongodb:27017
+    pcf:
+      cfgFiles:
+        # https://github.com/free5gc/free5gc/blob/main/config/pcfcfg.yaml
+        pcfcfg.conf:
+          info:
+            version: 1.0.0
+            description: PCF initial local configuration
+          configuration:
+            mongodb:       # the mongodb connected by this PCF
+              name: free5gc                  # name of the mongodb
+              url: mongodb://mongodb:27017
+    nrf:
+      cfgFiles:
+        # https://github.com/free5gc/free5gc/blob/main/config/nrfcfg.yaml
+        nrfcfg.conf:
+          configuration:
+            MongoDBName: free5gc # database name in MongoDB
+            MongoDBUrl: mongodb://mongodb:27017
+            #MongoDBUrl: mongodb://mongodb:27017 #works with db in omec name space
+
+omec-sub-provision:
+  enable: true
+  images:
+    repository: "registry.opennetworking.org/docker.io/"
+
+  config:
+    simapp:
+      cfgFiles:
+        simapp.yaml:
+          configuration:
+            provision-network-slice: true
+            sub-provision-endpt:
+              addr: webui.omec.svc.cluster.local
+            # sub-proxy-endpt:
+            #   addr: subscriber-proxy.aether-roc.svc.cluster.local
+            #   port: 5000
+            subscribers:
+            - ueId-start: 208930100007487
+              ueId-end: 208930100007501
+              plmnId: 20893
+              opc: "981d464c7c52eb6e5036234984ad0bcf"
+              op: ""
+              key: "5122250214c33e723a5dd523fc145fc0"
+              sequenceNumber: "16f3b3f70fc2"
+            device-groups:
+            - name:  "5g-gnbsim-user"
+              imsis:
+                - "208930100007487"
+                - "208930100007488"
+                - "208930100007489"
+                - "208930100007490"
+                - "208930100007491"
+                - "208930100007492"
+                - "208930100007493"
+                - "208930100007494"
+                - "208930100007495"
+                - "208930100007496"
+                - "208930100007497"
+                - "208930100007498"
+                - "208930100007499"
+                - "208930100007500"
+                - "208930100007501"
+              ip-domain-name: "pool1"
+              ip-domain-expanded:
+                dnn: internet
+                dns-primary: "8.8.8.8"
+                mtu: 1460
+                ue-ip-pool: "172.250.0.0/16"
+                ue-dnn-qos:
+                  dnn-mbr-downlink: 20000000
+                  dnn-mbr-uplink:    4000000
+                  bitrate-unit: bps
+                  traffic-class:  #default bearer QCI/ARP
+                    name: "platinum"
+                    qci: 9
+                    arp: 6
+                    pdb: 300
+                    pelr: 6
+              site-info: "aiab"
+            network-slices:
+            - name: "default"
+              slice-id:
+                sd: "010203"
+                sst: 1
+              site-device-group:
+              - "5g-gnbsim-user"
+              application-filtering-rules:
+              - rule-name: "ALLOW-ALL"
+                priority: 250
+                action: "permit"
+                endpoint: "0.0.0.0/0"
+              site-info:
+                gNodeBs:
+                - name: "aiab-gnb1"
+                  tac: 1
+                plmn:
+                  mcc: "208"
+                  mnc: "93"
+                site-name: "aiab"
+                upf:
+                  upf-name: "upf"
+                  upf-port: 8805
+
+omec-user-plane:
+  enable: true
+  resources:
+    enabled: false
+  config:
+    upf:
+      name: "oaisim"
+      sriov:
+        enabled: false
+      hugepage:
+        enabled: false
+      cniPlugin: macvlan
+      ipam: static
+      routes:
+        - to: ${NODE_IP}
+          via: 169.254.1.1
+      enb:
+        subnet: ${RAN_SUBNET}
+      access:
+        iface: ${DATA_IFACE}
+      core:
+        iface: ${DATA_IFACE}
+      cfgFiles:
+        upf.json:
+          mode: af_packet
+          hwcksum: true
+          log_level: "trace"
+          gtppsc: true
+          cpiface:
+            dnn: "internet"
+            hostname: "upf"
+
+5g-ran-sim:
+  enable: ${ENABLE_GNBSIM}
+  resources:
+    enabled: false
+  images:
+    repository: "registry.opennetworking.org/docker.io/"
+  #  tags:
+  #    gnbsim: add overriding image tag here
+  config:
+    gnbsim:
+      singleInterface: false #default multiInterface. Works well for AIAB
+      yamlCfgFiles:
+        gnb.conf:
+          logger:
+            logLevel: trace # how detailed the log will be, values: trace, debug, info, warn, error, fatal, panic
+          configuration:
+             #gnbs: # pool of gNodeBs
+             #  gnb1:
+             #    n3IpAddr: "POD_IP" # set if singleInterface is true
+             profiles: # profile information
+              - profileType: register # profile type
+                profileName: profile1 # uniqely identifies a profile within application
+                enable: false # Set true to execute the profile, false otherwise.
+                gnbName: gnb1 # gNB to be used for this profile
+                startImsi: 208930100007487 #First IMSI. Subsequent values will be used if ueCount is mo    re than 1
+                ueCount: 5 # Number of UEs for for which the profile will be executed
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+              - profileType: pdusessest
+                profileName: profile2
+                enable: true
+                gnbName: gnb1
+                startImsi: 208930100007492
+                ueCount: 5
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+                dataPktCount: 5 # Number of UL user data packets to be transmitted. Common for all UEs
+              - profileType: anrelease
+                profileName: profile3
+                enable: false
+                gnbName: gnb1
+                startImsi: 208930100007497
+                ueCount: 5
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+              - profileType: uetriggservicereq
+                profileName: profile4
+                enable: false
+                gnbName: gnb1
+                startImsi: 208930100007497
+                ueCount: 5
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+              - profileType: deregister
+                profileName: profile5
+                enable: false
+                gnbName: gnb1
+                startImsi: 208930100007497
+                ueCount: 5
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+              - profileType: nwtriggeruedereg # profile type
+                profileName: profile6 # uniqely identifies a profile within application
+                enable: false # Set true to execute the profile, false otherwise.
+                gnbName: gnb1 # gNB to be used for this profile
+                startImsi: 208930100007497 # First IMSI. Subsequent values will be used if ueCount is more than 1
+                ueCount: 5 # Number of UEs for for which the profile will be executed
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>. Should match startImsi
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+              - profileType: uereqpdusessrelease # profile type
+                profileName: profile7 # uniqely identifies a profile within application
+                enable: false # Set true to execute the profile, false otherwise.
+                gnbName: gnb1 # gNB to be used for this profile
+                startImsi: 208930100007497 # First IMSI. Subsequent values will be used if ueCount is more than 1
+                ueCount: 5 # Number of UEs for for which the profile will be executed
+                plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>. Should match startImsi
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                defaultAs: "192.168.250.1" #default icmp pkt destinationomec-control-plane:
+  enable4G: false

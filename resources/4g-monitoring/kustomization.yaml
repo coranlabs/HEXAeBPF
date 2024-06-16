@@ -1,0 +1,20 @@
+# Copyright 2022-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+resources:
+  - ./enodebd-monitor.yaml
+  - ./hss-monitor.yaml
+  - ./mme-monitor.yaml
+  - ./spgwc-monitor.yaml
+  - ./upf-monitor.yaml
+
+configMapGenerator:
+  - name: grafana-ops-dashboards
+    namespace: cattle-dashboards
+    files:
+      - ./aiab-dashboard.json
+      - ./enodebd-dashboard.json
+generatorOptions:
+  labels:
+    grafana_dashboard: "1"
