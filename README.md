@@ -906,7 +906,7 @@ sudo ../build/nr-ue -c hexaebpf-ue.yaml
 - LoxiLB
 - Coroot
 - Caretta
-- Bpfmap
+- Bpfman
 
 > Coming soon...
 
