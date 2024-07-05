@@ -48,7 +48,7 @@ HEXAeBPF is an open-source, eBPF-defined, cloud-native telecom solution designed
 
 ### Need
 
-Built on the foundation of eBPF, HEXAeBPF offers unparalleled performance, scalability, and flexibility for your network. As the UPF here is based on eBPF, that is available as open source and is ready to use in production. It provides a lot of advantages including:
+Built on the foundation of eBPF, HEXAeBPF offers unparalleled performance, scalability, and flexibility for your network. 
 
 #### Features
 
@@ -355,37 +355,6 @@ amf:
           maxRetryTimes: 4
 ```
 
-#### HEXA_UPF
-
-```yaml
-configMaps:
-  config:
-    data:
-      config.yml: |
-        interface_name: [access, eth0, core]
-        api_address: :8080
-        pfcp_address: PFCP_ADDRESS:8805
-        metrics_address: :9090
-        n3_address: 192.168.252.3
-
-podAnnotations:
-  k8s.v1.cni.cncf.io/networks: |
-    [
-      { "name": "access-net",
-        "interface": "access",
-        "ips": [ "192.168.252.3/24" ],
-        "mac": "d6:a4:06:a6:45:6f",
-        "dns": {}
-      },
-      { "name": "core-net",
-        "interface": "core",
-        "ips": [ "192.168.250.3/24" ],
-        "mac": "f6:2b:4f:38:e8:49",
-        "dns": {}
-      }
-    ]
-```
-
 #### NRF
 
 ```yaml
@@ -618,6 +587,40 @@ webui:
         description: WebUI initial local configuration
       configuration:
         spec-compliant-sdf: false
+```
+
+
+### User Plane NF Configuration
+
+#### HEXA_UPF
+
+```yaml
+configMaps:
+  config:
+    data:
+      config.yml: |
+        interface_name: [access, eth0, core]
+        api_address: :8080
+        pfcp_address: PFCP_ADDRESS:8805
+        metrics_address: :9090
+        n3_address: 192.168.252.3
+
+podAnnotations:
+  k8s.v1.cni.cncf.io/networks: |
+    [
+      { "name": "access-net",
+        "interface": "access",
+        "ips": [ "192.168.252.3/24" ],
+        "mac": "d6:a4:06:a6:45:6f",
+        "dns": {}
+      },
+      { "name": "core-net",
+        "interface": "core",
+        "ips": [ "192.168.250.3/24" ],
+        "mac": "f6:2b:4f:38:e8:49",
+        "dns": {}
+      }
+    ]
 ```
 
 ### Deploying HEXAeBPF
