@@ -903,13 +903,14 @@ sudo ../build/nr-ue -c hexaebpf-ue.yaml
 
 ### Integrations with Other Open Source Projects to Increase Openness
 
-- Hubble
-- pwru
-- L3AF
-- LoxiLB
-- Coroot
-- Caretta
-- Bpfman
+- **Hubble**: A Cilium project providing deep visibility into communication
+- **pwru**: A Cilium eBPF-based tool for tracing network packets in the Linux kernel
+- **L3AF**: Orchestrates and manages multiple eBPF programs
+- **Loxilb**: eBPF-based hyper-scale load balancer
+- **Coroot**: Zero-instrumentation observability tool
+- **Caretta**: Visualizes network traffic between services in a Kubernetes cluster
+- **Bpfman**: Simplifies deployment and administration of eBPF programs
+- **Nephio**: Provides Cloud Native Network Automation
 
 > Coming soon...
 
