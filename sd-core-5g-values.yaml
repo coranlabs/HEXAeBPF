@@ -22,7 +22,9 @@ omec-control-plane:
       smf: coranlabs/hexa-smf:v1.0.0
       udm: coranlabs/hexa-udm:v1.0.0
       udr: coranlabs/hexa-udr:v1.0.0
-     
+      init: coranlabs/pod-init:v1.0.0
+      metricfunc: coranlabs/metricfunc:v1.0.0 
+      webui: coranlabs/webui:v1.0.0
      
    # refer above helm chart to add other NF images
 
@@ -65,7 +67,7 @@ omec-control-plane:
       # use externalIP if you need to access your AMF from remote setup and you don't
       # want setup NodePort Service Type
       ngapp:
-        externalIp: 191.168.1.246
+        externalIp: ${NODE_IP}
         port: 38412
       cfgFiles:
         amfcfg.conf:
@@ -102,9 +104,10 @@ omec-control-plane:
 omec-sub-provision:
   enable: true
   images:
-    repository: "registry.opennetworking.org/docker.io/"
-    #tags:
-    #  simapp: #add simapp override image
+    repository: "docker.io/"
+    tags:
+      init: coranlabs/pod-init:v1.0.0
+      simapp: coranlabs/simapp:v1.0.0
 
   config:
     simapp:
