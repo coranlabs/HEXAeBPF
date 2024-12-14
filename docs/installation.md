@@ -1,31 +1,5 @@
 # Installation Guide
 
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Deployment](#deployment)
-- [Tested Topologies](#tested-topologies)
-- [Configuring HEXA_UPF](#configuring-hexa_upf)
-- [Checking Pods Status](#checking-pods-status)
-- [E2E Connectivity Test via RAN Simulators](#e2e-connectivity-test-via-ran-simulators)
-- [NF Logs](#nf-logs)
-- [HEXA_UPF Specifications](#hexa_upf-specifications)
-
-## Prerequisites
-
-- **Operating System**: Ubuntu 22.04 LTS or higher (20.04 LTS also supported)
-- **Tools & Libraries**:
-  - Git 2.45 or later
-  - Golang 1.21.1 or later
-  - libbpf-dev 1.1.1
-  - LLVM 18.1
-  - gcc 13.3
-  - clang 18.1.0
-  - Linux Kernel 5.15.0-25 (not greater than 6.x)
-  - bpftool 7.4
-  - ebpf/bpf2go 0.15
-
 ## Installation
 
 Clone the repository:
@@ -102,49 +76,13 @@ make clean
   <a><img src="./images/HEXAeBPF_e2e_lab_setup.png" width="800" title="HEXAeBPF_e2e_lab_setup"></a>
 </p>
 
-## Configuring HEXA_UPF
 
-You can configure HEXA_UPF as follows:
-
-<details><summary>Configuration Details</summary>
-
-```yaml
-configMaps:
-  config:
-    data:
-      config.yml: |
-        interface_name: [access, eth0, core]
-        api_address: :8080
-        pfcp_address: PFCP_ADDRESS:8805
-        metrics_address: :9090
-        n3_address: 192.168.252.3
-
-podAnnotations:
-  k8s.v1.cni.cncf.io/networks: |
-    [
-      { "name": "access-net",
-        "interface": "access",
-        "ips": [ "192.168.252.3/24" ],
-        "mac": "d6:a4:06:a6:45:6f",
-        "dns": {}
-      },
-      { "name": "core-net",
-        "interface": "core",
-        "ips": [ "192.168.250.3/24" ],
-        "mac": "f6:2b:4f:38:e8:49",
-        "dns": {}
-      }
-    ]
-```
-
-</details>
-
-## Checking Pods Status
+## Checking HEXAeBPF Status
 
 To ensure all components are running smoothly:
 
 ```bash
-hexaebpf:~ $ kubectl get pod -n hexa
+hexaebpf:~ $ kubectl get pod
 ```
 
 <details><summary>Output</summary>
@@ -439,11 +377,3 @@ INFO[0002] [UE][GTP] sudo ip vrf exec vrf0100007489 iperf3 -c IPERF_SERVER -p PO
 
 > [!NOTE]  
 > Check out `hexaebpf_config.yaml` for Packer Rusher [here](./config/Packer_Rusher/hexaebpf_config.yaml)
-
-## NF Logs
-
-For detailed logs of the network functions, refer to the [logs directory](./logs/).
-
-## HEXA_UPF Specifications
-
-For a detailed compatibility of HEXA_UPF with [3GPP specifications](https://github.com/coranlabs/HEXA_UPF)
