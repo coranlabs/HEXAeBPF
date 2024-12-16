@@ -4,7 +4,6 @@
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Deployment](#deployment)
 - [Tested Topologies](#tested-topologies)
 - [Configuring HEXA_UPF](#configuring-hexa_upf)
 - [Checking Pods Status](#checking-pods-status)
@@ -28,44 +27,17 @@
 
 ## Installation
 
-Clone the repository:
+**For Aether's Control-Plane:**
+> Follow [this](../AOR_README.md) to setup Aether's Control-Plane
+
+**For HEXAeBPF's User-Plane:**
 
 ```bash
-git clone https://github.com/coranlabs/HEXA_UPF.git
-```
+# Deploy HEXA_UPF
+make hexaupf-install
 
-Clean your environment to ensure no configurations conflict:
-
-```bash
-make clean
-```
-
-Prepare the necessary directories and files:
-
-```bash
-tar -zxvf cord.tgz
-cp -r cord ~/
-```
-
-## Deployment
-
-Deploy the control plane and user plane with the following commands:
-
-```bash
-make hexa-control-plane
-make hexaupf
-```
-
-To remove all the components related to the 5G core:
-
-```bash
-make hexa-clean
-```
-
-To clean up all configurations and binaries:
-
-```bash
-make clean
+# Clean Hexa_UPF
+make hexaupf-uninstall
 ```
 
 ## Tested Topologies
