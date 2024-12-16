@@ -3,7 +3,7 @@
 </p>
 <h1 align="left">HEXAeBPF</h1>
 <p align="left">
-<img src="https://img.shields.io/badge/HEXAeBPF-v1.1-silver" />
+<img src="https://img.shields.io/badge/HEXAeBPF-v2.0-silver" />
 <img src="https://img.shields.io/badge/3GPP-R15/16-green" />
 <a href="#license"><img src="https://img.shields.io/badge/License-Apache--2.0-blue"/></a>
 <img src="https://img.shields.io/badge/eBPF-yellow" />
