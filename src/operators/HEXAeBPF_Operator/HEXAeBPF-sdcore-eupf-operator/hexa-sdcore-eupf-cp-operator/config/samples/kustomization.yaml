@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- sdcore_v1_hexacp.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

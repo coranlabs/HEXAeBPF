@@ -1,0 +1,32 @@
+apiVersion: v2
+dependencies:
+- condition: omec-control-plane.enable4G
+  name: omec-control-plane
+  repository: https://charts.aetherproject.org
+  version: 0.13.0
+- condition: omec-sub-provision.enable
+  name: omec-sub-provision
+  repository: https://charts.aetherproject.org
+  version: 0.7.0
+- condition: 5g-control-plane.enable5G
+  name: 5g-control-plane
+  repository: https://charts.aetherproject.org
+  version: 0.9.2
+- alias: omec-user-plane
+  condition: omec-user-plane.enable
+  name: bess-upf
+  repository: https://charts.aetherproject.org
+  version: 0.1.0
+- condition: 5g-ran-sim.enable
+  name: 5g-ran-sim
+  repository: https://charts.aetherproject.org
+  version: 0.7.0
+description: SD-Core control plane services
+home: https://opennetworking.org/sd-core/
+icon: https://guide.opencord.org/logos/cord.svg
+maintainers:
+- email: support@opennetworking.org
+  name: SD-Core Support
+name: sd-core
+type: application
+version: 0.13.2
