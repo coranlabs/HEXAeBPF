@@ -1,0 +1,2116 @@
+apiVersion: sdcore.coranlabs.com/v1
+kind: HexaCP
+metadata:
+  name: hexacp-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/sd-core/values.yaml
+  5g-control-plane:
+    config:
+      amf:
+        cfgFiles:
+          amfcfg.conf:
+            configuration:
+              amfDBName: sdcore_amf
+              amfName: AMF
+              debugProfilePort: 5001
+              enableDBStore: false
+              enableNrfCaching: false
+              kafkaInfo:
+                brokerPort: 9092
+                brokerUri: kafka-headless
+                topicName: sdcore-data-source-amf
+              networkFeatureSupport5GS:
+                emc: 0
+                emcN3: 0
+                emf: 0
+                enable: true
+                imsVoPS: 0
+                iwkN26: 0
+                mcsi: 0
+                mpsi: 0
+              networkName:
+                full: Aether5G
+                short: Aether
+              ngapIpList:
+              - 0.0.0.0
+              non3gppDeregistrationTimerValue: 3240
+              nrfUri: http://nrf:29510
+              plmnSupportList:
+              - plmnId:
+                  mcc: "208"
+                  mnc: "93"
+                snssaiList:
+                - sd: "010203"
+                  sst: 1
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: amf
+                scheme: http
+              security:
+                cipheringOrder:
+                - NEA0
+                integrityOrder:
+                - NIA1
+                - NIA2
+              servedGuamiList:
+              - amfId: cafe00
+                plmnId:
+                  mcc: "208"
+                  mnc: "93"
+              serviceNameList:
+              - namf-comm
+              - namf-evts
+              - namf-mt
+              - namf-loc
+              - namf-oam
+              supportDnnList:
+              - internet
+              supportTaiList:
+              - plmnId:
+                  mcc: "208"
+                  mnc: "93"
+                tac: 1
+              t3502Value: 720
+              t3512Value: 3600
+              t3513:
+                enable: true
+                expireTime: 6s
+                maxRetryTimes: 4
+              t3522:
+                enable: true
+                expireTime: 6s
+                maxRetryTimes: 4
+              t3550:
+                enable: true
+                expireTime: 6s
+                maxRetryTimes: 4
+              t3560:
+                enable: true
+                expireTime: 6s
+                maxRetryTimes: 4
+              t3565:
+                enable: true
+                expireTime: 6s
+                maxRetryTimes: 4
+            info:
+              description: AMF initial configuration
+              version: 1.0.0
+        deploy: true
+        ngapp:
+          externalIp: 192.168.6.16
+          port: 38412
+        podAnnotations:
+          field.cattle.io/workloadMetrics: '[{"path":"/metrics","port":9089,"schema":"HTTP"}]'
+        prometheus:
+          port: 9089
+        sbi:
+          port: 29518
+        sctp_grpc:
+          port: 9000
+        serviceType: ClusterIP
+      ausf:
+        cfgFiles:
+          ausfcfg.conf:
+            configuration:
+              groupId: ausfGroup001
+              nrfUri: http://nrf:29510
+              plmnSupportList:
+              - mcc: "208"
+                mnc: "93"
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: ausf
+                scheme: http
+              serviceNameList:
+              - nausf-auth
+            info:
+              description: AUSF initial local configuration
+              version: 1.0.0
+        deploy: true
+        sbi:
+          port: 29509
+        serviceType: ClusterIP
+      coreDump:
+        enabled: false
+        path: /tmp/coredump
+      grpc:
+        golog_verbosity: "99"
+        severity: info
+        trace: all
+        verbosity: debug
+      imagePath: /free5gc
+      logger:
+        AMF:
+          ReportCaller: false
+          debugLevel: info
+        AUSF:
+          ReportCaller: false
+          debugLevel: info
+        Aper:
+          ReportCaller: false
+          debugLevel: info
+        CommonConsumerTest:
+          ReportCaller: false
+          debugLevel: info
+        FSM:
+          ReportCaller: false
+          debugLevel: info
+        MongoDBLibrary:
+          ReportCaller: false
+          debugLevel: info
+        N3IWF:
+          ReportCaller: false
+          debugLevel: info
+        NAS:
+          ReportCaller: false
+          debugLevel: info
+        NGAP:
+          ReportCaller: false
+          debugLevel: info
+        NRF:
+          ReportCaller: false
+          debugLevel: info
+        NamfComm:
+          ReportCaller: false
+          debugLevel: info
+        NamfEventExposure:
+          ReportCaller: false
+          debugLevel: info
+        NsmfPDUSession:
+          ReportCaller: false
+          debugLevel: info
+        NudrDataRepository:
+          ReportCaller: false
+          debugLevel: info
+        OpenApi:
+          ReportCaller: false
+          debugLevel: info
+        PCF:
+          ReportCaller: false
+          debugLevel: info
+        PFCP:
+          ReportCaller: false
+          debugLevel: info
+        PathUtil:
+          ReportCaller: false
+          debugLevel: info
+        SMF:
+          ReportCaller: false
+          debugLevel: info
+        UDM:
+          ReportCaller: false
+          debugLevel: info
+        UDR:
+          ReportCaller: false
+          debugLevel: info
+        WEBUI:
+          ReportCaller: false
+          debugLevel: info
+      managedByConfigPod:
+        enabled: true
+        syncUrl: ""
+      metricfunc:
+        cfgFiles:
+          metricscfg.conf:
+            configuration:
+              apiServer:
+                addr: POD_IP
+                port: 9301
+              controllerFlag: true
+              debugProfileServer:
+                addr: POD_IP
+                port: 5001
+              metricFuncEndPoint:
+                addr: metricfunc.omec.svc
+                port: 5001
+              nfStreams:
+              - topic:
+                  topicGroup: analytics
+                  topicName: sdcore-data-source-amf
+                urls:
+                - port: 9092
+                  uri: kafka-headless
+              - topic:
+                  topicGroup: analytics
+                  topicName: sdcore-data-source-smf
+                urls:
+                - port: 9092
+                  uri: kafka-headless
+              onosApiServer:
+                addr: onosapp
+                port: 9301
+              prometheusServer:
+                addr: POD_IP
+                port: 9089
+              rocEndPoint:
+                addr: aether-roc-umbrella-aether-roc-gui-v2-1-external.aether-roc.svc
+                port: 80
+            info:
+              description: Metrics initial local configuration
+              version: 1.0.0
+            logger:
+              level: info
+        deploy: true
+        prometheus:
+          port: 9089
+        serviceType: ClusterIP
+      mongodb:
+        name: free5gc
+        url: mongodb://mongodb-arbiter-headless
+      nrf:
+        cfgFiles:
+          nrfcfg.conf:
+            configuration:
+              DefaultPlmnId:
+                mcc: "208"
+                mnc: "93"
+              mongoDBStreamEnable: false
+              nfKeepAliveTime: 60
+              nfProfileExpiryEnable: false
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: nrf
+                scheme: http
+              serviceNameList:
+              - nnrf-nfm
+              - nnrf-disc
+            info:
+              description: NRF initial local configuration
+              version: 1.0.0
+        deploy: true
+        sbi:
+          port: 29510
+        serviceType: ClusterIP
+      nssf:
+        cfgFiles:
+          nssfcfg.conf:
+            configuration:
+              nrfUri: http://nrf:29510
+              nsiList:
+              - nsiInformationList:
+                - nrfId: http://nrf:29510/nnrf-nfm/v1/nf-instances
+                  nsiId: 22
+                snssai:
+                  sd: "010203"
+                  sst: 1
+              nssfName: NSSF
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: nssf
+                scheme: http
+              serviceNameList:
+              - nnssf-nsselection
+              - nnssf-nssaiavailability
+              supportedNssaiInPlmnList:
+              - plmnId:
+                  mcc: "208"
+                  mnc: "93"
+                supportedSnssaiList:
+                - sd: "010203"
+                  sst: 1
+              supportedPlmnList:
+              - mcc: "208"
+                mnc: "93"
+            info:
+              description: NSSF initial local configuration
+              version: 1.0.0
+        deploy: true
+        sbi:
+          port: 29531
+        serviceType: ClusterIP
+      pcf:
+        cfgFiles:
+          pcfcfg.conf:
+            configuration:
+              defaultBdtRefId: BdtPolicyId-
+              nrfUri: http://nrf:29510
+              pcfName: PCF
+              plmnList:
+              - plmnId:
+                  mcc: "208"
+                  mnc: "93"
+              - plmnId:
+                  mcc: "333"
+                  mnc: "88"
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: pcf
+                scheme: http
+              serviceList:
+              - serviceName: npcf-am-policy-control
+              - serviceName: npcf-smpolicycontrol
+                suppFeat: 3fff
+              - serviceName: npcf-bdtpolicycontrol
+              - serviceName: npcf-policyauthorization
+                suppFeat: 3
+              - serviceName: npcf-eventexposure
+              - serviceName: npcf-ue-policy-control
+            info:
+              description: PCF initial local configuration
+              version: 1.0.0
+        deploy: true
+        sbi:
+          port: 29507
+        serviceType: ClusterIP
+      sctplb:
+        cfgFiles:
+          sctplb.yaml:
+            configuration:
+              ngapIpList:
+              - 0.0.0.0
+              serviceNames:
+              - amf-headless
+            info:
+              description: SCTPLB initial local configuration
+              version: 1.0.0
+            logger:
+              clientdiscLogs: info
+              dispatcherLogs: info
+              sctpLogs: info
+        deploy: false
+        ngapp:
+          port: 38412
+        podAnnotations:
+          field.cattle.io/workloadMetrics: '[{"path":"/metrics","port":9089,"schema":"HTTP"}]'
+        sctp_grpc:
+          port: 9000
+        serviceType: ClusterIP
+      smf:
+        cfgFiles:
+          smfcfg.conf:
+            configuration:
+              debugProfilePort: 5001
+              enableDBStore: false
+              enableNrfCaching: false
+              kafkaInfo:
+                brokerPort: 9092
+                brokerUri: kafka-headless
+                topicName: sdcore-data-source-smf
+              nrfUri: http://nrf:29510
+              pfcp:
+                addr: POD_IP
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: smf
+                scheme: http
+                tls:
+                  key: gofree5gc/support/TLS/smf.key
+                  pem: gofree5gc/support/TLS/smf.pem
+              serviceNameList:
+              - nsmf-pdusession
+              - nsmf-event-exposure
+              smfDBName: sdcore_smf
+              smfName: SMF
+              snssaiInfos:
+              - dnnInfos:
+                - dnn: internet
+                  dns:
+                    ipv4: 8.8.8.8
+                    ipv6: 2001:4860:4860::8888
+                  ueSubnet: 172.250.0.0/16
+                sNssai:
+                  sd: "010203"
+                  sst: 1
+              userplane_information:
+                links:
+                - A: gNB1
+                  B: UPF
+                up_nodes:
+                  UPF:
+                    interfaces:
+                    - endpoints:
+                      - upf
+                      interfaceType: N3
+                      networkInstance: internet
+                    node_id: upf
+                    sNssaiUpfInfos:
+                    - dnnUpfInfoList:
+                      - dnn: internet
+                      plmnId:
+                        mcc: "208"
+                        mnc: "93"
+                      sNssai:
+                        sd: "010203"
+                        sst: 1
+                    - dnnUpfInfoList:
+                      - dnn: internet
+                      plmnId:
+                        mcc: "208"
+                        mnc: "93"
+                      sNssai:
+                        sd: "112233"
+                        sst: 1
+                    type: UPF
+                  gNB1:
+                    type: AN
+            info:
+              description: SMF initial local configuration
+              version: 1.0.0
+          uerouting.conf:
+            info:
+              description: Routing information for UE
+              version: 1.0.0
+        deploy: true
+        n4:
+          port: 8805
+        podAnnotations:
+          field.cattle.io/workloadMetrics: '[{"path":"/metrics","port":9089,"schema":"HTTP"}]'
+        prometheus:
+          port: 9089
+        sbi:
+          port: 29502
+        serviceType: ClusterIP
+        upfPort: 8805
+      udm:
+        cfgFiles:
+          udmcfg.conf:
+            configuration:
+              keys:
+                udmProfileAHNPrivateKey: c53c22208b61860b06c62e5406a7b330c2b577aa5558981510d128247d38bd1d
+                udmProfileAHNPublicKey: 5a8d38864820197c3394b92613b20b91633cbd897119273bf8e4a6f4eec0a650
+                udmProfileBHNPrivateKey: F1AB1074477EBCC7F554EA1C5FC368B1616730155E0041AC447D6301975FECDA
+                udmProfileBHNPublicKey: 0472DA71976234CE833A6907425867B82E074D44EF907DFB4B3E21C1C2256EBCD15A7DED52FCBB097A4ED250E036C7B9C8C7004C4EEDC4F068CD7BF8D3F900E3B4
+              nrfUri: http://nrf:29510
+              plmnList:
+              - plmnId:
+                  mcc: "208"
+                  mnc: "93"
+              - plmnId:
+                  mcc: "222"
+                  mnc: "88"
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: udm
+                scheme: http
+                tls:
+                  key: free5gc/support/TLS/udm.key
+                  log: free5gc/udmsslkey.log
+                  pem: free5gc/support/TLS/udm.pem
+              serviceNameList:
+              - nudm-sdm
+              - nudm-uecm
+              - nudm-ueau
+              - nudm-ee
+              - nudm-pp
+            info:
+              description: UDM initial local configuration
+              version: 1.0.0
+        deploy: true
+        sbi:
+          port: 29503
+        serviceType: ClusterIP
+      udr:
+        cfgFiles:
+          udrcfg.conf:
+            configuration:
+              nrfUri: http://nrf:29510
+              plmnSupportList:
+              - plmnId:
+                  mcc: "208"
+                  mnc: "93"
+              - plmnId:
+                  mcc: "333"
+                  mnc: "88"
+              sbi:
+                bindingIPv4: 0.0.0.0
+                registerIPv4: udr
+                scheme: http
+            info:
+              description: UDR initial local configuration
+              version: 1.0.0
+        deploy: true
+        sbi:
+          port: 29504
+        serviceType: ClusterIP
+      upfadapter:
+        cfgFiles:
+          config.yaml:
+            info:
+              description: UPF Adapter initial local configuration
+              version: 1.0.0
+            logger:
+              level: info
+        deploy: false
+        n4:
+          port: 8805
+        rest:
+          port: 8090
+        serviceType: ClusterIP
+      useExistingConfigMap: false
+      webui:
+        cfgFiles:
+          webuicfg.conf:
+            configuration:
+              spec-compliant-sdf: false
+            info:
+              description: WebUI initial local configuration
+              version: 1.0.0
+        deploy: true
+        grpc:
+          port: 9876
+        ingress:
+          enabled: false
+          hostname: free5gc.local
+          path: /
+          pathType: Prefix
+        serviceType: ClusterIP
+        urlport:
+          port: 5000
+    enable5G: true
+    global: {}
+    images:
+      pullPolicy: IfNotPresent
+      repository: ""
+      tags:
+        amf: omecproject/5gc-amf:master-a4759db
+        ausf: omecproject/5gc-ausf:master-c84dff4
+        init: omecproject/pod-init:1.0.0
+        metricfunc: omecproject/metricfunc:main-58fa274
+        nrf: omecproject/5gc-nrf:master-b747b98
+        nssf: omecproject/5gc-nssf:master-4e5aef3
+        pcf: omecproject/5gc-pcf:master-bcbdeb0
+        sctplb: omecproject/sctplb:master-bf081d5
+        smf: omecproject/5gc-smf:master-3fa04ea
+        udm: omecproject/5gc-udm:master-6956659
+        udr: omecproject/5gc-udr:master-35eb7b7
+        upfadapter: omecproject/5gc-smf:master-3fa04ea
+        webui: omecproject/5gc-webui:master-1121545
+    kafka:
+      advertisedListeners: []
+      affinity: {}
+      allowEveryoneIfNoAclFound: true
+      allowPlaintextListener: true
+      args: []
+      auth:
+        clientProtocol: plaintext
+        externalClientProtocol: ""
+        interBrokerProtocol: plaintext
+        sasl:
+          interBrokerMechanism: plain
+          jaas:
+            clientPasswords: []
+            clientUsers:
+            - user
+            existingSecret: ""
+            interBrokerPassword: ""
+            interBrokerUser: admin
+            zookeeperPassword: ""
+            zookeeperUser: ""
+          mechanisms: plain,scram-sha-256,scram-sha-512
+        tls:
+          autoGenerated: false
+          endpointIdentificationAlgorithm: https
+          existingSecret: ""
+          existingSecrets: []
+          jksKeystoreSAN: ""
+          jksTruststore: ""
+          jksTruststoreSecret: ""
+          password: ""
+          pemChainIncluded: false
+          type: jks
+        zookeeper:
+          tls:
+            enabled: false
+            existingSecret: ""
+            existingSecretKeystoreKey: zookeeper.keystore.jks
+            existingSecretTruststoreKey: zookeeper.truststore.jks
+            passwordsSecret: ""
+            passwordsSecretKeystoreKey: keystore-password
+            passwordsSecretTruststoreKey: truststore-password
+            type: jks
+            verifyHostname: true
+      authorizerClassName: ""
+      autoCreateTopicsEnable: true
+      brokerRackAssignment: ""
+      clusterDomain: cluster.local
+      command:
+      - /scripts/setup.sh
+      common:
+        exampleValue: common-chart
+        global:
+          imagePullSecrets: []
+          imageRegistry: ""
+          storageClass: ""
+      commonAnnotations: {}
+      commonLabels: {}
+      config: ""
+      containerPorts:
+        client: 9092
+        external: 9094
+        internal: 9093
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        enabled: true
+        runAsNonRoot: true
+        runAsUser: 1001
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      defaultReplicationFactor: 1
+      deleteTopicEnable: false
+      deploy: true
+      diagnosticMode:
+        args:
+        - infinity
+        command:
+        - sleep
+        enabled: false
+      existingConfigmap: ""
+      existingLog4jConfigMap: ""
+      externalAccess:
+        autoDiscovery:
+          enabled: false
+          image:
+            digest: ""
+            pullPolicy: IfNotPresent
+            pullSecrets: []
+            registry: docker.io
+            repository: bitnami/kubectl
+            tag: 1.25.5-debian-11-r11
+          resources:
+            limits: {}
+            requests: {}
+        enabled: false
+        service:
+          annotations: {}
+          domain: ""
+          extraPorts: []
+          labels: {}
+          loadBalancerAnnotations: []
+          loadBalancerIPs: []
+          loadBalancerNames: []
+          loadBalancerSourceRanges: []
+          nodePorts: []
+          ports:
+            external: 9094
+          publishNotReadyAddresses: false
+          type: LoadBalancer
+          useHostIPs: false
+          usePodIPs: false
+      externalZookeeper:
+        servers: []
+      extraDeploy: []
+      extraEnvVars: []
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraVolumeMounts: []
+      extraVolumes: []
+      fullnameOverride: kafka
+      global:
+        imagePullSecrets: []
+        imageRegistry: ""
+        storageClass: ""
+      heapOpts: -Xmx1024m -Xms1024m
+      hostAliases: []
+      hostIPC: false
+      hostNetwork: false
+      image:
+        debug: false
+        digest: ""
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/kafka
+        tag: 3.3.1-debian-11-r34
+      initContainers: []
+      interBrokerListenerName: INTERNAL
+      kubeVersion: ""
+      lifecycleHooks: {}
+      listenerSecurityProtocolMap: ""
+      listeners: []
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      log4j: ""
+      logFlushIntervalMessages: _10000
+      logFlushIntervalMs: 1000
+      logPersistence:
+        accessModes:
+        - ReadWriteOnce
+        annotations: {}
+        enabled: false
+        existingClaim: ""
+        mountPath: /opt/bitnami/kafka/logs
+        selector: {}
+        size: 8Gi
+        storageClass: ""
+      logRetentionBytes: _1073741824
+      logRetentionCheckIntervalMs: 300000
+      logRetentionHours: 168
+      logSegmentBytes: _1073741824
+      logsDirs: /bitnami/kafka/data
+      maxMessageBytes: _1000012
+      metrics:
+        jmx:
+          config: |-
+            jmxUrl: service:jmx:rmi:///jndi/rmi://127.0.0.1:5555/jmxrmi
+            lowercaseOutputName: true
+            lowercaseOutputLabelNames: true
+            ssl: false
+            {{- if .Values.metrics.jmx.whitelistObjectNames }}
+            whitelistObjectNames: ["{{ join "\",\"" .Values.metrics.jmx.whitelistObjectNames }}"]
+            {{- end }}
+          containerPorts:
+            metrics: 5556
+          containerSecurityContext:
+            enabled: true
+            runAsNonRoot: true
+            runAsUser: 1001
+          enabled: false
+          existingConfigmap: ""
+          extraRules: ""
+          image:
+            digest: ""
+            pullPolicy: IfNotPresent
+            pullSecrets: []
+            registry: docker.io
+            repository: bitnami/jmx-exporter
+            tag: 0.17.2-debian-11-r37
+          resources:
+            limits: {}
+            requests: {}
+          service:
+            annotations:
+              prometheus.io/path: /
+              prometheus.io/port: '{{ .Values.metrics.jmx.service.ports.metrics }}'
+              prometheus.io/scrape: "true"
+            clusterIP: ""
+            ports:
+              metrics: 5556
+            sessionAffinity: None
+          whitelistObjectNames:
+          - kafka.controller:*
+          - kafka.server:*
+          - java.lang:*
+          - kafka.network:*
+          - kafka.log:*
+        kafka:
+          affinity: {}
+          args: []
+          certificatesSecret: ""
+          command: []
+          containerPorts:
+            metrics: 9308
+          containerSecurityContext:
+            enabled: true
+            runAsNonRoot: true
+            runAsUser: 1001
+          enabled: false
+          extraFlags: {}
+          extraVolumeMounts: []
+          extraVolumes: []
+          hostAliases: []
+          image:
+            digest: ""
+            pullPolicy: IfNotPresent
+            pullSecrets: []
+            registry: docker.io
+            repository: bitnami/kafka-exporter
+            tag: 1.6.0-debian-11-r48
+          initContainers: []
+          nodeAffinityPreset:
+            key: ""
+            type: ""
+            values: []
+          nodeSelector: {}
+          podAffinityPreset: ""
+          podAnnotations: {}
+          podAntiAffinityPreset: soft
+          podLabels: {}
+          podSecurityContext:
+            enabled: true
+            fsGroup: 1001
+          priorityClassName: ""
+          resources:
+            limits: {}
+            requests: {}
+          schedulerName: ""
+          service:
+            annotations:
+              prometheus.io/path: /metrics
+              prometheus.io/port: '{{ .Values.metrics.kafka.service.ports.metrics }}'
+              prometheus.io/scrape: "true"
+            clusterIP: ""
+            ports:
+              metrics: 9308
+            sessionAffinity: None
+          serviceAccount:
+            automountServiceAccountToken: true
+            create: true
+            name: ""
+          sidecars: []
+          tlsCaCert: ca-file
+          tlsCaSecret: ""
+          tlsCert: cert-file
+          tlsKey: key-file
+          tolerations: []
+          topologySpreadConstraints: []
+        prometheusRule:
+          enabled: false
+          groups: []
+          labels: {}
+          namespace: ""
+        serviceMonitor:
+          enabled: false
+          honorLabels: false
+          interval: ""
+          jobLabel: ""
+          labels: {}
+          metricRelabelings: []
+          namespace: ""
+          relabelings: []
+          scrapeTimeout: ""
+          selector: {}
+      minBrokerId: 0
+      nameOverride: ""
+      networkPolicy:
+        allowExternal: true
+        egressRules:
+          customRules: []
+        enabled: false
+        explicitNamespacesSelector: {}
+        externalAccess:
+          from: []
+      nfKafka:
+        topic: sdcore-nf-data-source
+        urls:
+        - kafka-headless:9092
+      nodeAffinityPreset:
+        key: ""
+        type: ""
+        values: []
+      nodeSelector: {}
+      numIoThreads: 8
+      numNetworkThreads: 3
+      numPartitions: 1
+      numRecoveryThreadsPerDataDir: 1
+      offsetsTopicReplicationFactor: 1
+      pdb:
+        create: false
+        maxUnavailable: 1
+        minAvailable: ""
+      persistence:
+        accessModes:
+        - ReadWriteOnce
+        annotations: {}
+        enabled: false
+        existingClaim: ""
+        labels: {}
+        mountPath: /bitnami/kafka
+        selector: {}
+        size: 8Gi
+        storageClass: ""
+      podAffinityPreset: ""
+      podAnnotations: {}
+      podAntiAffinityPreset: soft
+      podLabels: {}
+      podManagementPolicy: Parallel
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
+      priorityClassName: ""
+      provisioning:
+        args: []
+        auth:
+          tls:
+            caCert: ca.crt
+            cert: tls.crt
+            certificatesSecret: ""
+            key: tls.key
+            keyPassword: ""
+            keyPasswordSecretKey: key-password
+            keystore: keystore.jks
+            keystorePassword: ""
+            keystorePasswordSecretKey: keystore-password
+            passwordsSecret: ""
+            truststore: truststore.jks
+            truststorePassword: ""
+            truststorePasswordSecretKey: truststore-password
+            type: jks
+        command: []
+        containerSecurityContext:
+          enabled: true
+          runAsNonRoot: true
+          runAsUser: 1001
+        enabled: false
+        extraEnvVars: []
+        extraEnvVarsCM: ""
+        extraEnvVarsSecret: ""
+        extraProvisioningCommands: []
+        extraVolumeMounts: []
+        extraVolumes: []
+        initContainers: []
+        nodeSelector: {}
+        numPartitions: 1
+        parallel: 1
+        podAnnotations: {}
+        podLabels: {}
+        podSecurityContext:
+          enabled: true
+          fsGroup: 1001
+        postScript: ""
+        preScript: ""
+        replicationFactor: 1
+        resources:
+          limits: {}
+          requests: {}
+        schedulerName: ""
+        serviceAccount:
+          automountServiceAccountToken: true
+          create: false
+          name: ""
+        sidecars: []
+        tolerations: []
+        topics: []
+        waitForKafka: true
+      rbac:
+        create: false
+      readinessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      replicaCount: 1
+      resources:
+        limits: {}
+        requests: {}
+      schedulerName: ""
+      service:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        headless:
+          annotations: {}
+          labels: {}
+          publishNotReadyAddresses: false
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          client: ""
+          external: ""
+        ports:
+          client: 9092
+          external: 9094
+          internal: 9093
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      serviceAccount:
+        annotations: {}
+        automountServiceAccountToken: true
+        create: true
+        name: ""
+      sidecars: []
+      socketReceiveBufferBytes: 102400
+      socketRequestMaxBytes: _104857600
+      socketSendBufferBytes: 102400
+      startupProbe:
+        enabled: false
+        failureThreshold: 15
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      superUsers: User:admin
+      terminationGracePeriodSeconds: ""
+      tolerations: []
+      topologySpreadConstraints: []
+      transactionStateLogMinIsr: 1
+      transactionStateLogReplicationFactor: 1
+      updateStrategy:
+        rollingUpdate: {}
+        type: RollingUpdate
+      volumePermissions:
+        containerSecurityContext:
+          runAsUser: 0
+        enabled: false
+        image:
+          digest: ""
+          pullPolicy: IfNotPresent
+          pullSecrets: []
+          registry: docker.io
+          repository: bitnami/bitnami-shell
+          tag: 11-debian-11-r71
+        resources:
+          limits: {}
+          requests: {}
+      zookeeper:
+        affinity: {}
+        args: []
+        auth:
+          client:
+            clientPassword: ""
+            clientUser: ""
+            enabled: false
+            existingSecret: ""
+            serverPasswords: ""
+            serverUsers: ""
+          quorum:
+            enabled: false
+            existingSecret: ""
+            learnerPassword: ""
+            learnerUser: ""
+            serverPasswords: ""
+            serverUsers: ""
+        autopurge:
+          purgeInterval: 0
+          snapRetainCount: 3
+        clusterDomain: cluster.local
+        command:
+        - /scripts/setup.sh
+        common:
+          exampleValue: common-chart
+          global:
+            imagePullSecrets: []
+            imageRegistry: ""
+            storageClass: ""
+        commonAnnotations: {}
+        commonLabels: {}
+        configuration: ""
+        containerPorts:
+          client: 2181
+          election: 3888
+          follower: 2888
+          tls: 3181
+        containerSecurityContext:
+          allowPrivilegeEscalation: false
+          enabled: true
+          runAsNonRoot: true
+          runAsUser: 1001
+        customLivenessProbe: {}
+        customReadinessProbe: {}
+        customStartupProbe: {}
+        dataLogDir: ""
+        diagnosticMode:
+          args:
+          - infinity
+          command:
+          - sleep
+          enabled: false
+        enabled: true
+        existingConfigmap: ""
+        extraDeploy: []
+        extraEnvVars: []
+        extraEnvVarsCM: ""
+        extraEnvVarsSecret: ""
+        extraVolumeMounts: []
+        extraVolumes: []
+        fourlwCommandsWhitelist: srvr, mntr, ruok
+        fullnameOverride: ""
+        global:
+          imagePullSecrets: []
+          imageRegistry: ""
+          storageClass: ""
+        heapSize: 1024
+        hostAliases: []
+        image:
+          debug: false
+          digest: ""
+          pullPolicy: IfNotPresent
+          pullSecrets: []
+          registry: docker.io
+          repository: bitnami/zookeeper
+          tag: 3.8.0-debian-11-r74
+        initContainers: []
+        initLimit: 10
+        jvmFlags: ""
+        kubeVersion: ""
+        lifecycleHooks: {}
+        listenOnAllIPs: false
+        livenessProbe:
+          enabled: true
+          failureThreshold: 6
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          probeCommandTimeout: 2
+          successThreshold: 1
+          timeoutSeconds: 5
+        logLevel: ERROR
+        maxClientCnxns: 60
+        maxSessionTimeout: 40000
+        metrics:
+          containerPort: 9141
+          enabled: false
+          prometheusRule:
+            additionalLabels: {}
+            enabled: false
+            namespace: ""
+            rules: []
+          service:
+            annotations:
+              prometheus.io/path: /metrics
+              prometheus.io/port: '{{ .Values.metrics.service.port }}'
+              prometheus.io/scrape: "true"
+            port: 9141
+            type: ClusterIP
+          serviceMonitor:
+            additionalLabels: {}
+            enabled: false
+            honorLabels: false
+            interval: ""
+            jobLabel: ""
+            metricRelabelings: []
+            namespace: ""
+            relabelings: []
+            scrapeTimeout: ""
+            selector: {}
+        minServerId: 1
+        nameOverride: ""
+        namespaceOverride: ""
+        networkPolicy:
+          allowExternal: true
+          enabled: false
+        nodeAffinityPreset:
+          key: ""
+          type: ""
+          values: []
+        nodeSelector: {}
+        pdb:
+          create: false
+          maxUnavailable: 1
+          minAvailable: ""
+        persistence:
+          accessModes:
+          - ReadWriteOnce
+          annotations: {}
+          dataLogDir:
+            existingClaim: ""
+            selector: {}
+            size: 8Gi
+          enabled: false
+          existingClaim: ""
+          labels: {}
+          selector: {}
+          size: 8Gi
+          storageClass: ""
+        podAffinityPreset: ""
+        podAnnotations: {}
+        podAntiAffinityPreset: soft
+        podLabels: {}
+        podManagementPolicy: Parallel
+        podSecurityContext:
+          enabled: true
+          fsGroup: 1001
+        preAllocSize: 65536
+        priorityClassName: ""
+        readinessProbe:
+          enabled: true
+          failureThreshold: 6
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          probeCommandTimeout: 2
+          successThreshold: 1
+          timeoutSeconds: 5
+        replicaCount: 1
+        resources:
+          limits: {}
+          requests:
+            cpu: 250m
+            memory: 256Mi
+        schedulerName: ""
+        service:
+          annotations: {}
+          clusterIP: ""
+          disableBaseClientPort: false
+          externalTrafficPolicy: Cluster
+          extraPorts: []
+          headless:
+            annotations: {}
+            publishNotReadyAddresses: true
+          loadBalancerIP: ""
+          loadBalancerSourceRanges: []
+          nodePorts:
+            client: ""
+            tls: ""
+          ports:
+            client: 2181
+            election: 3888
+            follower: 2888
+            tls: 3181
+          sessionAffinity: None
+          sessionAffinityConfig: {}
+          type: ClusterIP
+        serviceAccount:
+          annotations: {}
+          automountServiceAccountToken: true
+          create: false
+          name: ""
+        sidecars: []
+        snapCount: 100000
+        startupProbe:
+          enabled: false
+          failureThreshold: 15
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        syncLimit: 5
+        tickTime: 2000
+        tls:
+          client:
+            auth: none
+            autoGenerated: false
+            enabled: false
+            existingSecret: ""
+            existingSecretKeystoreKey: ""
+            existingSecretTruststoreKey: ""
+            keystorePassword: ""
+            keystorePath: /opt/bitnami/zookeeper/config/certs/client/zookeeper.keystore.jks
+            passwordsSecretKeystoreKey: ""
+            passwordsSecretName: ""
+            passwordsSecretTruststoreKey: ""
+            truststorePassword: ""
+            truststorePath: /opt/bitnami/zookeeper/config/certs/client/zookeeper.truststore.jks
+          quorum:
+            auth: none
+            autoGenerated: false
+            enabled: false
+            existingSecret: ""
+            existingSecretKeystoreKey: ""
+            existingSecretTruststoreKey: ""
+            keystorePassword: ""
+            keystorePath: /opt/bitnami/zookeeper/config/certs/quorum/zookeeper.keystore.jks
+            passwordsSecretKeystoreKey: ""
+            passwordsSecretName: ""
+            passwordsSecretTruststoreKey: ""
+            truststorePassword: ""
+            truststorePath: /opt/bitnami/zookeeper/config/certs/quorum/zookeeper.truststore.jks
+          resources:
+            limits: {}
+            requests: {}
+        tolerations: []
+        topologySpreadConstraints: []
+        updateStrategy:
+          rollingUpdate: {}
+          type: RollingUpdate
+        volumePermissions:
+          containerSecurityContext:
+            enabled: true
+            runAsUser: 0
+          enabled: false
+          image:
+            digest: ""
+            pullPolicy: IfNotPresent
+            pullSecrets: []
+            registry: docker.io
+            repository: bitnami/bitnami-shell
+            tag: 11-debian-11-r69
+          resources:
+            limits: {}
+            requests: {}
+      zookeeperChrootPath: ""
+      zookeeperConnectionTimeoutMs: 6000
+    mongodb:
+      affinity: {}
+      annotations: {}
+      arbiter:
+        affinity: {}
+        annotations: {}
+        args: []
+        command: []
+        configuration: ""
+        containerPorts:
+          mongodb: 27017
+        containerSecurityContext:
+          enabled: true
+          runAsNonRoot: true
+          runAsUser: 1001
+        customLivenessProbe: {}
+        customReadinessProbe: {}
+        customStartupProbe: {}
+        enabled: true
+        existingConfigmap: ""
+        extraEnvVars: []
+        extraEnvVarsCM: ""
+        extraEnvVarsSecret: ""
+        extraFlags: []
+        extraVolumeMounts: []
+        extraVolumes: []
+        hostAliases: []
+        initContainers: []
+        labels: {}
+        lifecycleHooks: {}
+        livenessProbe:
+          enabled: true
+          failureThreshold: 6
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          successThreshold: 1
+          timeoutSeconds: 10
+        nodeAffinityPreset:
+          key: ""
+          type: ""
+          values: []
+        nodeSelector: {}
+        pdb:
+          create: false
+          maxUnavailable: ""
+          minAvailable: 1
+        podAffinityPreset: ""
+        podAnnotations: {}
+        podAntiAffinityPreset: soft
+        podLabels: {}
+        podManagementPolicy: OrderedReady
+        podSecurityContext:
+          enabled: true
+          fsGroup: 1001
+          sysctls: []
+        priorityClassName: ""
+        readinessProbe:
+          enabled: true
+          failureThreshold: 6
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          successThreshold: 1
+          timeoutSeconds: 10
+        resources:
+          limits: {}
+          requests: {}
+        runtimeClassName: ""
+        schedulerName: ""
+        service:
+          annotations: {}
+          extraPorts: []
+          nameOverride: ""
+          ports:
+            mongodb: 27017
+        sidecars: []
+        startupProbe:
+          enabled: false
+          failureThreshold: 30
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        terminationGracePeriodSeconds: ""
+        tolerations: []
+        topologySpreadConstraints: []
+        updateStrategy:
+          type: RollingUpdate
+      architecture: replicaset
+      args: []
+      auth:
+        database: ""
+        databases: []
+        enabled: false
+        existingSecret: ""
+        password: ""
+        passwords: []
+        replicaSetKey: ""
+        rootPassword: ""
+        rootUser: root
+        username: ""
+        usernames: []
+      clusterDomain: cluster.local
+      command: []
+      common:
+        exampleValue: common-chart
+        global:
+          imagePullSecrets: []
+          imageRegistry: ""
+          namespaceOverride: ""
+          storageClass: ""
+      commonAnnotations: {}
+      commonLabels: {}
+      configuration: ""
+      containerPorts:
+        mongodb: 27017
+      containerSecurityContext:
+        enabled: true
+        runAsNonRoot: true
+        runAsUser: 1001
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      deploy: true
+      diagnosticMode:
+        args:
+        - infinity
+        command:
+        - sleep
+        enabled: false
+      directoryPerDB: false
+      disableJavascript: false
+      disableSystemLog: false
+      enableIPv6: false
+      enableJournal: true
+      existingConfigmap: ""
+      externalAccess:
+        autoDiscovery:
+          enabled: false
+          image:
+            digest: ""
+            pullPolicy: IfNotPresent
+            pullSecrets: []
+            registry: docker.io
+            repository: bitnami/kubectl
+            tag: 1.25.5-debian-11-r14
+          resources:
+            limits: {}
+            requests: {}
+        enabled: false
+        hidden:
+          enabled: false
+          service:
+            annotations: {}
+            domain: ""
+            externalTrafficPolicy: Local
+            extraPorts: []
+            loadBalancerClass: ""
+            loadBalancerIPs: []
+            loadBalancerSourceRanges: []
+            nodePorts: []
+            portName: mongodb
+            ports:
+              mongodb: 27017
+            sessionAffinity: None
+            sessionAffinityConfig: {}
+            type: LoadBalancer
+        service:
+          annotations: {}
+          domain: ""
+          externalTrafficPolicy: Local
+          extraPorts: []
+          loadBalancerClass: ""
+          loadBalancerIPs: []
+          loadBalancerSourceRanges: []
+          nodePorts: []
+          portName: mongodb
+          ports:
+            mongodb: 27017
+          sessionAffinity: None
+          sessionAffinityConfig: {}
+          type: LoadBalancer
+      extraDeploy: []
+      extraEnvVars: []
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraFlags: []
+      extraVolumeMounts: []
+      extraVolumes: []
+      fullnameOverride: mongodb
+      global:
+        imagePullSecrets: []
+        imageRegistry: ""
+        namespaceOverride: ""
+        storageClass: ""
+      hidden:
+        affinity: {}
+        annotations: {}
+        args: []
+        command: []
+        configuration: ""
+        containerPorts:
+          mongodb: 27017
+        containerSecurityContext:
+          enabled: true
+          runAsNonRoot: true
+          runAsUser: 1001
+        customLivenessProbe: {}
+        customReadinessProbe: {}
+        customStartupProbe: {}
+        enabled: false
+        existingConfigmap: ""
+        extraEnvVars: []
+        extraEnvVarsCM: ""
+        extraEnvVarsSecret: ""
+        extraFlags: []
+        extraVolumeMounts: []
+        extraVolumes: []
+        hostAliases: []
+        initContainers: []
+        labels: {}
+        lifecycleHooks: {}
+        livenessProbe:
+          enabled: true
+          failureThreshold: 6
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          successThreshold: 1
+          timeoutSeconds: 10
+        nodeAffinityPreset:
+          key: ""
+          type: ""
+          values: []
+        nodeSelector: {}
+        pdb:
+          create: false
+          maxUnavailable: ""
+          minAvailable: 1
+        persistence:
+          accessModes:
+          - ReadWriteOnce
+          annotations: {}
+          enabled: true
+          medium: ""
+          mountPath: /bitnami/mongodb
+          size: 8Gi
+          storageClass: ""
+          subPath: ""
+          volumeClaimTemplates:
+            dataSource: {}
+            requests: {}
+            selector: {}
+        podAffinityPreset: ""
+        podAnnotations: {}
+        podAntiAffinityPreset: soft
+        podLabels: {}
+        podManagementPolicy: OrderedReady
+        podSecurityContext:
+          enabled: true
+          fsGroup: 1001
+          sysctls: []
+        priorityClassName: ""
+        readinessProbe:
+          enabled: true
+          failureThreshold: 6
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          successThreshold: 1
+          timeoutSeconds: 10
+        replicaCount: 1
+        resources:
+          limits: {}
+          requests: {}
+        runtimeClassName: ""
+        schedulerName: ""
+        service:
+          annotations: {}
+          extraPorts: []
+          portName: mongodb
+          ports:
+            mongodb: 27017
+        sidecars: []
+        startupProbe:
+          enabled: false
+          failureThreshold: 30
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        terminationGracePeriodSeconds: ""
+        tolerations: []
+        topologySpreadConstraints: []
+        updateStrategy:
+          type: RollingUpdate
+      hostAliases: []
+      image:
+        debug: false
+        digest: ""
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/mongodb
+        tag: 6.0.4-debian-11-r0
+      initContainers: []
+      initdbScripts: {}
+      initdbScriptsConfigMap: ""
+      kubeVersion: ""
+      labels: {}
+      lifecycleHooks: {}
+      livenessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 30
+        periodSeconds: 20
+        successThreshold: 1
+        timeoutSeconds: 10
+      metrics:
+        args: []
+        command: []
+        containerPort: 9216
+        customLivenessProbe: {}
+        customReadinessProbe: {}
+        customStartupProbe: {}
+        enabled: false
+        extraFlags: ""
+        image:
+          digest: ""
+          pullPolicy: IfNotPresent
+          pullSecrets: []
+          registry: docker.io
+          repository: bitnami/mongodb-exporter
+          tag: 0.36.0-debian-11-r6
+        livenessProbe:
+          enabled: true
+          failureThreshold: 3
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        password: ""
+        prometheusRule:
+          additionalLabels: {}
+          enabled: false
+          namespace: ""
+          rules: []
+        readinessProbe:
+          enabled: true
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits: {}
+          requests: {}
+        service:
+          annotations:
+            prometheus.io/path: /metrics
+            prometheus.io/port: '{{ .Values.metrics.service.ports.metrics }}'
+            prometheus.io/scrape: "true"
+          extraPorts: []
+          ports:
+            metrics: 9216
+          type: ClusterIP
+        serviceMonitor:
+          enabled: false
+          honorLabels: false
+          interval: 30s
+          jobLabel: ""
+          labels: {}
+          metricRelabelings: []
+          namespace: ""
+          relabelings: []
+          scrapeTimeout: ""
+          selector: {}
+        startupProbe:
+          enabled: false
+          failureThreshold: 30
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        username: ""
+      nameOverride: ""
+      namespaceOverride: ""
+      nodeAffinityPreset:
+        key: ""
+        type: ""
+        values: []
+      nodeSelector: {}
+      pdb:
+        create: false
+        maxUnavailable: ""
+        minAvailable: 1
+      persistence:
+        accessModes:
+        - ReadWriteOnce
+        annotations: {}
+        enabled: false
+        existingClaim: ""
+        medium: ""
+        mountPath: /bitnami/mongodb
+        resourcePolicy: ""
+        size: 8Gi
+        storageClass: ""
+        subPath: ""
+        volumeClaimTemplates:
+          dataSource: {}
+          requests: {}
+          selector: {}
+      podAffinityPreset: ""
+      podAnnotations: {}
+      podAntiAffinityPreset: soft
+      podLabels: {}
+      podManagementPolicy: OrderedReady
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
+        sysctls: []
+      podSecurityPolicy:
+        allowPrivilegeEscalation: false
+        create: false
+        privileged: false
+        spec: {}
+      priorityClassName: ""
+      rbac:
+        create: false
+        rules: []
+      readinessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      replicaCount: 2
+      replicaSetConfigurationSettings:
+        configuration: {}
+        enabled: false
+      replicaSetHostnames: true
+      replicaSetName: rs0
+      resources:
+        limits: {}
+        requests: {}
+      runtimeClassName: ""
+      schedulerName: ""
+      service:
+        annotations: {}
+        clusterIP: ""
+        externalIPs: []
+        externalTrafficPolicy: Local
+        extraPorts: []
+        loadBalancerClass: ""
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nameOverride: ""
+        nodePorts:
+          mongodb: ""
+        portName: mongodb
+        ports:
+          mongodb: 27017
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      serviceAccount:
+        annotations: {}
+        automountServiceAccountToken: true
+        create: false
+        name: ""
+      sidecars: []
+      startupProbe:
+        enabled: false
+        failureThreshold: 30
+        initialDelaySeconds: 5
+        periodSeconds: 20
+        successThreshold: 1
+        timeoutSeconds: 10
+      systemLogVerbosity: 0
+      terminationGracePeriodSeconds: ""
+      tls:
+        arbiter:
+          existingSecret: ""
+        autoGenerated: true
+        caCert: ""
+        caKey: ""
+        enabled: false
+        existingSecret: ""
+        extraDnsNames: []
+        hidden:
+          existingSecrets: []
+        image:
+          digest: ""
+          pullPolicy: IfNotPresent
+          pullSecrets: []
+          registry: docker.io
+          repository: bitnami/nginx
+          tag: 1.23.3-debian-11-r15
+        mode: requireTLS
+        replicaset:
+          existingSecrets: []
+        resources:
+          limits: {}
+          requests: {}
+        standalone:
+          existingSecret: ""
+      tolerations: []
+      topologyKey: ""
+      topologySpreadConstraints: []
+      updateStrategy:
+        type: RollingUpdate
+      usePassword: false
+      useStatefulSet: false
+      volumePermissions:
+        enabled: false
+        image:
+          digest: ""
+          pullPolicy: IfNotPresent
+          pullSecrets: []
+          registry: docker.io
+          repository: bitnami/bitnami-shell
+          tag: 11-debian-11-r74
+        resources:
+          limits: {}
+          requests: {}
+        securityContext:
+          runAsUser: 0
+    resources:
+      amf:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      ausf:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      enabled: false
+      metricfunc:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      nrf:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      nssf:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      pcf:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      sctplb:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      smf:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      udm:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      udr:
+        limits:
+          cpu: 2
+          memory: 1Gi
+        requests:
+          cpu: 2
+          memory: 1Gi
+      upfadapter:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      webui:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+  5g-ran-sim:
+    enable: false
+  omec-control-plane:
+    enable4G: false
+  omec-sub-provision:
+    config:
+      coreDump:
+        enabled: false
+        path: /tmp/coredump
+      simapp:
+        cfgFiles:
+          simapp.yaml:
+            configuration:
+              device-groups:
+              - imsis:
+                - "001010100007487"
+                - "001010100007488"
+                - "001010100007489"
+                - "001010100007490"
+                - "001010100007491"
+                - "001010100007492"
+                - "001010100007401"
+                - "001010100007494"
+                - "001010100007495"
+                - "001010100007496"
+                - "001010100007497"
+                - "001010100007498"
+                - "001010100007499"
+                - "001010100007500"
+                ip-domain-expanded:
+                  dnn: internet
+                  dns-primary: 8.8.8.8
+                  mtu: 1460
+                  ue-dnn-qos:
+                    bitrate-unit: bps
+                    dnn-mbr-downlink: 200000000
+                    dnn-mbr-uplink: 20000000
+                    traffic-class:
+                      arp: 6
+                      name: platinum
+                      pdb: 300
+                      pelr: 6
+                      qci: 9
+                  ue-ip-pool: 172.250.1.0/16
+                ip-domain-name: pool1
+                name: 5g-ue-01
+                site-info: enterprise
+              - imsis:
+                - "001010100007501"
+                - "001010100007502"
+                - "001010100007503"
+                - "001010100007504"
+                - "001010100007505"
+                - "001010100007506"
+                - "001010100007507"
+                - "001010100007508"
+                - "001010100007509"
+                - "001010100007510"
+                ip-domain-expanded:
+                  dnn: internet
+                  dns-primary: 8.8.8.8
+                  mtu: 1460
+                  ue-dnn-qos:
+                    bitrate-unit: bps
+                    dnn-mbr-downlink: 400000000
+                    dnn-mbr-uplink: 10000000
+                    traffic-class:
+                      arp: 6
+                      name: platinum
+                      pdb: 300
+                      pelr: 6
+                      qci: 8
+                  ue-ip-pool: 172.250.1.0/16
+                ip-domain-name: pool2
+                name: 5g-ue-02
+                site-info: enterprise
+              network-slices:
+              - application-filtering-rules:
+                - action: permit
+                  endpoint: 0.0.0.0/0
+                  priority: 250
+                  rule-name: ALLOW-ALL
+                name: default
+                site-device-group:
+                - 5g-ue-01
+                - 5g-ue-02
+                site-info:
+                  gNodeBs:
+                  - name: gnb1
+                    tac: 1
+                  - name: gnb2
+                    tac: 2
+                  plmn:
+                    mcc: "001"
+                    mnc: "01"
+                  site-name: enterprise
+                  upf:
+                    upf-name: eupf
+                    upf-port: 8805
+                slice-id:
+                  sd: "010203"
+                  sst: 1
+              provision-network-slice: true
+              sub-provision-endpt:
+                addr: webui.hexa.svc.cluster.local
+                port: 5000
+              subscribers:
+              - key: 5122250214c33e723a5dd523fc145fc0
+                op: ""
+                opc: 981d464c7c52eb6e5036234984ad0bcf
+                plmnId: "00101"
+                sequenceNumber: 16f3b3f70fc2
+                ueId-end: "001010100007500"
+                ueId-start: "001010100007487"
+              - key: 5122250214c33e723a5dd523fc145fc0
+                op: ""
+                opc: 981d464c7c52eb6e5036234984ad0bcf
+                plmnId: "00101"
+                sequenceNumber: 16f3b3f70fc2
+                ueId-end: "001010100007599"
+                ueId-start: "001010100007501"
+            info:
+              description: SIMAPP initial local configuration
+              http-version: 1
+              version: 1.0.0
+            logger:
+              APP:
+                ReportCaller: false
+                debugLevel: info
+        config:
+          nodePort:
+            enabled: false
+            port: 30081
+          port: 8080
+        deploy: true
+        podAnnotations:
+          field.cattle.io/workloadMetrics: '[{"path":"/metrics","port":9089,"schema":"HTTP"}]'
+        prometheus:
+          nodePort:
+            enabled: false
+            port: 30080
+          port: 9089
+    enable: true
+    global: {}
+    images:
+      pullPolicy: IfNotPresent
+      repository: ""
+      tags:
+        init: omecproject/pod-init:1.0.0
+        simapp: omecproject/simapp:main-a4f741a
+    resources:
+      enabled: false
+      simapp:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+  omec-user-plane:
+    config:
+      upf:
+        access:
+          iface: ${DATA_IFACE}
+        cfgFiles:
+          upf.json:
+            cpiface:
+              dnn: internet
+              enable_ue_ip_alloc: false
+              hostname: eupf
+              ue_ip_pool: 172.250.0.0/16
+            gtppsc: true
+            hwcksum: true
+            log_level: trace
+            mode: af_packet
+        cniPlugin: macvlan
+        core:
+          iface: ${DATA_IFACE}
+        enb:
+          subnet: ${RAN_SUBNET}
+        hugepage:
+          enabled: false
+        ipam: static
+        name: oaisim
+        routes:
+        - to: ${NODE_IP}
+          via: 169.254.1.1
+        sriov:
+          enabled: false
+    enable: false
+    images:
+      repository: registry.opennetworking.org/docker.io/
+    resources:
+      enabled: false
+  
+  

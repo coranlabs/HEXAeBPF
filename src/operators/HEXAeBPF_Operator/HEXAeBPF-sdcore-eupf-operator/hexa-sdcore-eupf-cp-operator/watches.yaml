@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: sdcore.coranlabs.com
+  version: v1
+  kind: HexaCP
+  chart: helm-charts/sd-core
+# +kubebuilder:scaffold:watch

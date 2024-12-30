@@ -1,0 +1,23 @@
+# permissions for end users to view hexaups.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: hexa-sdcore-eupf-up-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: hexaup-viewer-role
+rules:
+- apiGroups:
+  - eupf.coranlabs.com
+  resources:
+  - hexaups
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - eupf.coranlabs.com
+  resources:
+  - hexaups/status
+  verbs:
+  - get
