@@ -1,0 +1,118 @@
+# OAI CN Configuration File
+### This file can be used by all OAI NFs
+### Some fields are specific to an NF and will be ignored by other NFs
+
+## NOTE ON YAML ANCHORS ##
+# We use YAML anchors to ease the configuration and to avoid duplicating parts of the configuration.
+# This is especially true for the SNSSAIs, as we have to define them for multiple NFs.
+# Please note that the use of anchors is not mandatory, and you can define the SNSSAI in each NF yourself.
+# You can read more about anchors here: https://yaml.org/spec/1.2.2/#anchors-and-aliases
+
+############# Common configuration
+
+# Log level for all the NFs
+log_level:
+  general: debug
+
+# If you enable registration, the other NFs will use the NRF discovery mechanism
+register_nf:
+  general: no
+
+http_version: 2
+
+## general single_nssai configuration
+## Defines YAML anchors, which are reused in the config file
+snssais:
+  - &embb_slice1
+    sst: 1
+  - &embb_slice2
+    sst: 1
+    sd: 000001 # in hex
+
+############## SBI Interfaces
+### Each NF takes its local SBI interfaces and remote interfaces from here, unless it gets them using NRF discovery mechanisms
+nfs:
+  lmf:
+    host: oai-lmf
+    sbi:
+      port: 80
+      api_version: v1
+      interface_name: eth0
+  amf:
+    host: oai-amf
+    sbi:
+      port: 80
+      api_version: v1
+  nrf:
+    host: oai-nrf
+    sbi:
+      port: 80
+      api_version: v1
+
+############### LMF Configuration 
+lmf:
+  http_threads_count: 8
+  gnb_id_bits_count: 28
+  num_gnb: 1  
+  trp_info_wait_ms: 10000
+  positioning_wait_ms: 10000
+  measurement_wait_ms: 10000
+  support_features:
+    request_trp_info: no 
+    determine_num_gnb: yes
+    use_http2: yes
+    use_fqdn_dns: no
+    register_nrf: yes 
+
+############## NF-specific configuration
+smf:
+  ue_mtu: 1500
+  support_features:
+    use_local_subscription_info: yes # Use infos from local_subscription_info or from UDM
+    use_local_pcc_rules: yes # Use infos from local_pcc_rules or from PCF
+    discover_upf: yes
+  # we resolve from NRF, this is just to configure usage_reporting
+  upfs:
+    - host: oai-upf
+      config:
+        enable_usage_reporting: no
+  ue_dns:
+    primary_ipv4: "10.3.2.200"
+    primary_ipv6: "2001:4860:4860::8888"
+    secondary_ipv4: "8.8.8.8"
+    secondary_ipv6: "2001:4860:4860::8888"
+  ims:
+    pcscf_ipv4: "192.168.70.139"
+    pcscf_ipv6: "fe80::7915:f408:1787:db8b"
+  # the DNN you configure here should be configured in "dnns"
+  # follows the SmfInfo datatype from 3GPP TS 29.510
+  smf_info:
+    sNssaiSmfInfoList:
+      - sNssai: *embb_slice1
+        dnnSmfInfoList:
+          - dnn: "oai"
+      - sNssai: *embb_slice2
+        dnnSmfInfoList:
+          - dnn: "ims"
+  local_subscription_infos:
+    - single_nssai: *embb_slice1
+      dnn: "oai"
+      qos_profile:
+        5qi: 5
+        session_ambr_ul: "200Mbps"
+        session_ambr_dl: "400Mbps"
+    - single_nssai: *embb_slice2
+      dnn: "ims"
+      qos_profile:
+        5qi: 2
+        session_ambr_ul: "100Mbps"
+        session_ambr_dl: "200Mbps"
+
+## DNN configuration
+dnns:
+  - dnn: "oai"
+    pdu_session_type: "IPV4"
+    ipv4_subnet: "12.1.1.0/24"
+  - dnn: "ims"
+    pdu_session_type: "IPV4V6"
+    ipv4_subnet: "14.1.1.0/24"

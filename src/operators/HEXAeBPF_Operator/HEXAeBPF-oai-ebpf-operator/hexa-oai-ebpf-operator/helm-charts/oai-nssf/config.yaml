@@ -1,0 +1,32 @@
+# OAI CN Configuration File
+### This file can be used by all OAI NFs
+### Some fields are specific to an NF and will be ignored by other NFs
+
+############# Common configuration
+
+# If you enable registration, the NF will use the NRF discovery mechanism
+register_nf:
+  general: yes
+
+# Log level for all the NFs
+log_level:
+  general: debug
+
+http_version: 2
+
+############## SBI Interfaces
+### Each NF takes its local SBI interfaces and remote interfaces from here, unless it gets them using NRF discovery mechanisms
+nfs:
+  nssf:
+    host: oai-nssf
+    sbi:
+      port: 80
+      api_version: v1
+      interface_name: eth0
+  nrf:
+    host: oai-nrf
+    sbi:
+      port: 80
+      api_version: v1
+nssf:
+  slice_config_path: /openair-nssf/etc/nssf_slice_config.yaml

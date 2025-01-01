@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: oai.ebpf.coranlabs.com
+  version: v1
+  kind: HexaOAI
+  chart: helm-charts/oai-5g-basic
+# +kubebuilder:scaffold:watch

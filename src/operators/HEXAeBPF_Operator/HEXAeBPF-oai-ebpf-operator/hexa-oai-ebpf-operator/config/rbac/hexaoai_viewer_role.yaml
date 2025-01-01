@@ -1,0 +1,23 @@
+# permissions for end users to view hexaoais.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: hexa-oai-ebpf-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: hexaoai-viewer-role
+rules:
+- apiGroups:
+  - oai.ebpf.coranlabs.com
+  resources:
+  - hexaoais
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - oai.ebpf.coranlabs.com
+  resources:
+  - hexaoais/status
+  verbs:
+  - get

@@ -1,0 +1,76 @@
+---
+{{- if .Values.multus.n3Interface.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-n3
+spec:
+  config: '{ 
+      "cniVersion": "0.3.1",
+      "type": "macvlan",
+      "master": {{- cat .Values.multus.n3Interface.hostInterface | nospace | quote }},
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.n3Interface.ipAdd "/" .Values.multus.n3Interface.netmask | nospace | quote }}
+                }
+        ]
+        {{- if .Values.multus.n3Interface.routes }}
+        ,"routes":  {{- .Values.multus.n3Interface.routes | toJson }}
+        {{- end }}
+      }
+    }'
+{{- end }}
+---
+{{- if .Values.multus.n4Interface.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-n4
+spec:
+  config: '{ 
+      "cniVersion": "0.3.1",
+      "type": "macvlan",
+      "master": {{- cat .Values.multus.n4Interface.hostInterface | nospace | quote }},
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.n4Interface.ipAdd "/" .Values.multus.n4Interface.netmask | nospace | quote }}
+                }
+        ]
+        {{- if .Values.multus.n4Interface.routes }}
+        ,"routes":  {{- .Values.multus.n4Interface.routes | toJson }}
+        {{- end }}
+      }
+    }'
+{{- end }}
+---
+{{- if .Values.multus.n6Interface.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-n6
+spec:
+  config: '{ 
+      "cniVersion": "0.3.1",
+      "type": "macvlan",
+      "master": {{- cat .Values.multus.n6Interface.hostInterface | nospace | quote }},
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.n6Interface.ipAdd "/" .Values.multus.n6Interface.netmask | nospace | quote }}
+                }
+        ]
+        {{- if .Values.multus.n6Interface.routes }}
+        ,"routes":  {{- .Values.multus.n6Interface.routes | toJson }}
+        {{- end }}
+      }
+    }'
+{{- end }}
+---

@@ -1,0 +1,16 @@
+{{- if not .Values.global }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  {{ (.Files.Glob "config.yaml").AsConfig | indent 2 | trim }}
+  {{ (.Files.Glob "scripts/nssf_slice_config.yaml").AsConfig | indent 2 | trim }}
+{{- else }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  {{ (.Files.Glob "scripts/nssf_slice_config.yaml").AsConfig | indent 2 | trim }}
+{{- end }}

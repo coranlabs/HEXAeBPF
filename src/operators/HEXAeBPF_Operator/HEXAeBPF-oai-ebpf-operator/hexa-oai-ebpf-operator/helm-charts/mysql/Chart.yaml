@@ -1,0 +1,16 @@
+apiVersion: v2
+name: mysql
+version: 9.0.1
+appVersion: 9.0.1
+description: mysql chart used for oai5g core
+keywords:
+- mysql
+- database
+- sql
+home: https://www.mysql.com/
+icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
+sources:
+- https://github.com/kubernetes/charts
+- https://github.com/docker-library/mysql
+deprecated: false
+engine: gotpl
