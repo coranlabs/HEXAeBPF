@@ -1,0 +1,27 @@
+# permissions for end users to edit hexaoaignbs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: hexa-oai-gnb-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: hexaoaignb-editor-role
+rules:
+- apiGroups:
+  - oai.gnb.coranlabs.com
+  resources:
+  - hexaoaignbs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - oai.gnb.coranlabs.com
+  resources:
+  - hexaoaignbs/status
+  verbs:
+  - get

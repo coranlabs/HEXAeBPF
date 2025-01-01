@@ -1,0 +1,87 @@
+kubernetesDistribution: Vanilla  #Vanilla for community kubernetes distribution else Openshift for Openshift
+
+## In case of using these charts on Openshift then please use UBI images
+## To know more about them follow this tutorial https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/tree/master/openshift
+nfimage:
+  repository: docker.io/oaisoftwarealliance/oai-nr-ue           # dockehub oaisoftwarealliance/oai-nr-ue
+  version: 2024.w32 # image tag or develop 
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-nr-ue-sa"
+
+# good to use when pulling images from docker-hub mention 
+imagePullSecrets: 
+ - name: "regcred"
+
+config:
+  timeZone: "Europe/Paris"
+  rfSimServer: "oai-ran"    # ip-address of rfsim or service name oai-gnb or oai-du
+  fullImsi: "001010000000100"       # make sure all the below entries are present in the subscriber database
+  fullKey: "fec86ba6eb707ed08905757b1bb44b8f"
+  opc: "C42449363BBAD02B66D16BC975D77CC1"
+  dnn: "oai"
+  sst: "1"                     # configure according to gnb and amf, smf and upf 
+  sd: "16777215"
+  usrp: "rfsim"            # allowed rfsim, b2xx, n3xx, x3xx
+  useAdditionalOptions: "--sa --rfsim -r 106 --numerology 1 -C 3619200000 --log_config.global_log_options level,nocolor,time"
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+securityContext:
+ capabilities:
+    add:
+     - NET_ADMIN
+     - NET_RAW
+     - SYS_NICE
+    drop:
+     - ALL
+start:
+  nrue: true
+  tcpdump: false  # if false then started in sleep mode else it will start capturing packets, nr ue will have a lot of packets per sec better avoid this or add a filter in the deployment.yaml
+
+includeTcpDumpContainer: false #If true it will add a tcpdump container inside network function pod for debugging
+
+tcpdumpimage:
+  repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+  version: alpine-3.20
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+## NF is the network function and tcpdump is the tcpdump container. 
+## To know more about request and limit it is better to understand that how Kubernetes QoS works. 
+## https://kubernetes.io/docs/concepts/configuration/manage-resources-containers
+## https://kubernetes.io/docs/concepts/workloads/pods/pod-qos
+resources:
+  define: false
+  limits:
+    nf:
+      cpu: 1500m
+      memory: 1Gi
+    #If tcpdump container is disabled this value will not be used
+    tcpdump:
+      cpu: 200m
+      memory: 128Mi
+  requests:
+    nf:
+      cpu: 1500m
+      memory: 1Gi
+    #If tcpdump container is disabled this value will not be used
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+
+terminationGracePeriodSeconds: 0
+
+nodeSelector: {}
+
+nodeName:

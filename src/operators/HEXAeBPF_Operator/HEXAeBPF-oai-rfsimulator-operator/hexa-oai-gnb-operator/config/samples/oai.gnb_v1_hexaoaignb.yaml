@@ -1,0 +1,86 @@
+apiVersion: oai.gnb.coranlabs.com/v1
+kind: HexaOAIgNB
+metadata:
+  name: hexaoaignb-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/oai-gnb/values.yaml
+  affinity: {}
+  config:
+    amfhost: 172.21.6.94
+    gnbName: oai-gnb-rfsim
+    mcc: "001"
+    mnc: "01"
+    n2IfName: n2
+    n3IfName: n3
+    sst: "1"
+    tac: "1"
+    timeZone: Europe/Paris
+    useAdditionalOptions: --sa --rfsim --log_config.global_log_options level,nocolor,time
+    usrp: rfsim
+  imagePullSecrets:
+  - name: regcred
+  includeTcpDumpContainer: false
+  kubernetesDistribution: Vanilla
+  multus:
+    defaultGateway: ""
+    n2Interface:
+      create: true
+      hostInterface: eth0
+      ipAdd: 172.21.6.90
+      name: n2
+      netmask: "22"
+    n3Interface:
+      create: true
+      hostInterface: eth0
+      ipAdd: 172.21.8.91
+      name: n3
+      netmask: "22"
+    ruInterface:
+      create: false
+      gateway: 192.168.80.1
+      hostInterface: bond0
+      ipAdd: 192.168.80.90
+      name: ru
+      netmask: "24"
+  nfimage:
+    pullPolicy: IfNotPresent
+    repository: docker.io/oaisoftwarealliance/oai-gnb
+    version: 2024.w32
+  nodeName: null
+  nodeSelector: {}
+  podSecurityContext:
+    runAsGroup: 0
+    runAsUser: 0
+  resources:
+    define: false
+    limits:
+      nf:
+        cpu: 2000m
+        memory: 2Gi
+      tcpdump:
+        cpu: 200m
+        memory: 128Mi
+    requests:
+      nf:
+        cpu: 2000m
+        memory: 2Gi
+      tcpdump:
+        cpu: 100m
+        memory: 128Mi
+  securityContext:
+    privileged: false
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: oai-gnb-sa
+  start:
+    gnb: true
+    tcpdump: false
+  tcpdumpimage:
+    pullPolicy: IfNotPresent
+    repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+    version: alpine-3.20
+  terminationGracePeriodSeconds: 5
+  tolerations: []
+  
+  

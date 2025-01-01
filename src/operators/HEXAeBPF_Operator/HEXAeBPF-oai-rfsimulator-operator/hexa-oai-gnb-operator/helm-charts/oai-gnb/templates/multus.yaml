@@ -1,0 +1,75 @@
+---
+{{- if .Values.multus.n2Interface.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-n2
+spec:
+  config: '{ 
+      "cniVersion": "0.3.1",
+      "type": "macvlan",
+      "master": {{- cat .Values.multus.n2Interface.hostInterface | nospace | quote }},
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.n2Interface.ipAdd "/" .Values.multus.n2Interface.netmask | nospace | quote }}
+                }
+        ]
+        {{- if .Values.multus.n2Interface.routes }}
+        ,"routes":  {{- .Values.multus.n2Interface.routes | toJson }}
+        {{- end }}
+      }
+    }'
+{{- end }}
+---
+{{- if .Values.multus.n3Interface.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-n3
+spec:
+  config: '{ 
+      "cniVersion": "0.3.1",
+      "type": "macvlan",
+      "master": {{- cat .Values.multus.n3Interface.hostInterface | nospace | quote }},
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.n3Interface.ipAdd "/" .Values.multus.n3Interface.netmask | nospace | quote }}
+                }
+        ]
+        {{- if .Values.multus.n3Interface.routes }}
+        ,"routes":  {{- .Values.multus.n3Interface.routes | toJson }}
+        {{- end }}
+      }
+    }'
+{{- end }}
+---
+{{- if .Values.multus.ruInterface.create }}
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition 
+metadata:
+  name: {{ .Chart.Name }}-ru
+spec:
+  config: '{ 
+      "cniVersion": "0.3.1",
+      "type": "macvlan",
+      "master": {{- cat .Values.multus.ruInterface.hostInterface | nospace | quote }},
+      {{- if .Values.multus.ruInterface.mtu }}
+      "mtu": {{ .Values.multus.ruInterface.mtu }},
+      {{- end }}
+      "mode": "bridge",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+                {
+                        "address": {{- cat .Values.multus.ruInterface.ipAdd "/" .Values.multus.ruInterface.netmask | nospace | quote }}
+                }
+        ]
+      }
+    }'
+{{- end }}

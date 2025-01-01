@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- oai.nr.ue_v1_hexaoainrue.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

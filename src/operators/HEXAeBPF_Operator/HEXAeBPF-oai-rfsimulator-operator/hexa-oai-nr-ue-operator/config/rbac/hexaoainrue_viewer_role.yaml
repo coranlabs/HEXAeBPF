@@ -1,0 +1,23 @@
+# permissions for end users to view hexaoainrues.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: hexa-oai-nr-ue-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: hexaoainrue-viewer-role
+rules:
+- apiGroups:
+  - oai.nr.ue.coranlabs.com
+  resources:
+  - hexaoainrues
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - oai.nr.ue.coranlabs.com
+  resources:
+  - hexaoainrues/status
+  verbs:
+  - get

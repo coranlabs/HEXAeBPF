@@ -1,0 +1,187 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-gnb.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "oai-gnb.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        {{- include "oai-gnb.selectorLabels" . | nindent 8 }}
+        app: oai-gnb
+    {{- if .Values.multus.n2Interface.create }}
+      annotations:
+        k8s.v1.cni.cncf.io/networks: >-
+          [{
+                 "name": "{{ .Chart.Name }}-{{ .Values.multus.n2Interface.name }}",
+                 "interface": "{{ .Values.multus.n2Interface.name }}"
+                {{- if .Values.multus.defaultGateway }}
+                 ,"default-route": ["{{ .Values.multus.defaultGateway }}"]
+                {{- end }}
+          }
+          {{- if .Values.multus.n3Interface.create }}
+          ,{
+                 "name": "{{ .Chart.Name }}-{{ .Values.multus.n3Interface.name }}",
+                 "interface": "{{ .Values.multus.n3Interface.name }}"
+                {{- if .Values.multus.n3Interface.gateway }}
+                ,"gateway": {{ .Values.multus.n3Interface.gateway }}
+                {{- end }}
+          }
+          {{- end }}
+          {{- if .Values.multus.ruInterface.create }}
+          ,{
+                 "name": "{{ .Chart.Name }}-{{ .Values.multus.ruInterface.name }}",
+                 "interface": "{{ .Values.multus.ruInterface.name }}"
+          }
+          {{- end }}
+          ]
+    {{- end }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{ toYaml .Values.imagePullSecrets | indent 8 }}
+    {{- end }}
+    {{- if .Values.global }}{{ if .Values.global.waitForAMF }}
+      initContainers:
+        - name: init
+          image: docker.io/oaisoftwarealliance/oai-tcpdump-init:alpine-3.20
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - until ncat -zv {{ .Values.config.amfhost }} 38412 --sctp ; do echo waiting for oai-amf to start; sleep 1; done
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 1m
+            limits:
+              memory: 50Mi
+              cpu: 1m
+    {{- end }}{{ end }}
+      containers:
+      - name: gnb
+        image: "{{ .Values.nfimage.repository }}:{{ .Values.nfimage.version }}"
+        imagePullPolicy: {{ .Values.nfimage.pullPolicy }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        volumeMounts:
+          - mountPath: /opt/oai-gnb/etc
+            name: configuration
+            # subPath: gnb.conf
+          # USRP B210/B200 Mini
+        {{- if eq .Values.config.usrp "b2xx"}}
+          - mountPath: /dev/bus/usb/
+            name: usrp
+        {{- end}}
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.requests.nf.memory | quote }}
+            cpu: {{ .Values.resources.requests.nf.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.limits.nf.memory | quote }}
+            cpu: {{ .Values.resources.limits.nf.cpu | quote }}
+        {{- end}}
+        ports:
+        - containerPort: 2152
+          name: n3
+          protocol: UDP
+        - containerPort: 36412
+          name: n2
+          protocol: SCTP
+        {{- if .Values.start.gnb}}
+        command: [ "/bin/bash", "-c" ]
+        args:
+         -  AMF_IP_ADDRESS=$(getent hosts $AMF_HOST | awk '{print $1}');
+            AMF_IP_ADDRESS=$(if [[ $AMF_IP_ADDRESS ]]; then echo $AMF_IP_ADDRESS; else echo $AMF_HOST;fi);
+            N2_IP_ADDRESS=$(ip -f inet addr show $N2_IF_NAME | grep -o "inet [0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*");
+            N3_IP_ADDRESS=$(ip -f inet addr show $N3_IF_NAME | grep -o "inet [0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*");
+            sed -e s/@N2_IP_ADDRESS@/$N2_IP_ADDRESS/g
+                -e s/@N3_IP_ADDRESS@/$N3_IP_ADDRESS/g
+                -e s/@AMF_IP_ADDRESS@/$AMF_IP_ADDRESS/g
+                /opt/oai-gnb/etc/gnb.conf | tee /tmp/gnb.conf;
+          {{- if eq .Values.config.usrp "b2xx"}}
+            /opt/oai-gnb/bin/uhd_images_downloader.py -t b2xx;
+          {{- else if eq .Values.config.usrp "n3xx" }}
+            /opt/oai-gnb/bin/uhd_images_downloader.py -t n3xx;
+          {{- else if eq .Values.config.usrp "x3xx" }}
+            /opt/oai-gnb/bin/uhd_images_downloader.py -t x3xx;
+          {{- end }}
+            exec /opt/oai-gnb/bin/nr-softmodem -O /tmp/gnb.conf $USE_ADDITIONAL_OPTIONS;
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+        env:
+          - name: TZ
+            value: {{ .Values.config.timeZone }}
+          - name: USE_ADDITIONAL_OPTIONS
+            value: {{ .Values.config.useAdditionalOptions }}
+          - name: AMF_HOST
+            value: {{ .Values.config.amfhost }}
+          - name: N2_IF_NAME
+            value: {{ .Values.config.n2IfName }}
+          - name: N3_IF_NAME
+            value: {{ .Values.config.n3IfName }}
+      {{- if .Values.includeTcpDumpContainer }}
+      - name: tcpdump
+        image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
+        imagePullPolicy: {{ .Values.tcpdumpimage.pullPolicy }}
+        {{- if .Values.resources.define}}
+        resources:
+          requests:
+            memory: {{ .Values.resources.requests.tcpdump.memory | quote }}
+            cpu: {{ .Values.resources.requests.tcpdump.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.limits.tcpdump.memory | quote }}
+            cpu: {{ .Values.resources.limits.tcpdump.cpu | quote }}
+        {{- end}}
+        securityContext:
+           capabilities:
+              add:
+               - NET_ADMIN
+               - NET_RAW
+              drop:
+               - ALL
+        {{- if .Values.start.tcpdump}}
+        command:
+          - /bin/sh
+          - -c
+          - /usr/bin/tcpdump -i any -w /tmp/pcap/{{ .Chart.Name }}_`date +%Y-%m-%d_%H_%M-%S-%Z`.pcap
+        {{- else}}
+        command:
+          - /bin/sleep
+          - infinity
+        {{- end}}
+      {{- end }}
+      volumes:
+      - configMap:
+          name: {{ .Chart.Name }}-configmap
+        name: configuration
+      {{- if eq .Values.config.usrp "b2xx"}}
+      - name: usrp
+        hostPath:
+          path: /dev/bus/usb/
+      {{- end}}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- if .Values.nodeSelector}}
+      nodeSelector: 
+         {{- toYaml .Values.nodeSelector | nindent 12 }}
+      {{- end }}
+      {{- if .Values.nodeName}}
+      nodeName: {{ .Values.nodeName }}
+      {{- end }}

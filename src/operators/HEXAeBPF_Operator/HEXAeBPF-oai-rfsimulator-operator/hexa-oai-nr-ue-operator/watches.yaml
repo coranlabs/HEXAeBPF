@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: oai.nr.ue.coranlabs.com
+  version: v1
+  kind: HexaOAInrUE
+  chart: helm-charts/oai-nr-ue
+# +kubebuilder:scaffold:watch
