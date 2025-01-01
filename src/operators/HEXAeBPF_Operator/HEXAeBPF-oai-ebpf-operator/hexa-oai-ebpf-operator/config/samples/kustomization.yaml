@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- oai.ebpf_v1_hexaoai.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

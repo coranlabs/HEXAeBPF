@@ -1,0 +1,695 @@
+apiVersion: oai.ebpf.coranlabs.com/v1
+kind: HexaOAI
+metadata:
+  name: hexaoai-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/oai-5g-basic/values.yaml
+  global:
+    clusterIpServiceIpAllocation: true
+    coreNetworkConfigMap: oai-5g-basic
+    http2Param: --http2-prior-knowledge
+    kubernetesDistribution: Vanilla
+    timeout: 1
+    waitForNRF: true
+    waitForUDR: true
+  mysql:
+    affinity: {}
+    args: []
+    busybox:
+      image: busybox
+      tag: latest
+    configurationFiles: {}
+    configurationFilesPath: /etc/mysql/conf.d/
+    deploymentAnnotations: {}
+    enabled: true
+    extraInitContainers: |
+      # - name: do-something
+      #   image: busybox
+      #   command: ['do', 'something']
+    extraVolumeMounts: |
+      # - name: extras
+      #   mountPath: /usr/share/extras
+      #   readOnly: true
+    extraVolumes: |
+      # - name: extras
+      #   emptyDir: {}
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    image: docker.io/mysql
+    imagePullPolicy: IfNotPresent
+    imagePullSecrets:
+    - name: regcred
+    imageTag: 9.0.1
+    initContainer:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 10Mi
+    livenessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 50
+      periodSeconds: 15
+      successThreshold: 1
+      timeoutSeconds: 10
+    metrics:
+      annotations: {}
+      enabled: false
+      flags: []
+      image: prom/mysqld-exporter
+      imagePullPolicy: IfNotPresent
+      imageTag: v0.10.0
+      livenessProbe:
+        initialDelaySeconds: 15
+        timeoutSeconds: 5
+      readinessProbe:
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+      resources: {}
+      serviceMonitor:
+        additionalLabels: {}
+        enabled: false
+    mysqlDatabase: oai_db
+    mysqlPassword: test
+    mysqlRootPassword: linux
+    mysqlUser: test
+    mysqlx:
+      port:
+        enabled: false
+    oai5gdatabase: basic
+    persistence:
+      accessMode: ReadWriteOnce
+      annotations: {}
+      enabled: false
+      size: 8Gi
+    podAnnotations: {}
+    podLabels: {}
+    readinessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 15
+      successThreshold: 1
+      timeoutSeconds: 5
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    securityContext:
+      enabled: false
+      fsGroup: 999
+      runAsUser: 999
+    service:
+      annotations: {}
+      port: 3306
+      type: ClusterIP
+    serviceAccount:
+      create: false
+    ssl:
+      certificates: null
+      enabled: false
+      secret: mysql-ssl-certs
+    strategy:
+      type: Recreate
+    testFramework:
+      enabled: false
+      image: bats/bats
+      imagePullPolicy: IfNotPresent
+      securityContext: {}
+      tag: 1.2.1
+    tolerations: []
+  oai-amf:
+    config:
+      udrHost: oai-udr
+    enabled: true
+    exposedPorts:
+      sbi: 80
+      sctp: 38412
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    multus:
+      defaultGateway: ""
+      n2Interface:
+        create: true
+        gateway: null
+        hostInterface: eth0
+        ipAdd: 172.21.6.94
+        name: n2
+        netmask: "22"
+        routes: ""
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-amf
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    serviceAccount:
+      annotations: {}
+      create: true
+    start:
+      amf: true
+      tcpdump: false
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  oai-ausf:
+    config:
+      logLevel: debug
+    enabled: true
+    exposedPorts:
+      sbi: 80
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-ausf
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: oai-ausf-sa
+    start:
+      ausf: true
+      tcpdump: false
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  oai-lmf:
+    config:
+      logLevel: debug
+    enabled: true
+    exposedPorts:
+      sbi: 80
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-lmf
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    serviceAccount:
+      create: true
+      name: oai-lmf-sa
+    start:
+      lmf: true
+      tcpdump: false
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  oai-nrf:
+    config:
+      logLevel: debug
+    enabled: true
+    exposedPorts:
+      sbi: 80
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-nrf
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+      size: 1Gi
+      storageClass: '-'
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    serviceAccount:
+      create: true
+      name: oai-nrf-sa
+    start:
+      nrf: true
+      tcpdump: false
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  oai-smf:
+    enabled: true
+    exposedPorts:
+      n4: 8805
+      sbi: 80
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    multus:
+      defaultGateway: ""
+      n4Interface:
+        create: false
+        gateway: ""
+        hostInterface: eth0
+        ipAdd: 192.168.24.3
+        name: n4
+        netmask: "24"
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-smf
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    serviceAccount:
+      create: true
+      name: oai-smf-sa
+    start:
+      smf: true
+      tcpdump: false
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  oai-traffic-server:
+    config:
+      noOfIperf3Server: 2
+      routeInterface: eth0
+      ueroute: 12.1.1.0/24
+      upfHost: 192.168.22.2
+    enabled: true
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    multus:
+      create: true
+      defaultGateway: 192.168.22.254
+      hostInterface: eth0
+      ipAdd: 192.168.22.4
+      netmask: "24"
+    nodeName: ""
+    nodeSelector: {}
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      capabilities:
+        add:
+        - NET_ADMIN
+        - NET_RAW
+        drop:
+        - ALL
+    serviceAccount:
+      create: true
+      name: oai-traffic-server
+    terminationGracePeriodSeconds: 2
+    trafficServer:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/trf-gen-cn5g
+      version: latest
+  oai-udm:
+    config:
+      logLevel: debug
+    enabled: true
+    exposedPorts:
+      sbi: 80
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-udm
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    serviceAccount:
+      create: true
+      name: oai-udm-sa
+    start:
+      tcpdump: false
+      udm: true
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  oai-udr:
+    config:
+      logLevel: debug
+    enabled: true
+    exposedPorts:
+      sbi: 80
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-udr
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: oai-udr-sa
+    start:
+      tcpdump: false
+      udr: true
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  oai-upf:
+    enabled: true
+    exposedPorts:
+      n3: 2152
+      n4: 8805
+      sbi: 80
+    global:
+      clusterIpServiceIpAllocation: true
+      coreNetworkConfigMap: oai-5g-basic
+      http2Param: --http2-prior-knowledge
+      kubernetesDistribution: Vanilla
+      timeout: 1
+      waitForNRF: true
+      waitForUDR: true
+    imagePullSecrets:
+    - name: regcred
+    includeTcpDumpContainer: false
+    kubernetesDistribution: Vanilla
+    livenessProbe: false
+    multus:
+      defaultGateway: ""
+      n3Interface:
+        create: true
+        gateway: ""
+        hostInterface: eth0
+        ipAdd: 172.21.8.95
+        name: n3
+        netmask: "22"
+        routes: ""
+      n4Interface:
+        create: false
+        gateway: ""
+        hostInterface: eth0
+        ipAdd: 192.168.24.2
+        name: n4
+        netmask: "24"
+        routes: ""
+      n6Interface:
+        create: true
+        gateway: ""
+        hostInterface: eth0
+        ipAdd: 192.168.22.2
+        name: n6
+        netmask: "24"
+        routes: ""
+    nfimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-upf
+      version: v2.1.0
+    nodeName: null
+    nodeSelector: {}
+    persistent:
+      sharedvolume: false
+    podSecurityContext:
+      runAsGroup: 0
+      runAsUser: 0
+    readinessProbe: true
+    resources:
+      define: false
+      limits:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+      requests:
+        nf:
+          cpu: 100m
+          memory: 128Mi
+        tcpdump:
+          cpu: 100m
+          memory: 128Mi
+    securityContext:
+      privileged: true
+    serviceAccount:
+      create: true
+      name: oai-upf-sa
+    start:
+      spgwu: true
+      tcpdump: false
+      upf: true
+    tcpdumpimage:
+      pullPolicy: IfNotPresent
+      repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+      version: alpine-3.20
+    terminationGracePeriodSeconds: 5
+  
+  

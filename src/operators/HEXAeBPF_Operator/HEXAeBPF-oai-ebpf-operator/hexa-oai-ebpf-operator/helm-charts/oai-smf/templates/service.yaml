@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-smf.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  {{- if .Values.global }}{{ if not .Values.global.clusterIpServiceIpAllocation }}
+  clusterIP: None
+  {{- end }}{{ end }}
+  selector:
+    {{- include "oai-smf.selectorLabels" . | nindent 4 }}
+  ports:
+    {{- if not .Values.multus.create }}
+    - name: oai-smf
+      # Port accessible outside cluster
+      port: {{ .Values.exposedPorts.n4 }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.exposedPorts.n4 }}
+      protocol: UDP
+    {{ end }}
+    - name: http
+      port: {{ .Values.exposedPorts.sbi }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.exposedPorts.sbi }}
+      protocol: TCP

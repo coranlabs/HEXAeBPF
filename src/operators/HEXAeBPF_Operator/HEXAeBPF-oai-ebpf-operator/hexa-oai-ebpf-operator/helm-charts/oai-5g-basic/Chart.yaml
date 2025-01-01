@@ -1,0 +1,61 @@
+apiVersion: v2
+appVersion: v2.1.0
+dependencies:
+- condition: mysql.enabled
+  name: mysql
+  repository: file://../mysql
+  version: 9.0.1
+- condition: oai-nrf.enabled
+  name: oai-nrf
+  repository: file://../oai-nrf
+  version: v2.1.0
+- condition: oai-udr.enabled
+  name: oai-udr
+  repository: file://../oai-udr
+  version: v2.1.0
+- condition: oai-udm.enabled
+  name: oai-udm
+  repository: file://../oai-udm
+  version: v2.1.0
+- condition: oai-ausf.enabled
+  name: oai-ausf
+  repository: file://../oai-ausf
+  version: v2.1.0
+- condition: oai-amf.enabled
+  name: oai-amf
+  repository: file://../oai-amf
+  version: v2.1.0
+- condition: oai-smf.enabled
+  name: oai-smf
+  repository: file://../oai-smf
+  version: v2.1.0
+- condition: oai-upf.enabled
+  name: oai-upf
+  repository: file://../oai-upf
+  version: v2.1.0
+- condition: oai-lmf.enabled
+  name: oai-lmf
+  repository: file://../oai-lmf
+  version: v2.1.0
+- condition: oai-traffic-server.enabled
+  name: oai-traffic-server
+  repository: file://../oai-traffic-server
+  version: v1
+description: OAI 5G Release 16 Core Network
+icon: http://www.openairinterface.org/wp-content/uploads/2015/06/cropped-oai_final_logo.png
+keywords:
+- 5GCN
+- AMF
+- SMF
+- NRF
+- UPF
+- UDM
+- UDR
+- AUSF
+- Traffic_server
+maintainers:
+- email: contact@openairinterface.org
+  name: OPENAIRINTERFACE
+name: oai-5g-basic
+type: application
+version: v2.1.0

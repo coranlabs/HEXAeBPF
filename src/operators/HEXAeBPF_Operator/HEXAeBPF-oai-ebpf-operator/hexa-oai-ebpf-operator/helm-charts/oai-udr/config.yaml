@@ -1,0 +1,40 @@
+############# Common configuration
+
+# Log level
+log_level:
+  general: debug
+
+# If you enable registration, the NF will use the NRF discovery mechanism
+register_nf:
+  general: yes
+
+http_version: 2  # allowed value 1 and 2, make sure all NFs use the same HTTP version
+
+############## SBI Interfaces
+### Each NF takes its local SBI interfaces and remote interfaces from here, unless it gets them using NRF discovery mechanisms
+nfs:
+  udr:
+    host: oai-udr
+    sbi:
+      port: 80
+      api_version: v1
+      interface_name: eth0
+  nrf:
+    host: oai-nrf
+    sbi:
+      port: 80
+      api_version: v1
+
+############## NF-specific configuration
+udr:
+  udr_name: "OAI-UDR"
+
+#### Common for UDR and AMF
+database:
+  host: mysql
+  user: test
+  type: mysql
+  password: test
+  database_name: oai_db
+  generate_random: true
+  connection_timeout: 300 # seconds

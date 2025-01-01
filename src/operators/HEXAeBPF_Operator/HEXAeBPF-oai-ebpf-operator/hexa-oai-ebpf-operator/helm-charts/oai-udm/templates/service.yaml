@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-udm.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  {{- if .Values.global }}{{ if not .Values.global.clusterIpServiceIpAllocation }}
+  clusterIP: None
+  {{- end }}{{ end }}
+  ports:
+    - name: http1
+      # Port accessible outside cluster
+      port: {{ .Values.exposedPorts.sbi }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.exposedPorts.sbi }}
+      protocol: TCP
+  selector:
+    {{- include "oai-udm.selectorLabels" . | nindent 4 }}

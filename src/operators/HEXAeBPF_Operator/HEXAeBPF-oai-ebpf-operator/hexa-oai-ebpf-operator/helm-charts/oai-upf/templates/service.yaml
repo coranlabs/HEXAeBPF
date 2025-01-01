@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    {{- include "oai-upf.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  {{- if .Values.global }}{{ if not .Values.global.clusterIpServiceIpAllocation }}
+  clusterIP: None
+  {{- end }}{{ end }}
+  ports:
+    - name: pfcp
+      port: {{ .Values.exposedPorts.n4 }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.exposedPorts.n4 }}
+      protocol: UDP
+    - name: gtp
+      port: {{ .Values.exposedPorts.n3 }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.exposedPorts.n3 }}
+      protocol: UDP
+    - name: http
+      port: {{ .Values.exposedPorts.sbi }}
+      # Port to forward to inside the pod
+      targetPort: {{ .Values.exposedPorts.sbi }}
+      protocol: TCP
+  selector:
+    {{- include "oai-upf.selectorLabels" . | nindent 4 }}

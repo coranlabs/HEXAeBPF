@@ -1,0 +1,21 @@
+{{- if .Values.includeTcpDumpContainer }}
+{{- if .Values.persistent.sharedvolume }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cn5g-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+{{- if not .Values.persistent.storageClass }}
+{{- if (eq "-" .Values.persistent.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistent.storageClass }}"
+{{- end }}
+{{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistent.size }}
+{{- end }}
+{{- end }}
