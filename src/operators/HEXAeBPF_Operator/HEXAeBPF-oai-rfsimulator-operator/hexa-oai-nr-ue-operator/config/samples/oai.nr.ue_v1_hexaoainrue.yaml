@@ -1,0 +1,69 @@
+apiVersion: oai.nr.ue.coranlabs.com/v1
+kind: HexaOAInrUE
+metadata:
+  name: hexaoainrue-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/oai-nr-ue/values.yaml
+  config:
+    dnn: oai
+    fullImsi: "001010000000100"
+    fullKey: fec86ba6eb707ed08905757b1bb44b8f
+    opc: C42449363BBAD02B66D16BC975D77CC1
+    rfSimServer: oai-ran
+    sd: "16777215"
+    sst: "1"
+    timeZone: Europe/Paris
+    useAdditionalOptions: --sa --rfsim -r 106 --numerology 1 -C 3619200000 --log_config.global_log_options
+      level,nocolor,time
+    usrp: rfsim
+  imagePullSecrets:
+  - name: regcred
+  includeTcpDumpContainer: false
+  kubernetesDistribution: Vanilla
+  nfimage:
+    pullPolicy: IfNotPresent
+    repository: docker.io/oaisoftwarealliance/oai-nr-ue
+    version: 2024.w32
+  nodeName: null
+  nodeSelector: {}
+  podSecurityContext:
+    runAsGroup: 0
+    runAsUser: 0
+  resources:
+    define: false
+    limits:
+      nf:
+        cpu: 1500m
+        memory: 1Gi
+      tcpdump:
+        cpu: 200m
+        memory: 128Mi
+    requests:
+      nf:
+        cpu: 1500m
+        memory: 1Gi
+      tcpdump:
+        cpu: 100m
+        memory: 128Mi
+  securityContext:
+    capabilities:
+      add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_NICE
+      drop:
+      - ALL
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: oai-nr-ue-sa
+  start:
+    nrue: true
+    tcpdump: false
+  tcpdumpimage:
+    pullPolicy: IfNotPresent
+    repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+    version: alpine-3.20
+  terminationGracePeriodSeconds: 0
+  
+  

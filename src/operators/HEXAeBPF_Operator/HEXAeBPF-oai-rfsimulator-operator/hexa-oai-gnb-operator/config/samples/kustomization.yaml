@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- oai.gnb_v1_hexaoaignb.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

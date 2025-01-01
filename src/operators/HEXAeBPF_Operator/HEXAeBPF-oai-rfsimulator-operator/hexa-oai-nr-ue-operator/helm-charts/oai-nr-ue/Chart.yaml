@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: develop
+description: A Helm chart for nr-ue network function
+icon: http://www.openairinterface.org/wp-content/uploads/2015/06/cropped-oai_final_logo.png
+keywords:
+- RF_Simulator
+- NR-UE
+- RAN
+- 5G
+- USRP
+maintainers:
+- email: contact@openairinterface.org
+  name: OPENAIRINTERFACE
+name: oai-nr-ue
+sources:
+- https://gitlab.eurecom.fr/oai/openairinterface5g
+type: application
+version: 2.1.0
