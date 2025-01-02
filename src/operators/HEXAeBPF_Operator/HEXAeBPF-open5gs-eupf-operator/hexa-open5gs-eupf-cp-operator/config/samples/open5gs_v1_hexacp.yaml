@@ -1,0 +1,2032 @@
+apiVersion: open5gs.coranlabs.com/v1
+kind: HexaCP
+metadata:
+  name: hexacp-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/open5gs/values.yaml
+  amf:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      guamiList:
+      - amf_id:
+          region: 2
+          set: 1
+        plmn_id:
+          mcc: "999"
+          mnc: "70"
+      logLevel: info
+      networkName: Gradiant
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      plmnList:
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        s_nssai:
+        - sd: "0x111111"
+          sst: 1
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+      taiList:
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        tac:
+        - 1
+    containerPorts:
+      metrics: 9090
+      ngap: 38412
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    metrics:
+      enabled: false
+      serviceMonitor:
+        additionalLabels: {}
+        enabled: false
+        honorLabels: false
+        interval: ""
+        metricRelabelings: []
+        namespace: ""
+        relabelings: []
+        scrapeTimeout: ""
+      serviceScrape:
+        additionalLabels: {}
+        enabled: false
+        namespace: ""
+        scrape_interval: 15s
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      metrics:
+        annotations:
+          prometheus.io/path: /metrics
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          metrics: ""
+        ports:
+          metrics: 9090
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      ngap:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          ngap: ""
+        ports:
+          ngap: 38412
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      path: /
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  ausf:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      logLevel: info
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+    containerPorts:
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  bsf:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      logLevel: info
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+    containerPorts:
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  common:
+    exampleValue: common-chart
+    global: {}
+  dbURI: mongodb://{{ .Release.Name }}-mongodb/open5gs
+  hss:
+    enabled: false
+    image:
+      tag: 2.6.4
+    mongodb:
+      enabled: false
+  mme:
+    enabled: false
+    image:
+      tag: 2.6.4
+  mongodb:
+    affinity: {}
+    annotations: {}
+    arbiter:
+      affinity: {}
+      annotations: {}
+      args: []
+      command: []
+      configuration: ""
+      containerPorts:
+        mongodb: 27017
+      containerSecurityContext:
+        enabled: true
+        runAsNonRoot: true
+        runAsUser: 1001
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      enabled: true
+      existingConfigmap: ""
+      extraEnvVars: []
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraFlags: []
+      extraVolumeMounts: []
+      extraVolumes: []
+      hostAliases: []
+      initContainers: []
+      labels: {}
+      lifecycleHooks: {}
+      livenessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 30
+        periodSeconds: 20
+        successThreshold: 1
+        timeoutSeconds: 10
+      nodeAffinityPreset:
+        key: ""
+        type: ""
+        values: []
+      nodeSelector: {}
+      pdb:
+        create: false
+        maxUnavailable: ""
+        minAvailable: 1
+      podAffinityPreset: ""
+      podAnnotations: {}
+      podAntiAffinityPreset: soft
+      podLabels: {}
+      podManagementPolicy: OrderedReady
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
+        sysctls: []
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 5
+        periodSeconds: 20
+        successThreshold: 1
+        timeoutSeconds: 10
+      resources:
+        limits: {}
+        requests: {}
+      runtimeClassName: ""
+      schedulerName: ""
+      service:
+        annotations: {}
+        extraPorts: []
+        nameOverride: ""
+        ports:
+          mongodb: 27017
+      sidecars: []
+      startupProbe:
+        enabled: false
+        failureThreshold: 30
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      terminationGracePeriodSeconds: ""
+      tolerations: []
+      topologySpreadConstraints: []
+      updateStrategy:
+        type: RollingUpdate
+    architecture: standalone
+    args: []
+    auth:
+      database: ""
+      databases: []
+      enabled: false
+      existingSecret: ""
+      password: ""
+      passwords: []
+      replicaSetKey: ""
+      rootPassword: ""
+      rootUser: root
+      username: ""
+      usernames: []
+    clusterDomain: cluster.local
+    command: []
+    common:
+      exampleValue: common-chart
+      global:
+        imagePullSecrets: []
+        imageRegistry: ""
+        namespaceOverride: ""
+        storageClass: ""
+    commonAnnotations: {}
+    commonLabels: {}
+    configuration: ""
+    containerPorts:
+      mongodb: 27017
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    diagnosticMode:
+      args:
+      - infinity
+      command:
+      - sleep
+      enabled: false
+    directoryPerDB: false
+    disableJavascript: false
+    disableSystemLog: false
+    enableIPv6: false
+    enableJournal: true
+    enabled: true
+    existingConfigmap: ""
+    externalAccess:
+      autoDiscovery:
+        enabled: false
+        image:
+          pullPolicy: IfNotPresent
+          pullSecrets: []
+          registry: docker.io
+          repository: bitnami/kubectl
+          tag: 1.24.3-debian-11-r7
+        resources:
+          limits: {}
+          requests: {}
+      enabled: false
+      hidden:
+        enabled: false
+        service:
+          annotations: {}
+          domain: ""
+          externalTrafficPolicy: Local
+          extraPorts: []
+          loadBalancerIPs: []
+          loadBalancerSourceRanges: []
+          nodePorts: []
+          portName: mongodb
+          ports:
+            mongodb: 27017
+          sessionAffinity: None
+          sessionAffinityConfig: {}
+          type: LoadBalancer
+      service:
+        annotations: {}
+        domain: ""
+        externalTrafficPolicy: Local
+        extraPorts: []
+        loadBalancerIPs: []
+        loadBalancerSourceRanges: []
+        nodePorts: []
+        portName: mongodb
+        ports:
+          mongodb: 27017
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: LoadBalancer
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraFlags: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      namespaceOverride: ""
+      storageClass: ""
+    hidden:
+      affinity: {}
+      annotations: {}
+      args: []
+      command: []
+      configuration: ""
+      containerPorts:
+        mongodb: 27017
+      containerSecurityContext:
+        enabled: true
+        runAsNonRoot: true
+        runAsUser: 1001
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      enabled: false
+      existingConfigmap: ""
+      extraEnvVars: []
+      extraEnvVarsCM: ""
+      extraEnvVarsSecret: ""
+      extraFlags: []
+      extraVolumeMounts: []
+      extraVolumes: []
+      hostAliases: []
+      initContainers: []
+      labels: {}
+      lifecycleHooks: {}
+      livenessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 30
+        periodSeconds: 20
+        successThreshold: 1
+        timeoutSeconds: 10
+      nodeAffinityPreset:
+        key: ""
+        type: ""
+        values: []
+      nodeSelector: {}
+      pdb:
+        create: false
+        maxUnavailable: ""
+        minAvailable: 1
+      persistence:
+        accessModes:
+        - ReadWriteOnce
+        annotations: {}
+        enabled: true
+        medium: ""
+        mountPath: /bitnami/mongodb
+        size: 8Gi
+        storageClass: ""
+        subPath: ""
+        volumeClaimTemplates:
+          dataSource: {}
+          requests: {}
+          selector: {}
+      podAffinityPreset: ""
+      podAnnotations: {}
+      podAntiAffinityPreset: soft
+      podLabels: {}
+      podManagementPolicy: OrderedReady
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
+        sysctls: []
+      priorityClassName: ""
+      readinessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 5
+        periodSeconds: 20
+        successThreshold: 1
+        timeoutSeconds: 10
+      replicaCount: 1
+      resources:
+        limits: {}
+        requests: {}
+      runtimeClassName: ""
+      schedulerName: ""
+      service:
+        annotations: {}
+        extraPorts: []
+        portName: mongodb
+        ports:
+          mongodb: 27017
+      sidecars: []
+      startupProbe:
+        enabled: false
+        failureThreshold: 30
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      terminationGracePeriodSeconds: ""
+      tolerations: []
+      topologySpreadConstraints: []
+      updateStrategy:
+        type: RollingUpdate
+    hostAliases: []
+    image:
+      debug: false
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/mongodb
+      tag: 5.0.10-debian-11-r3
+    initContainers: []
+    initdbScripts: {}
+    initdbScriptsConfigMap: ""
+    kubeVersion: ""
+    labels: {}
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 30
+      periodSeconds: 20
+      successThreshold: 1
+      timeoutSeconds: 10
+    metrics:
+      args: []
+      command: []
+      containerPort: 9216
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      enabled: false
+      extraFlags: ""
+      image:
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/mongodb-exporter
+        tag: 0.33.0-debian-11-r9
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 15
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 5
+      password: ""
+      prometheusRule:
+        additionalLabels: {}
+        enabled: false
+        namespace: ""
+        rules: []
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: {}
+        requests: {}
+      service:
+        annotations:
+          prometheus.io/path: /metrics
+          prometheus.io/port: '{{ .Values.metrics.service.ports.metrics }}'
+          prometheus.io/scrape: "true"
+        extraPorts: []
+        ports:
+          metrics: 9216
+        type: ClusterIP
+      serviceMonitor:
+        enabled: false
+        honorLabels: false
+        interval: 30s
+        jobLabel: ""
+        labels: {}
+        metricRelabelings: []
+        namespace: ""
+        relabelings: []
+        scrapeTimeout: ""
+        selector: {}
+      startupProbe:
+        enabled: false
+        failureThreshold: 30
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      username: ""
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    pdb:
+      create: false
+      maxUnavailable: ""
+      minAvailable: 1
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      enabled: false
+      existingClaim: ""
+      medium: ""
+      mountPath: /bitnami/mongodb
+      resourcePolicy: ""
+      size: 8Gi
+      storageClass: ""
+      subPath: ""
+      volumeClaimTemplates:
+        dataSource: {}
+        requests: {}
+        selector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podManagementPolicy: OrderedReady
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+      sysctls: []
+    podSecurityPolicy:
+      allowPrivilegeEscalation: false
+      create: false
+      privileged: false
+      spec: {}
+    priorityClassName: ""
+    rbac:
+      create: false
+      rules: []
+    readinessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    replicaCount: 2
+    replicaSetConfigurationSettings:
+      configuration: {}
+      enabled: false
+    replicaSetHostnames: true
+    replicaSetName: rs0
+    resources:
+      limits: {}
+      requests: {}
+    runtimeClassName: ""
+    schedulerName: ""
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalIPs: []
+      externalTrafficPolicy: Local
+      extraPorts: []
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nameOverride: ""
+      nodePorts:
+        mongodb: ""
+      portName: mongodb
+      ports:
+        mongodb: 27017
+      sessionAffinity: None
+      sessionAffinityConfig: {}
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: true
+      name: ""
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 30
+      initialDelaySeconds: 5
+      periodSeconds: 20
+      successThreshold: 1
+      timeoutSeconds: 10
+    systemLogVerbosity: 0
+    terminationGracePeriodSeconds: ""
+    tls:
+      autoGenerated: true
+      caCert: ""
+      caKey: ""
+      enabled: false
+      existingSecret: ""
+      extraDnsNames: []
+      image:
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/nginx
+        tag: 1.23.1-debian-11-r4
+      mode: requireTLS
+      resources:
+        limits: {}
+        requests: {}
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+    useStatefulSet: false
+    volumePermissions:
+      enabled: false
+      image:
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/bitnami-shell
+        tag: 11-debian-11-r21
+      resources:
+        limits: {}
+        requests: {}
+      securityContext:
+        runAsUser: 0
+  nrf:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      logLevel: info
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+    containerPorts:
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  nssf:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      logLevel: info
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      nsiList:
+      - nrf:
+          hostname: ""
+          port: 7777
+        sd: "0x111111"
+        sst: 1
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+    containerPorts:
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      path: /
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  pcf:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      logLevel: info
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+    containerPorts:
+      metrics: 9090
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    dbURI: ""
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    metrics:
+      enabled: false
+      serviceMonitor:
+        additionalLabels: {}
+        enabled: false
+        honorLabels: false
+        interval: ""
+        metricRelabelings: []
+        namespace: ""
+        relabelings: []
+        scrapeTimeout: ""
+      serviceScrape:
+        additionalLabels: {}
+        enabled: false
+        namespace: ""
+        scrape_interval: 15s
+    mongodb:
+      enabled: false
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      metrics:
+        annotations:
+          prometheus.io/path: /metrics
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          metrics: ""
+        ports:
+          metrics: 9090
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  pcrf:
+    enabled: false
+    image:
+      tag: 2.6.4
+    mongodb:
+      enabled: false
+  populate:
+    enabled: true
+    image:
+      pullPolicy: IfNotPresent
+      registry: docker.io
+      repository: openverso/open5gs-dbctl
+      tag: 0.10.2
+    initCommands:
+    - open5gs-dbctl add_ue_with_slice 999700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC
+      E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+    - open5gs-dbctl add_ue_with_slice 999700000000002 465B5CE8B199B49FAA5F0A2EE238A6BC
+      E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  scp:
+    enabled: false
+    image:
+      tag: 2.6.4
+    mongodb:
+      enabled: false
+  sgwc:
+    enabled: false
+    image:
+      tag: 2.6.4
+  sgwu:
+    enabled: false
+    image:
+      tag: 2.6.4
+  smf:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      dnsList:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 2001:4860:4860::8888
+      - 2001:4860:4860::8844
+      logLevel: info
+      mtu: 1400
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      pcrf:
+        enabled: false
+        frdi:
+          hostname: ""
+          port: 3868
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+      subnetList:
+      - addr: 10.45.0.1/16
+        dnn: internet
+      upf:
+        pfcp:
+          hostname: ""
+          port: 8805
+    containerPorts:
+      frdi: 3868
+      gtpc: 2123
+      gtpu: 2152
+      metrics: 9090
+      pfcp: 8805
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    metrics:
+      enabled: false
+      serviceMonitor:
+        additionalLabels: {}
+        enabled: false
+        honorLabels: false
+        interval: ""
+        metricRelabelings: []
+        namespace: ""
+        relabelings: []
+        scrapeTimeout: ""
+      serviceScrape:
+        additionalLabels: {}
+        enabled: false
+        namespace: ""
+        scrape_interval: 15s
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      frdi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          frdi: ""
+        ports:
+          frdi: 3868
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      gtpc:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          gtpc: ""
+        ports:
+          gtpc: 2123
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      gtpu:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          gtpu: ""
+        ports:
+          gtpu: 2152
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      metrics:
+        annotations:
+          prometheus.io/path: /metrics
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          metrics: ""
+        ports:
+          metrics: 9090
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      pfcp:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          pfcp: ""
+        ports:
+          pfcp: 8805
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      path: /
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  udm:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      logLevel: info
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+    containerPorts:
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  udr:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      logLevel: info
+      nrf:
+        enabled: true
+        sbi:
+          hostname: ""
+          port: 7777
+      sbi:
+        advertise: ""
+        client:
+          no_tls: true
+        server:
+          no_tls: true
+      scp:
+        enabled: false
+        sbi:
+          hostname: ""
+          port: 7777
+    containerPorts:
+      sbi: 7777
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customOpen5gsConfig: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    dbURI: ""
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs
+      tag: 2.6.4
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    mongodb:
+      auth:
+        enabled: false
+      enabled: false
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      sbi:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          sbi: ""
+        ports:
+          sbi: 7777
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  upf:
+    enabled: false
+    image:
+      tag: 2.6.4
+  webui:
+    affinity: {}
+    args: []
+    command: []
+    commonAnnotations: {}
+    commonLabels: {}
+    containerPorts:
+      http: 3000
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    dbURI: ""
+    enabled: true
+    extraDeploy: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+    hostAliases: []
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: openverso/open5gs-webui
+      tag: 2.6.4
+    ingress:
+      annotations: {}
+      apiVersion: ""
+      enabled: false
+      extraHosts: []
+      extraPaths: []
+      extraRules: []
+      extraTls: []
+      hostname: ""
+      ingressClassName: ""
+      path: /
+      pathType: ImplementationSpecific
+      secrets: []
+      tls: false
+    initContainers: []
+    kubeVersion: ""
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    mongodb:
+      auth:
+        enabled: false
+      enabled: false
+    nameOverride: ""
+    namespaceOverride: ""
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    services:
+      http:
+        annotations: {}
+        clusterIP: ""
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        nodePorts:
+          http: ""
+        ports:
+          http: 3000
+        sessionAffinity: None
+        sessionAffinityConfig: {}
+        type: ClusterIP
+    sessionAffinity: None
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  
+  

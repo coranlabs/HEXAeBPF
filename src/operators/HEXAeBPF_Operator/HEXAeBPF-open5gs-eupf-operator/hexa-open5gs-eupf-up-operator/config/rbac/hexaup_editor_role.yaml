@@ -1,0 +1,27 @@
+# permissions for end users to edit hexaups.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: hexa-open5gs-eupf-up-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: hexaup-editor-role
+rules:
+- apiGroups:
+  - eupf.coranlabs.com
+  resources:
+  - hexaups
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - eupf.coranlabs.com
+  resources:
+  - hexaups/status
+  verbs:
+  - get
