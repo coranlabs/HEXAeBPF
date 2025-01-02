@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: open5gs.coranlabs.com
+  version: v1
+  kind: HexaCP
+  chart: helm-charts/open5gs
+# +kubebuilder:scaffold:watch
