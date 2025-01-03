@@ -1,0 +1,264 @@
+apiVersion: eupf.coranlabs.com/v1
+kind: HexaUP
+metadata:
+  name: hexaup-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/eupf/values.yaml
+  affinity: {}
+  args:
+  - --config
+  - /app/conf/config.yml
+  bird:
+    enabled: false
+    env:
+      BIRD_LOCAL_AS: 65000
+      BIRD_LOCAL_PREFIX: 10.45.0.0/16
+      BIRD_NEIGHBOR_AS: 64512
+      BIRD_NEIGHBOR_IP: $(MY_NODE_IP)
+      BIRD_ROUTER_ID: $(MY_POD_IP)
+    image: docker.io/edgecom/bird:0.0.4
+    livenessProbe:
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      tcpSocket:
+        port: bgp
+    ports:
+    - containerPort: 179
+      name: bgp
+      protocol: TCP
+    readinessProbe:
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      tcpSocket:
+        port: bgp
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    service:
+      enabled: false
+      port: 179
+      type: ClusterIP
+  command: []
+  configMaps:
+    config:
+      data:
+        config.yml: |
+          interface_name: n3
+          api_address: :8080
+          pfcp_address: 10.100.50.241:8805
+          metrics_address: :9090
+  deploymentStrategy:
+    type: Recreate
+  deploymentType: deployment
+  env:
+    UPF_N3_ADDRESS: 10.100.50.233
+    UPF_PFCP_NODE_ID: 10.100.50.241
+  extraContainerPorts:
+  - containerPort: 2152
+    name: gtpu
+    protocol: UDP
+  - containerPort: 8805
+    name: pfcp
+    protocol: UDP
+  extraDeploy:
+  - apiVersion: k8s.cni.cncf.io/v1
+    kind: NetworkAttachmentDefinition
+    metadata:
+      name: n3network-free5gc-free5gc-upf
+    spec:
+      config: |
+        {
+          "cniVersion": "0.3.1",
+          "plugins": [
+            {
+              "type": "ipvlan",
+              "capabilities": { "ips": true },
+              "master": "eth0",
+              "mode": "l2",
+              "ipam": {
+                "type": "static"
+              }
+            }
+          ]
+        }
+  fullnameOverride: ""
+  global:
+    imagePullPolicy: Always
+  hostNetwork: false
+  image:
+    name: eupf
+    pullPolicy: IfNotPresent
+    registry: ghcr.io
+    repository: edgecomllc
+    tag: 0.6.4
+  imagePullSecrets: []
+  ingress:
+    annotations: {}
+    className: ""
+    enabled: false
+    hosts:
+    - host: chart-example.local
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+    tls: []
+  initContainers: []
+  livenessProbe:
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    tcpSocket:
+      port: http
+  metrics:
+    enabled: false
+    serviceMonitor:
+      enabled: false
+      endpoints:
+        path: /metrics
+        port: metrics
+      honorLabels: false
+      interval: ""
+      jobLabel: ""
+      labels: {}
+      metricRelabelings: []
+      namespace: ""
+      relabelings: []
+      scrapeTimeout: ""
+      selector: {}
+  nameOverride: ""
+  nodeSelector: {}
+  podAnnotations:
+    cni.projectcalico.org/ipv4pools: '["eupf-pool"]'
+    k8s.v1.cni.cncf.io/networks: |
+      [
+        {
+          "name": "n3network-free5gc-free5gc-upf",
+          "interface": "n3",
+          "ips": [ "10.100.50.233/29" ]
+        },
+        {
+          "name": "n4network-hexacp-sample-free5gc-smf",
+          "interface": "n4",
+          "ips": [ "10.100.50.241/29" ]
+        }
+      ]
+  podSecurityContext:
+    sysctls:
+    - name: net.ipv4.ip_forward
+      value: "1"
+  readinessProbe:
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    tcpSocket:
+      port: http
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  securityContext:
+    privileged: true
+  service:
+    extraPorts:
+    - name: gtpu
+      port: 2152
+      protocol: UDP
+      targetPort: gtpu
+    - name: pfcp
+      port: 8805
+      protocol: UDP
+      targetPort: pfcp
+    port: 8080
+    type: ClusterIP
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: ""
+  startupProbe: {}
+  tolerations: []
+  ui:
+    enabled: false
+    env:
+      API_ADDR: localhost:8080
+    image:
+      name: eupf-ui
+      pullPolicy: Always
+      registry: ghcr.io
+      repository: edgecomllc
+      tag: main
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8081
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /healthz
+        port: 8081
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    service:
+      port: 8081
+  volumeMounts:
+  - mountPath: /sys
+    name: sys
+    readOnly: true
+  - mountPath: /app/conf
+    name: config
+  volumes:
+  - hostPath:
+      path: /sys
+    name: sys
+  - configMap:
+      defaultMode: 420
+      items:
+      - key: config.yml
+        mode: 493
+        path: config.yml
+      name: hexaup-sample-eupf-config
+    name: config
+  xdpProgrammInstall:
+    command:
+    - /bin/sh
+    - -c
+    - |
+      apk add iproute2; \
+      echo "starting"; \
+      i=0; IFACE_NAME=""; \
+      while [ -z "$IFACE_NAME" ]; \
+      do \
+        echo "check $i: searching interface name"; sleep 1; \
+        IFACE_NAME=$(ip route list ${POD_N6_IP} | awk '{print $3}'); \
+        i=$((i+1)); \
+      done ;\
+      echo "done: current interface name is ${IFACE_NAME}" ;\
+      set -x ;\
+      ls -alh /app ;\
+      ip link set dev ${IFACE_NAME} xdpdrv obj /app/zeroentrypoint_bpf.o sec xdp/upf_zero_entrypoint
+    enabled: false
+    env:
+    - name: POD_N6_IP
+      value: 10.100.100.12
+    securityContext:
+      capabilities:
+        add:
+        - NET_ADMIN
+        - BPF
+      privileged: true
+      runAsNonRoot: false
+  
+  

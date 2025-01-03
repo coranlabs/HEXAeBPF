@@ -1,0 +1,2194 @@
+apiVersion: free5gc.coranlabs.com/v1
+kind: HexaCP
+metadata:
+  name: hexacp-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/free5gc/values.yaml
+  deployAmf: true
+  deployAusf: true
+  deployDbPython: false
+  deployMongoDb: true
+  deployN3iwf: false
+  deployNrf: true
+  deployNssf: true
+  deployPcf: true
+  deploySmf: true
+  deployUdm: true
+  deployUdr: true
+  deployUpf: false
+  deployWebui: true
+  free5gc-amf:
+    amf:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: |-
+          amfName: AMF
+          serviceNameList:
+            - namf-comm
+            - namf-evts
+            - namf-mt
+            - namf-loc
+            - namf-oam
+          servedGuamiList:
+            - plmnId:
+                mcc: 208
+                mnc: 93
+              amfId: cafe00
+          supportTaiList:
+            - plmnId:
+                mcc: 208
+                mnc: 93
+              tac: 000001
+          plmnSupportList:
+            - plmnId:
+                mcc: 208
+                mnc: 93
+              snssaiList:
+                - sst: 1
+                  sd: 010203
+                - sst: 1
+                  sd: 112233
+          supportDnnList:
+            - internet
+          security:
+            integrityOrder:
+              - NIA2
+            cipheringOrder:
+              - NEA0
+          networkName:
+            full: free5GC
+            short: free
+          ngapIE: # Optional NGAP IEs
+            mobilityRestrictionList: # Mobility Restriction List IE, refer to TS 38.413
+              enable: true # append this IE in related message or not
+            maskedIMEISV: # Masked IMEISV IE, refer to TS 38.413
+              enable: true # append this IE in related message or not
+            redirectionVoiceFallback: # Redirection Voice Fallback IE, refer to TS 38.413
+              enable: false # append this IE in related message or not
+          nasIE: # Optional NAS IEs
+            networkFeatureSupport5GS: # 5gs Network Feature Support IE, refer to TS 24.501
+              enable: true # append this IE in Registration accept or not
+              length: 1 # IE content length (uinteger, range: 1~3)
+              imsVoPS: 0 # IMS voice over PS session indicator (uinteger, range: 0~1)
+              emc: 0 # Emergency service support indicator for 3GPP access (uinteger, range: 0~3)
+              emf: 0 # Emergency service fallback indicator for 3GPP access (uinteger, range: 0~3)
+              iwkN26: 0 # Interworking without N26 interface indicator (uinteger, range: 0~1)
+              mpsi: 0 # MPS indicator (uinteger, range: 0~1)
+              emcN3: 0 # Emergency service support indicator for Non-3GPP access (uinteger, range: 0~1)
+              mcsi: 0 # MCS indicator (uinteger, range: 0~1)
+          t3502Value: 720
+          t3512Value: 3600
+          non3gppDeregTimerValue: 3240
+          # retransmission timer for paging message
+          t3513:
+            enable: true     # true or false
+            expireTime: 6s   # default is 6 seconds
+            maxRetryTimes: 4 # the max number of retransmission
+          # retransmission timer for NAS Registration Accept message
+          t3522:
+            enable: true     # true or false
+            expireTime: 6s   # default is 6 seconds
+            maxRetryTimes: 4 # the max number of retransmission
+          # retransmission timer for NAS Registration Accept message
+          t3550:
+            enable: true     # true or false
+            expireTime: 6s   # default is 6 seconds
+            maxRetryTimes: 4 # the max number of retransmission
+          # retransmission timer for NAS Authentication Request/Security Mode Command message
+          t3560:
+            enable: true     # true or false
+            expireTime: 6s   # default is 6 seconds
+            maxRetryTimes: 4 # the max number of retransmission
+          # retransmission timer for NAS Notification message
+          t3565:
+            enable: true     # true or false
+            expireTime: 6s   # default is 6 seconds
+            maxRetryTimes: 4 # the max number of retransmission
+          t3570:
+            enable: true     # true or false
+            expireTime: 6s   # default is 6 seconds
+            maxRetryTimes: 4 # the max number of retransmission
+          locality: area1 # Name of the location where a set of AMF, SMF, PCF and UPFs are located
+          sctp: # set the sctp server setting <optinal>, once this field is set, please also add maxInputStream, maxOsStream, maxAttempts, maxInitTimeOut
+            numOstreams: 3 # the maximum out streams of each sctp connection
+            maxInstreams: 5 # the maximum in streams of each sctp connection
+            maxAttempts: 2 # the maximum attempts of each sctp connection
+            maxInitTimeout: 2 # the maximum init timeout of each sctp connection
+          defaultUECtxReq: false # the default value of UE Context Request to decide when triggering Initial Context Setup procedure
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceNameList: |-
+          - namf-comm
+          - namf-evts
+          - namf-mt
+          - namf-loc
+          - namf-oam
+      image:
+        name: towards5gs/free5gc-amf
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: amf
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 150m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        port: 80
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    isNgapNeeded: true
+    nameOverride: ""
+  free5gc-ausf:
+    ausf:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: |-
+          plmnSupportList:
+            - mcc: 208
+              mnc: 93
+            - mcc: 123
+              mnc: 45
+          groupId: ausfGroup001
+          eapAkaSupiImsiPrefix: false
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceNameList: '- nausf-auth'
+      image:
+        name: towards5gs/free5gc-ausf
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: ausf
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        port: 80
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    nameOverride: ""
+  free5gc-nrf:
+    db:
+      enabled: false
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    mongodb:
+      auth:
+        enabled: false
+      fullnameOverride: mongodb
+      persistence:
+        mountPath: /bitnami/mongodb/data/db/
+        size: 6Gi
+      service:
+        name: mongodb
+        nodePort: "30017"
+        port: 27017
+        type: ClusterIP
+      useStatefulSet: true
+    nameOverride: ""
+    nrf:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: |-
+          DefaultPlmnId:
+            mcc: 208
+            mnc: 93
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceNameList: |-
+          - nnrf-nfm
+          - nnrf-disc
+      image:
+        name: towards5gs/free5gc-nrf
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: nrf
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+  free5gc-nssf:
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    nameOverride: ""
+    nssf:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: |-
+          nssfName: NSSF
+          supportedPlmnList:
+            - mcc: 208
+              mnc: 93
+          supportedNssaiInPlmnList:
+            - plmnId:
+                mcc: 208
+                mnc: 93
+              supportedSnssaiList:
+                - sst: 1
+                  sd: 010203
+                - sst: 1
+                  sd: 112233
+                - sst: 1
+                  sd: 3
+                - sst: 2
+                  sd: 1
+                - sst: 2
+                  sd: 2
+          amfList:
+            - nfId: 469de254-2fe5-4ca0-8381-af3f500af77c
+              supportedNssaiAvailabilityData:
+                - tai:
+                    plmnId:
+                      mcc: 466
+                      mnc: 92
+                    tac: 33456
+                  supportedSnssaiList:
+                    - sst: 1
+                    - sst: 1
+                      sd: 2
+                    - sst: 2
+                - tai:
+                    plmnId:
+                      mcc: 466
+                      mnc: 92
+                    tac: 33457
+                  supportedSnssaiList:
+                    - sst: 1
+                      sd: 1
+                    - sst: 1
+                      sd: 2
+            - nfId: fbe604a8-27b2-417e-bd7c-8a7be2691f8d
+              supportedNssaiAvailabilityData:
+                - tai:
+                    plmnId:
+                      mcc: 466
+                      mnc: 92
+                    tac: 33458
+                  supportedSnssaiList:
+                    - sst: 1
+                    - sst: 1
+                      sd: 1
+                    - sst: 1
+                      sd: 3
+                    - sst: 2
+                - tai:
+                    plmnId:
+                      mcc: 466
+                      mnc: 92
+                    tac: 33459
+                  supportedSnssaiList:
+                    - sst: 1
+                    - sst: 1
+                      sd: 1
+                    - sst: 2
+                    - sst: 2
+                      sd: 1
+            - nfId: b9e6e2cb-5ce8-4cb6-9173-a266dd9a2f0c
+              supportedNssaiAvailabilityData:
+                - tai:
+                    plmnId:
+                      mcc: 466
+                      mnc: 92
+                    tac: 33456
+                  supportedSnssaiList:
+                    - sst: 1
+                    - sst: 1
+                      sd: 1
+                    - sst: 1
+                      sd: 2
+                    - sst: 2
+                - tai:
+                    plmnId:
+                      mcc: 466
+                      mnc: 92
+                    tac: 33458
+                  supportedSnssaiList:
+                    - sst: 1
+                    - sst: 1
+                      sd: 1
+                    - sst: 2
+                    - sst: 2
+                      sd: 1
+          taList:
+            - tai:
+                plmnId:
+                  mcc: 466
+                  mnc: 92
+                tac: 33456
+              accessType: 3GPP_ACCESS
+              supportedSnssaiList:
+                - sst: 1
+                - sst: 1
+                  sd: 1
+                - sst: 1
+                  sd: 2
+                - sst: 2
+            - tai:
+                plmnId:
+                  mcc: 466
+                  mnc: 92
+                tac: 33457
+              accessType: 3GPP_ACCESS
+              supportedSnssaiList:
+                - sst: 1
+                - sst: 1
+                  sd: 1
+                - sst: 1
+                  sd: 2
+                - sst: 2
+            - tai:
+                plmnId:
+                  mcc: 466
+                  mnc: 92
+                tac: 33458
+              accessType: 3GPP_ACCESS
+              supportedSnssaiList:
+                - sst: 1
+                - sst: 1
+                  sd: 1
+                - sst: 1
+                  sd: 3
+                - sst: 2
+              restrictedSnssaiList:
+                - homePlmnId:
+                    mcc: 310
+                    mnc: 560
+                  sNssaiList:
+                    - sst: 1
+                      sd: 3
+            - tai:
+                plmnId:
+                  mcc: 466
+                  mnc: 92
+                tac: 33459
+              accessType: 3GPP_ACCESS
+              supportedSnssaiList:
+                - sst: 1
+                - sst: 1
+                  sd: 1
+                - sst: 2
+                - sst: 2
+                  sd: 1
+              restrictedSnssaiList:
+                - homePlmnId:
+                    mcc: 310
+                    mnc: 560
+                  sNssaiList:
+                    - sst: 2
+                      sd: 1
+          mappingListFromPlmn:
+            - operatorName: NTT Docomo
+              homePlmnId:
+                mcc: 440
+                mnc: 10
+              mappingOfSnssai:
+                - servingSnssai:
+                    sst: 1
+                    sd: 1
+                  homeSnssai:
+                    sst: 1
+                    sd: 1
+                - servingSnssai:
+                    sst: 1
+                    sd: 2
+                  homeSnssai:
+                    sst: 1
+                    sd: 3
+                - servingSnssai:
+                    sst: 1
+                    sd: 3
+                  homeSnssai:
+                    sst: 1
+                    sd: 4
+                - servingSnssai:
+                    sst: 2
+                    sd: 1
+                  homeSnssai:
+                    sst: 2
+                    sd: 2
+            - operatorName: AT&T Mobility
+              homePlmnId:
+                mcc: 310
+                mnc: 560
+              mappingOfSnssai:
+                - servingSnssai:
+                    sst: 1
+                    sd: 1
+                  homeSnssai:
+                    sst: 1
+                    sd: 2
+                - servingSnssai:
+                    sst: 1
+                    sd: 2
+                  homeSnssai:
+                    sst: 1
+                    sd: 3
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceNameList: |-
+          - nnssf-nsselection
+          - nnssf-nssaiavailability
+      image:
+        name: towards5gs/free5gc-nssf
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: nssf
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        port: 80
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+  free5gc-pcf:
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    mongodb:
+      service:
+        name: mongodb
+        nodePort: "30017"
+        port: 27017
+        type: ClusterIP
+    nameOverride: ""
+    pcf:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: |-
+          pcfName: PCF
+          timeFormat: 2019-01-02 15:04:05
+          defaultBdtRefId: BdtPolicyId-
+          locality: area1
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceList: |-
+          - serviceName: npcf-am-policy-control
+          - serviceName: npcf-smpolicycontrol
+            suppFeat: 3fff
+          - serviceName: npcf-bdtpolicycontrol
+          - serviceName: npcf-policyauthorization
+            suppFeat: 3
+          - serviceName: npcf-eventexposure
+          - serviceName: npcf-ue-policy-control
+      image:
+        name: towards5gs/free5gc-pcf
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: pcf
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        port: 80
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+  free5gc-smf:
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    isPfcpNeeded: true
+    nameOverride: ""
+    smf:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: |-
+          smfName: SMF
+          snssaiInfos:
+            - sNssai:
+                sst: 1
+                sd: 010203
+              dnnInfos: # DNN information list
+                - dnn: internet # Data Network Name
+                  dns: # the IP address of DNS
+                    ipv4: 8.8.8.8
+                    ipv6: 2001:4860:4860::8888
+            - sNssai:
+                sst: 1
+                sd: 112233
+              dnnInfos: # DNN information list
+                - dnn: internet # Data Network Name
+                  dns: # the IP address of DNS
+                    ipv4: 8.8.8.8
+                    ipv6: 2001:4860:4860::8888
+            - sNssai:
+                sst: 2
+                sd: 112234
+              dnnInfos:
+                - dnn: internet
+                  dns:
+                    ipv4: 8.8.8.8
+                    ipv6: 2001:4860:4860::8888
+          plmnList: # the list of PLMN IDs that this SMF belongs to (optional, remove this key when unnecessary)
+            - mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+              mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+          userplaneInformation: # list of userplane information
+            upNodes: # information of userplane node (AN or UPF)
+              gNB1: # the name of the node
+                type: AN # the type of the node (AN or UPF)
+              UPF:  # the name of the node
+                type: UPF # the type of the node (AN or UPF)
+                nodeID: 10.100.50.241 # the IP/FQDN of N4 interface on this UPF (PFCP)
+                addr: 10.100.50.241 # the IP/FQDN of N4 interface on this UPF (PFCP)
+                sNssaiUpfInfos: # S-NSSAI information list for this UPF
+                      - sNssai: # S-NSSAI (Single Network Slice Selection Assistance Information)
+                          sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+                          sd: 010203 # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+                        dnnUpfInfoList: # DNN information list for this S-NSSAI
+                          - dnn: internet
+                            pools:
+                              - cidr: 10.1.0.0/17
+                            staticPools:
+                              - cidr: 10.1.64.0/24
+                      - sNssai: # S-NSSAI (Single Network Slice Selection Assistance Information)
+                          sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+                          sd: 112233 # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+                        dnnUpfInfoList: # DNN information list for this S-NSSAI
+                          - dnn: internet
+                            pools:
+                              - cidr: 10.1.128.0/17
+                            staticPools:
+                              - cidr: 10.1.192.0/24
+                interfaces: # Interface list for this UPF
+                      - interfaceType: N3 # the type of the interface (N3 or N9)
+                        endpoints: # the IP address of this N3/N9 interface on this UPF
+                          - 10.100.50.233
+                        networkInstances:
+                          - internet # Data Network Name (DNN)
+            links: # the topology graph of userplane, A and B represent the two nodes of each link
+              - A: gNB1
+                B: UPF
+          locality: area1 # Name of the location where a set of AMF, SMF and UPFs are located
+  
+          t3591:
+            enable: true     # true or false
+            expireTime: 16s   # default is 6 seconds
+            maxRetryTimes: 3 # the max number of retransmission
+          # retransmission timer for pdu session release command
+          t3592:
+            enable: true     # true or false
+            expireTime: 16s   # default is 6 seconds
+            maxRetryTimes: 3 # the max number of retransmission
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceNameList: |-
+          - nsmf-pdusession
+          - nsmf-event-exposure
+          - nsmf-oam
+        ueRoutingInfo: |-
+          UE1: # Group Name
+            members:
+            - imsi-208930000000003 # Subscription Permanent Identifier of the UE
+            topology: # Network topology for this group (Uplink: A->B, Downlink: B->A)
+            # default path derived from this topology
+            # node name should be consistent with smfcfg.yaml
+              - A: gNB1
+                B: BranchingUPF
+              - A: BranchingUPF
+                B: AnchorUPF1
+            specificPath:
+              - dest: 10.100.100.26/32 # the destination IP address on Data Network (DN)
+                # the order of UPF nodes in this path. We use the UPF's name to represent each UPF node.
+                # The UPF's name should be consistent with smfcfg.yaml
+                path: [BranchingUPF, AnchorUPF2]
+  
+          UE2: # Group Name
+            members:
+            - imsi-208930000000004 # Subscription Permanent Identifier of the UE
+            topology: # Network topology for this group (Uplink: A->B, Downlink: B->A)
+            # default path derived from this topology
+            # node name should be consistent with smfcfg.yaml
+              - A: gNB1
+                B: BranchingUPF
+              - A: BranchingUPF
+                B: AnchorUPF1
+            specificPath:
+              - dest: 10.100.100.16/32 # the destination IP address on Data Network (DN)
+                # the order of UPF nodes in this path. We use the UPF's name to represent each UPF node.
+                # The UPF's name should be consistent with smfcfg.yaml
+                path: [BranchingUPF, AnchorUPF2]
+      image:
+        name: towards5gs/free5gc-smf
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: smf
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        port: 80
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+  free5gc-udm:
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    nameOverride: ""
+    udm:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: |-
+          # test data set from TS33501-f60 Annex C.4
+          SuciProfile:
+            - ProtectionScheme: 1 # Protect Scheme: Profile A
+              PrivateKey: c53c22208b61860b06c62e5406a7b330c2b577aa5558981510d128247d38bd1d
+              PublicKey: 5a8d38864820197c3394b92613b20b91633cbd897119273bf8e4a6f4eec0a650
+            - ProtectionScheme: 2 # Protect Scheme: Profile B
+              PrivateKey: F1AB1074477EBCC7F554EA1C5FC368B1616730155E0041AC447D6301975FECDA
+              PublicKey: 0472DA71976234CE833A6907425867B82E074D44EF907DFB4B3E21C1C2256EBCD15A7DED52FCBB097A4ED250E036C7B9C8C7004C4EEDC4F068CD7BF8D3F900E3B4
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceNameList: |-
+          - nudm-sdm
+          - nudm-uecm
+          - nudm-ueau
+          - nudm-ee
+          - nudm-pp
+      image:
+        name: towards5gs/free5gc-udm
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: udm
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        port: 80
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+  free5gc-udr:
+    db:
+      enabled: false
+    free5gc:
+      configmap:
+        create: true
+        name: free5gc4udr-configmap
+      configuration:
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    mongodb:
+      service:
+        name: mongodb
+        nodePort: "30017"
+        port: 27017
+        type: ClusterIP
+    nameOverride: ""
+    udr:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configuration:
+        configuration: ""
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+        serviceNameList: ""
+      image:
+        name: towards5gs/free5gc-udr
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: udr
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        port: 80
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+  free5gc-webui:
+    db:
+      enabled: false
+    fullnameOverride: ""
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      projectName: free5gc
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    initcontainers:
+      busybox:
+        image: busybox
+        tag: 1.32.0
+      curl:
+        image: initcurl
+        registry: towards5gs
+        tag: 1.0.0
+    mongodb:
+      service:
+        name: mongodb
+        nodePort: "30017"
+        port: 27017
+        type: ClusterIP
+    nameOverride: ""
+    webui:
+      affinity: {}
+      autoscaling:
+        enabled: false
+        maxReplicas: 100
+        minReplicas: 1
+        targetCPUUtilizationPercentage: 80
+      configmap:
+        name: webui-configmap
+      configuration:
+        logger:
+          enable: true
+          level: info
+          reportCaller: false
+      image:
+        name: towards5gs/free5gc-webui
+        pullPolicy: Always
+      imagePullSecrets: []
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: chart-example.local
+          paths: []
+        tls: []
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: webui
+      nodeSelector: {}
+      podAnnotations: {}
+      podSecurityContext: {}
+      readinessProbe:
+        failureThreshold: 40
+        initialDelaySeconds: 0
+        periodSeconds: 1
+        successThreshold: 1
+        timeoutSeconds: 1
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext: {}
+      service:
+        name: webui-service
+        nodePort: ""
+        port: 5000
+        type: ClusterIP
+      tolerations: []
+      volume:
+        mount: /free5gc/config/
+        name: webui-volume
+  global:
+    amf:
+      n2if:
+        ipAddress: 10.100.50.249
+      service:
+        ngap:
+          enabled: true
+          name: amf-n2
+          nodeport: 31412
+          port: 38412
+          protocol: SCTP
+          type: NodePort
+    n2network:
+      cidr: 29
+      enabled: true
+      excludeIP: 10.100.50.254
+      gatewayIP: 10.100.50.254
+      masterIf: eth0
+      name: n2network
+      subnetIP: 10.100.50.248
+      type: ipvlan
+    n3network:
+      cidr: 29
+      enabled: true
+      excludeIP: 10.100.50.238
+      gatewayIP: 10.100.50.238
+      masterIf: eth0
+      name: n3network
+      subnetIP: 10.100.50.232
+      type: ipvlan
+    n4network:
+      cidr: 29
+      enabled: true
+      excludeIP: 10.100.50.246
+      gatewayIP: 10.100.50.246
+      masterIf: eth0
+      name: n4network
+      subnetIP: 10.100.50.240
+      type: ipvlan
+    n6network:
+      cidr: 24
+      enabled: true
+      excludeIP: 10.100.100.254
+      gatewayIP: 10.100.100.1
+      masterIf: eth0
+      name: n6network
+      subnetIP: 10.100.100.0
+      type: ipvlan
+    n9network:
+      cidr: 29
+      enabled: true
+      excludeIP: 10.100.50.230
+      gatewayIP: 10.100.50.230
+      masterIf: eth0
+      name: n9network
+      subnetIP: 10.100.50.224
+      type: ipvlan
+    name: free5gc
+    nrf:
+      service:
+        name: nrf-nnrf
+        nodePort: "30800"
+        port: "8000"
+        type: ClusterIP
+    sbi:
+      scheme: http
+    smf:
+      n4if:
+        ipAddress: 10.100.50.244
+    userPlaneArchitecture: single
+  mongodb:
+    affinity: {}
+    annotations: {}
+    arbiter:
+      affinity: {}
+      annotations: {}
+      configuration: ""
+      containerSecurityContext:
+        enabled: true
+        runAsUser: 1001
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      enabled: true
+      extraEnvVars: []
+      extraFlags: []
+      extraVolumeMounts: []
+      extraVolumes: []
+      hostAliases: []
+      initContainers: {}
+      labels: {}
+      livenessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      nodeAffinityPreset:
+        key: ""
+        type: ""
+        values: []
+      nodeSelector: {}
+      pdb:
+        create: false
+        minAvailable: 1
+      podAffinityPreset: ""
+      podAnnotations: {}
+      podAntiAffinityPreset: soft
+      podLabels: {}
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
+        sysctls: []
+      readinessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        limits: {}
+        requests: {}
+      service:
+        nameOverride: ""
+      sidecars: {}
+      tolerations: []
+    architecture: standalone
+    auth:
+      enabled: false
+      replicaSetKey: ""
+      rootPassword: ""
+    clusterDomain: cluster.local
+    common:
+      exampleValue: common-chart
+      global:
+        amf:
+          n2if:
+            ipAddress: 10.100.50.249
+          service:
+            ngap:
+              enabled: true
+              name: amf-n2
+              nodeport: 31412
+              port: 38412
+              protocol: SCTP
+              type: NodePort
+        n2network:
+          cidr: 29
+          enabled: true
+          excludeIP: 10.100.50.254
+          gatewayIP: 10.100.50.254
+          masterIf: eth0
+          name: n2network
+          subnetIP: 10.100.50.248
+          type: ipvlan
+        n3network:
+          cidr: 29
+          enabled: true
+          excludeIP: 10.100.50.238
+          gatewayIP: 10.100.50.238
+          masterIf: eth0
+          name: n3network
+          subnetIP: 10.100.50.232
+          type: ipvlan
+        n4network:
+          cidr: 29
+          enabled: true
+          excludeIP: 10.100.50.246
+          gatewayIP: 10.100.50.246
+          masterIf: eth0
+          name: n4network
+          subnetIP: 10.100.50.240
+          type: ipvlan
+        n6network:
+          cidr: 24
+          enabled: true
+          excludeIP: 10.100.100.254
+          gatewayIP: 10.100.100.1
+          masterIf: eth0
+          name: n6network
+          subnetIP: 10.100.100.0
+          type: ipvlan
+        n9network:
+          cidr: 29
+          enabled: true
+          excludeIP: 10.100.50.230
+          gatewayIP: 10.100.50.230
+          masterIf: eth0
+          name: n9network
+          subnetIP: 10.100.50.224
+          type: ipvlan
+        name: free5gc
+        nrf:
+          service:
+            name: nrf-nnrf
+            nodePort: "30800"
+            port: "8000"
+            type: ClusterIP
+        sbi:
+          scheme: http
+        smf:
+          n4if:
+            ipAddress: 10.100.50.244
+        userPlaneArchitecture: single
+    configuration: ""
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    directoryPerDB: false
+    disableSystemLog: false
+    enableIPv6: false
+    externalAccess:
+      autoDiscovery:
+        enabled: false
+        image:
+          pullPolicy: IfNotPresent
+          pullSecrets: []
+          registry: docker.io
+          repository: bitnami/kubectl
+          tag: 1.18.15-debian-10-r24
+        resources:
+          limits: {}
+          requests: {}
+      enabled: false
+      service:
+        annotations: {}
+        loadBalancerIPs: []
+        loadBalancerSourceRanges: []
+        nodePorts: []
+        port: 27017
+        type: LoadBalancer
+    extraEnvVars: []
+    extraFlags: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: mongodb
+    global:
+      amf:
+        n2if:
+          ipAddress: 10.100.50.249
+        service:
+          ngap:
+            enabled: true
+            name: amf-n2
+            nodeport: 31412
+            port: 38412
+            protocol: SCTP
+            type: NodePort
+      n2network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.254
+        gatewayIP: 10.100.50.254
+        masterIf: eth0
+        name: n2network
+        subnetIP: 10.100.50.248
+        type: ipvlan
+      n3network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.238
+        gatewayIP: 10.100.50.238
+        masterIf: eth0
+        name: n3network
+        subnetIP: 10.100.50.232
+        type: ipvlan
+      n4network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.246
+        gatewayIP: 10.100.50.246
+        masterIf: eth0
+        name: n4network
+        subnetIP: 10.100.50.240
+        type: ipvlan
+      n6network:
+        cidr: 24
+        enabled: true
+        excludeIP: 10.100.100.254
+        gatewayIP: 10.100.100.1
+        masterIf: eth0
+        name: n6network
+        subnetIP: 10.100.100.0
+        type: ipvlan
+      n9network:
+        cidr: 29
+        enabled: true
+        excludeIP: 10.100.50.230
+        gatewayIP: 10.100.50.230
+        masterIf: eth0
+        name: n9network
+        subnetIP: 10.100.50.224
+        type: ipvlan
+      name: free5gc
+      nrf:
+        service:
+          name: nrf-nnrf
+          nodePort: "30800"
+          port: "8000"
+          type: ClusterIP
+      sbi:
+        scheme: http
+      smf:
+        n4if:
+          ipAddress: 10.100.50.244
+      userPlaneArchitecture: single
+    hostAliases: []
+    image:
+      debug: false
+      pullPolicy: IfNotPresent
+      registry: docker.io
+      repository: bitnami/mongodb
+      tag: 4.4.4-debian-10-r0
+    initContainers: {}
+    initdbScripts: {}
+    labels: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    metrics:
+      containerPort: 9216
+      enabled: false
+      extraFlags: ""
+      extraUri: ""
+      image:
+        pullPolicy: IfNotPresent
+        registry: docker.io
+        repository: bitnami/mongodb-exporter
+        tag: 0.11.2-debian-10-r79
+      livenessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 15
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 5
+      prometheusRule:
+        additionalLabels: {}
+        enabled: false
+        rules: {}
+      readinessProbe:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits: {}
+        requests: {}
+      service:
+        annotations:
+          prometheus.io/path: /metrics
+          prometheus.io/port: '{{ .Values.metrics.service.port }}'
+          prometheus.io/scrape: "true"
+        port: 9216
+        type: ClusterIP
+      serviceMonitor:
+        additionalLabels: {}
+        enabled: false
+        interval: 30s
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    pdb:
+      create: false
+      minAvailable: 1
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      enabled: false
+      mountPath: /bitnami/mongodb/data/db/
+      size: 6Gi
+      subPath: ""
+      volumeClaimTemplates:
+        selector: null
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podManagementPolicy: OrderedReady
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+      sysctls: []
+    podSecurityPolicy:
+      allowPrivilegeEscalation: false
+      create: false
+      privileged: false
+      spec: {}
+    rbac:
+      create: false
+    readinessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    replicaCount: 2
+    replicaSetHostnames: true
+    replicaSetName: rs0
+    resources:
+      limits: {}
+      requests: {}
+    service:
+      annotations: {}
+      externalIPs: []
+      loadBalancerSourceRanges: []
+      name: mongodb
+      nameOverride: ""
+      nodePort: "30017"
+      port: 27017
+      portName: mongodb
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: true
+    sidecars: {}
+    strategyType: RollingUpdate
+    systemLogVerbosity: 0
+    tls:
+      enabled: false
+      image:
+        pullPolicy: IfNotPresent
+        registry: docker.io
+        repository: bitnami/nginx
+        tag: 1.19.6-debian-10-r51
+    tolerations: []
+    useStatefulSet: true
+    volumePermissions:
+      enabled: false
+      image:
+        pullPolicy: Always
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/minideb
+        tag: buster
+      resources:
+        limits: {}
+        requests: {}
+      securityContext:
+        runAsUser: 0
+  
+  

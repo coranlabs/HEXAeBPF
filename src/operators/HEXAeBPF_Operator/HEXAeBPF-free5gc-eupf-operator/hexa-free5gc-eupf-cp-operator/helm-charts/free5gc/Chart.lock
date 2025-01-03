@@ -1,0 +1,42 @@
+dependencies:
+- name: mongodb
+  repository: file://../mongodb
+  version: 10.7.0
+- name: free5gc-amf
+  repository: file://../free5gc-amf
+  version: 0.2.7
+- name: free5gc-ausf
+  repository: file://../free5gc-ausf
+  version: 0.2.7
+- name: free5gc-n3iwf
+  repository: file://../free5gc-n3iwf
+  version: 0.2.5
+- name: free5gc-nrf
+  repository: file://../free5gc-nrf
+  version: 0.2.7
+- name: free5gc-nssf
+  repository: file://../free5gc-nssf
+  version: 0.2.7
+- name: free5gc-pcf
+  repository: file://../free5gc-pcf
+  version: 0.2.7
+- name: free5gc-smf
+  repository: file://../free5gc-smf
+  version: 0.2.7
+- name: free5gc-udm
+  repository: file://../free5gc-udm
+  version: 0.2.7
+- name: free5gc-udr
+  repository: file://../free5gc-udr
+  version: 0.2.7
+- name: free5gc-upf
+  repository: file://../free5gc-upf
+  version: 0.2.6
+- name: free5gc-webui
+  repository: file://../free5gc-webui
+  version: 0.1.5
+- name: free5gc-dbpython
+  repository: file://../free5gc-dbpython
+  version: 0.1.0
+digest: sha256:57707147dd12243b1f4c70945815cf2d93d0301e4f4df46532ce68441325697a
+generated: "2025-01-02T07:00:33.295979188Z"

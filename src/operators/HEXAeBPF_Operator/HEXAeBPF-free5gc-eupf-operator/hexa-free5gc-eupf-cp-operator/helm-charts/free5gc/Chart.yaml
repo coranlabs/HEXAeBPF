@@ -1,0 +1,66 @@
+apiVersion: v2
+appVersion: v3.3.0
+dependencies:
+- condition: deployMongoDb
+  name: mongodb
+  repository: file://../mongodb
+  version: 10.7.0
+- condition: deployAmf
+  name: free5gc-amf
+  repository: file://../free5gc-amf
+  version: 0.2.7
+- condition: deployAusf
+  name: free5gc-ausf
+  repository: file://../free5gc-ausf
+  version: 0.2.7
+- condition: deployN3iwf
+  name: free5gc-n3iwf
+  repository: file://../free5gc-n3iwf
+  version: 0.2.5
+- condition: deployNrf
+  name: free5gc-nrf
+  repository: file://../free5gc-nrf
+  version: 0.2.7
+- condition: deployNssf
+  name: free5gc-nssf
+  repository: file://../free5gc-nssf
+  version: 0.2.7
+- condition: deployPcf
+  name: free5gc-pcf
+  repository: file://../free5gc-pcf
+  version: 0.2.7
+- condition: deploySmf
+  name: free5gc-smf
+  repository: file://../free5gc-smf
+  version: 0.2.7
+- condition: deployUdm
+  name: free5gc-udm
+  repository: file://../free5gc-udm
+  version: 0.2.7
+- condition: deployUdr
+  name: free5gc-udr
+  repository: file://../free5gc-udr
+  version: 0.2.7
+- condition: deployUpf
+  name: free5gc-upf
+  repository: file://../free5gc-upf
+  version: 0.2.6
+- condition: deployWebui
+  name: free5gc-webui
+  repository: file://../free5gc-webui
+  version: 0.1.5
+- condition: deployDbPython
+  name: free5gc-dbpython
+  repository: file://../free5gc-dbpython
+  version: 0.1.0
+description: A Helm chart to deploy Free5gc
+icon: https://camo.githubusercontent.com/915dcf8299b3d2bfe2b2693c5401916cb31e31fb690a73e7da327808000efa37/68747470733a2f2f666f72756d2e667265653567632e6f72672f75706c6f6164732f64656661756c742f6f726967696e616c2f31582f333234363935626663363438316264353536633131303138663238333430383663663565633634352e706e67
+maintainers:
+- email: abderaouf.khichane@orange.com
+  name: Abderaouf KHICHANE
+- email: ilhem.fajjari@orange.com
+  name: Ilhem FAJJARI
+- email: ayoub.bousselmi@orange.com
+  name: Ayoub BOUSSELMI
+name: free5gc
+version: 1.1.7

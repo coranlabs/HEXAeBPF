@@ -1,0 +1,23 @@
+# permissions for end users to view hexacps.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: hexa-free5gc-eupf-cp-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: hexacp-viewer-role
+rules:
+- apiGroups:
+  - free5gc.coranlabs.com
+  resources:
+  - hexacps
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - free5gc.coranlabs.com
+  resources:
+  - hexacps/status
+  verbs:
+  - get
