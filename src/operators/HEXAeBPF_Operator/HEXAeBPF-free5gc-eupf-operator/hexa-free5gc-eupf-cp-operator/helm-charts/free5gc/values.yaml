@@ -1,0 +1,124 @@
+#
+# Software Name : towards5gs-helm
+# SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+# SPDX-License-Identifier: Apache-2.0
+#
+# This software is distributed under the Apache License 2.0,
+# the text of which is available at todo
+# or see the "LICENSE" file for more details.
+#
+# Author: Abderaouf KHICHANE, Ilhem FAJJARI, Ayoub BOUSSELMI
+# Software description: An open-source project providing Helm charts to deploy 5G components (Core + RAN) on top of Kubernetes
+#
+# Default values for free5gc-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  name: free5gc
+  userPlaneArchitecture: single  # possible values are "single" and "ulcl"
+  nrf:
+    service:
+      name: nrf-nnrf
+      type: ClusterIP
+      port: "8000"
+      nodePort: "30800"
+  sbi:
+    scheme: http
+  amf:
+    n2if:  # NGAP
+      ipAddress: 10.100.50.249
+    service:
+      ngap:
+        enabled: true
+        name: amf-n2
+        port: 38412
+        nodeport: 31412
+        protocol: SCTP
+        type: NodePort
+  smf:
+    n4if:
+      ipAddress: 10.100.50.244
+  #Global network parametes
+  n2network:
+    enabled: true
+    name: n2network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.248
+    cidr: 29
+    gatewayIP: 10.100.50.254
+    excludeIP: 10.100.50.254
+  n3network:
+    enabled: true
+    name: n3network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.232
+    cidr: 29
+    gatewayIP: 10.100.50.238
+    excludeIP: 10.100.50.238
+  n4network:
+    enabled: true
+    name: n4network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.240
+    cidr: 29
+    gatewayIP: 10.100.50.246
+    excludeIP: 10.100.50.246
+  n6network:
+    enabled: true
+    name: n6network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.100.0
+    cidr: 24
+    gatewayIP: 10.100.100.1
+    excludeIP: 10.100.100.254
+  n9network:
+    enabled: true
+    name: n9network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.224
+    cidr: 29
+    gatewayIP: 10.100.50.230
+    excludeIP: 10.100.50.230
+
+
+# These parameters can be used to enable/disable deployment of subcharts
+deployMongoDb: true
+deployAmf: true
+deployAusf: true
+deployN3iwf: false
+deployNrf: true
+deployNssf: true
+deployPcf: true
+deploySmf: true
+deployUdm: true
+deployUdr: true
+deployUpf: false
+deployWebui: true
+deployDbPython: false
+
+# Disable the deployment of mongodb as an NRF subchart
+free5gc-nrf:
+  db:
+    enabled: false
+
+# This section can be used to override the default values in the MongoDB chart
+mongodb:
+  fullnameOverride: "mongodb"
+  useStatefulSet: true
+  auth:
+    enabled: false
+  persistence:
+    enabled: false
+    size: 6Gi
+    mountPath: /bitnami/mongodb/data/db/
+  service:
+    name: mongodb
+    type: ClusterIP
+    port: 27017
+    nodePort: "30017"

@@ -1,0 +1,317 @@
+#
+# Software Name : towards5gs-helm
+# SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+# SPDX-License-Identifier: Apache-2.0
+#
+# This software is distributed under the Apache License 2.0,
+# the text of which is available at https://github.com/Orange-OpenSource/towards5gs-helm/blob/main/LICENSE
+# or see the "LICENSE" file for more details.
+#
+# Author: Abderaouf KHICHANE, Ilhem FAJJARI, Ayoub BOUSSELMI
+# Software description: An open-source project providing Helm charts to deploy 5G components (Core + RAN) on top of Kubernetes
+#
+# Default values for free5gcUserPlane chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+global:
+  projectName: free5gc
+  userPlaneArchitecture: single  # possible values are "single" and "ulcl"
+  uesubnet: 10.1.0.0/16
+#Global network parametes
+  n4network:
+    enabled: true
+    name: n4network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.240
+    cidr: 29
+    gatewayIP: 10.100.50.246
+    excludeIP: 10.100.50.246
+  n3network:
+    enabled: true
+    name: n3network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.232
+    cidr: 29
+    gatewayIP: 10.100.50.238
+    excludeIP: 10.100.50.238
+  n6network:
+    enabled: true
+    name: n6network
+    type: ipvlan
+    masterIf: eth1
+    subnetIP: 10.100.100.0
+    cidr: 24
+    gatewayIP: 10.100.100.1
+    excludeIP: 10.100.100.254
+  n9network:
+    enabled: true
+    name: n9network
+    type: ipvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.224
+    cidr: 29
+    gatewayIP: 10.100.50.230
+    excludeIP: 10.100.50.230
+
+upf:
+  name: upf
+  replicaCount: 1
+  image:
+    name: towards5gs/free5gc-upf
+    pullPolicy: Always
+  configmap:
+    wrapperAdditionalCommands: ""
+    # wrapperAdditionalCommands: |
+    #   echo "123" > /tmp/123
+  volume:
+    mount: /free5gc/config/
+
+  # network paramters
+  n3if:  # GTP-U
+    ipAddress: 10.100.50.233
+  n4if:  # PFCP
+    ipAddress: 10.100.50.241
+  n6if:  # DN
+    ipAddress: 10.100.100.12
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  securityContext:
+    capabilities:
+      add: ["NET_ADMIN"]
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  readinessProbe:
+    initialDelaySeconds: 0
+    periodSeconds: 1
+    timeoutSeconds: 1
+    failureThreshold:  40
+    successThreshold: 1
+  livenessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 10
+    failureThreshold: 3
+    successThreshold: 1
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+  configuration:
+    dnnList: # The DNN list supported by UPF
+      - dnn: internet # Data Network Name
+        cidr: 10.1.0.0/17 # Classless Inter-Domain Routing for assigned IPv4 pool of UE
+        natifname: n6
+
+    logger: # log output setting
+      enable: true # true or false
+      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      reportCaller: false # enable the caller report or not, value: true or false
+
+# The followed values will be considered in the case of choosing "ulcl" architecture for the user plane
+upf1:
+  name: upf1
+  replicaCount: 1
+  image:
+    name: towards5gs/free5gc-upf
+    pullPolicy: Always
+  configmap:
+    wrapperAdditionalCommands: ""
+    # wrapperAdditionalCommands: |
+    #   echo "123" > /tmp/123
+  volume:
+    mount: /free5gc/config/
+
+  # network paramters
+  n9if:  # GTP-U
+    ipAddress: 10.100.50.226
+  n4if:  # PFCP
+    ipAddress: 10.100.50.242
+  n6if:  # DN
+    ipAddress: 10.100.100.13
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  securityContext:
+    capabilities:
+      add: ["NET_ADMIN"]
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  readinessProbe:
+    initialDelaySeconds: 0
+    periodSeconds: 1
+    timeoutSeconds: 1
+    failureThreshold:  40
+    successThreshold: 1
+  livenessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 10
+    failureThreshold: 3
+    successThreshold: 1
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+  configuration:
+    dnnList: # The DNN list supported by UPF
+      - dnn: internet # Data Network Name
+        cidr: 10.1.0.0/17 # Classless Inter-Domain Routing for assigned IPv4 pool of UE
+        natifname: n6
+
+    logger: # log output setting
+      enable: true # true or false
+      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      reportCaller: false # enable the caller report or not, value: true or false
+
+upf2:
+  name: upf2
+  replicaCount: 1
+  image:
+    name: towards5gs/free5gc-upf
+    pullPolicy: Always
+  configmap:
+    wrapperAdditionalCommands: ""
+    # wrapperAdditionalCommands: |
+    #   echo "123" > /tmp/123
+  volume:
+    mount: /free5gc/config/
+
+  # network paramters
+  n9if:  # GTP-U
+    ipAddress: 10.100.50.227
+  n4if:  # PFCP
+    ipAddress: 10.100.50.243
+  n6if:  # DN
+    ipAddress: 10.100.100.14
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  securityContext:
+    capabilities:
+      add: ["NET_ADMIN"]
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  readinessProbe:
+    initialDelaySeconds: 0
+    periodSeconds: 1
+    timeoutSeconds: 1
+    failureThreshold:  40
+    successThreshold: 1
+  livenessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 10
+    failureThreshold: 3
+    successThreshold: 1
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+  configuration:
+    dnnList: # The DNN list supported by UPF
+      - dnn: internet # Data Network Name
+        cidr: 10.1.0.0/17 # Classless Inter-Domain Routing for assigned IPv4 pool of UE
+        natifname: n6
+
+    logger: # log output setting
+      enable: true # true or false
+      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      reportCaller: false # enable the caller report or not, value: true or false
+
+upfb:
+  name: upfb
+  replicaCount: 1
+  image:
+    name: towards5gs/free5gc-upf
+    pullPolicy: Always
+  configmap:
+    wrapperAdditionalCommands: ""
+    # wrapperAdditionalCommands: |
+    #   echo "123" > /tmp/123
+  volume:
+    mount: /free5gc/config/
+
+  # network paramters
+  n3if:  # GTP-U
+    ipAddress: 10.100.50.233
+  n9if:  # GTP-U
+    ipAddress: 10.100.50.225
+  n4if:  # PFCP
+    ipAddress: 10.100.50.241
+  n6if:  # DN
+    ipAddress: 10.100.100.12
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  securityContext:
+    capabilities:
+      add: ["NET_ADMIN"]
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  readinessProbe:
+    initialDelaySeconds: 0
+    periodSeconds: 1
+    timeoutSeconds: 1
+    failureThreshold:  40
+    successThreshold: 1
+  livenessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 10
+    failureThreshold: 3
+    successThreshold: 1
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+  configuration:
+    dnnList: # The DNN list supported by UPF
+      - dnn: internet # Data Network Name
+        cidr: 10.1.0.0/17 # Classless Inter-Domain Routing for assigned IPv4 pool of UE
+        natifname: n6
+
+    logger: # log output setting
+      enable: true # true or false
+      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      reportCaller: false # enable the caller report or not, value: true or false
