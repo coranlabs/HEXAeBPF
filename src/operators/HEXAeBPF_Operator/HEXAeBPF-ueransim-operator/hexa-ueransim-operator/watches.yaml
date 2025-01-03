@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: ueransim.coranlabs.com
+  version: v1
+  kind: HexaUERANSIM
+  chart: helm-charts/ueransim-gnb
+# +kubebuilder:scaffold:watch

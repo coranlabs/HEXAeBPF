@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- ueransim_v1_hexaueransim.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples
