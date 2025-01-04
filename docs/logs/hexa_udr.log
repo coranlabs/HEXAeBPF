@@ -1,0 +1,503 @@
++ cd /free5gc
++ cat config/udrcfg.conf
+configuration:
+  mongodb:
+    name: free5gc
+    url: mongodb://mongodb-arbiter-headless
+  nrfUri: http://nrf:29510
+  plmnSupportList:
+  - plmnId:
+      mcc: "208"
+      mnc: "93"
+  - plmnId:
+      mcc: "333"
+      mnc: "88"
+  sbi:
+    bindingIPv4: 0.0.0.0
+    port: 29504
+    registerIPv4: udr
+    scheme: http
+info:
+  description: UDR initial local configuration
+  version: 1.0.0
+logger:
+  AMF:
+    ReportCaller: false
+    debugLevel: info
+  AUSF:
+    ReportCaller: false
+    debugLevel: info
+  Aper:
+    ReportCaller: false
+    debugLevel: info
+  CommonConsumerTest:
+    ReportCaller: false
+    debugLevel: info
+  FSM:
+    ReportCaller: false
+    debugLevel: info
+  MongoDBLibrary:
+    ReportCaller: false
+    debugLevel: info
+  N3IWF:
+    ReportCaller: false
+    debugLevel: info
+  NAS:
+    ReportCaller: false
+    debugLevel: info
+  NGAP:
+    ReportCaller: false
+    debugLevel: info
+  NRF:
+    ReportCaller: false
+    debugLevel: info
+  NamfComm:
+    ReportCaller: false
+    debugLevel: info
+  NamfEventExposure:
+    ReportCaller: false
+    debugLevel: info
+  NsmfPDUSession:
+    ReportCaller: false
+    debugLevel: info
+  NudrDataRepository:
+    ReportCaller: false
+    debugLevel: info
+  OpenApi:
+    ReportCaller: false
+    debugLevel: info
+  PCF:
+    ReportCaller: false
+    debugLevel: info
+  PFCP:
+    ReportCaller: false
+    debugLevel: info
+  PathUtil:
+    ReportCaller: false
+    debugLevel: info
+  SMF:
+    ReportCaller: false
+    debugLevel: info
+  UDM:
+    ReportCaller: false
+    debugLevel: info
+  UDR:
+    ReportCaller: false
+    debugLevel: info
+  WEBUI:
+    ReportCaller: false
+    debugLevel: info+ GOTRACEBACK=crash ./udr/udr -udrcfg config/udrcfg.conf
+2024-06-12T08:58:43Z[36m [INFO][HEXA_UDR][App] [0mHEXA_udr
+2024-06-12T08:58:43Z[36m [INFO][HEXA_UDR][Init] [0mMANAGED_BY_CONFIG_POD is true
+2024-06-12T08:58:43Z[36m [INFO][CONN][GRPC] [0mConfig Client : Creating
+2024-06-12T08:58:43Z[36m [INFO][CONN][GRPC] [0mDialing GRPC Connection -  webui:9876
+2024-06-12T08:58:43Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:58:53Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:03Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:13Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:23Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:33Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:43Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024-06-12T08:59:53Z[36m [INFO][CONN][GRPC] [0mConnecting to GRPC ...
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel created
+2024/06/12 09:00:03 INFO: [core] [Channel #1] original dial target is: "webui:9876"
+2024/06/12 09:00:03 INFO: [core] [Channel #1] parsed dial target is: resolver.Target{URL:url.URL{Scheme:"webui", Opaque:"9876", User:(*url.Userinfo)(nil), Host:"", Path:"", RawPath:"", OmitHost:false, ForceQuery:false, RawQuery:"", Fragment:"", RawFragment:""}}
+2024/06/12 09:00:03 INFO: [core] [Channel #1] fallback to scheme "passthrough"
+2024/06/12 09:00:03 INFO: [core] [Channel #1] parsed dial target is: passthrough:///webui:9876
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel authority set to "webui:9876"
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Resolver state updated: {
+  "Addresses": [
+    {
+      "Addr": "webui:9876",
+      "ServerName": "",
+      "Attributes": null,
+      "BalancerAttributes": null,
+      "Metadata": null
+    }
+  ],
+  "Endpoints": [
+    {
+      "Addresses": [
+        {
+          "Addr": "webui:9876",
+          "ServerName": "",
+          "Attributes": null,
+          "BalancerAttributes": null,
+          "Metadata": null
+        }
+      ],
+      "Attributes": null
+    }
+  ],
+  "ServiceConfig": null,
+  "Attributes": null
+} (resolver returned new addresses)
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel switches to new LB policy "pick_first"
+2024/06/12 09:00:03 INFO: [core] [pick-first-lb 0xc00032ac00] Received new config {
+  "shuffleAddressList": false
+}, resolver state {
+  "Addresses": [
+    {
+      "Addr": "webui:9876",
+      "ServerName": "",
+      "Attributes": null,
+      "BalancerAttributes": null,
+      "Metadata": null
+    }
+  ],
+  "Endpoints": [
+    {
+      "Addresses": [
+        {
+          "Addr": "webui:9876",
+          "ServerName": "",
+          "Attributes": null,
+          "BalancerAttributes": null,
+          "Metadata": null
+        }
+      ],
+      "Attributes": null
+    }
+  ],
+  "ServiceConfig": null,
+  "Attributes": null
+}
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel created
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel Connectivity change to CONNECTING
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel exiting idle mode
+2024-06-12T09:00:03Z[36m [INFO][HEXA_UDR][Init] [0mUDR Log level is set to [info] level
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel Connectivity change to CONNECTING
+2024-06-12T09:00:03Z[36m [INFO][LIB][Path] [0mset log level : info
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel picks a new address "webui:9876" to connect
+2024-06-12T09:00:03Z[36m [INFO][LIB][Path] [0mset report call : false
+2024/06/12 09:00:03 INFO: [core] [pick-first-lb 0xc00032ac00] Received SubConn state update: 0xc00032ad20, {ConnectivityState:CONNECTING ConnectionError:<nil>}
+2024-06-12T09:00:03Z[36m [INFO][CONN][GRPC] [0mSubscribing to Config POD
+2024-06-12T09:00:03Z[36m [INFO][LIB][MonDB] [0mset log level : info
+2024-06-12T09:00:03Z[31m [ERRO][CONN][GRPC] [0mConnectivity status: Not Ready
+2024-06-12T09:00:03Z[36m [INFO][LIB][MonDB] [0mset report call : false
+2024-06-12T09:00:03Z[36m [INFO][HEXA_UDR][CFG] [0mconfig version [1.0.0]
+2024-06-12T09:00:03Z[36m [INFO][HEXA_UDR][Init] [0mUDR Config Info: Version[1.0.0] Description[UDR initial local configuration]
+2024-06-12T09:00:03Z[36m [INFO][HEXA_UDR][Init] [0mServer started
+2024-06-12T09:00:03Z[36m [INFO][HEXA_UDR][Util] [0mudrconfig Info: Version[1.0.0] Description[UDR initial local configuration]
+2024/06/12 09:00:03 INFO: [core] [Channel #1 SubChannel #2] Subchannel Connectivity change to READY
+2024/06/12 09:00:03 INFO: [core] [pick-first-lb 0xc00032ac00] Received SubConn state update: 0xc00032ad20, {ConnectivityState:READY ConnectionError:<nil>}
+2024/06/12 09:00:03 INFO: [core] [Channel #1] Channel Connectivity change to READY
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0mConnectivity status: Ready
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0mConfig Message received
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0mInitial Config Received:
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Network Slice                               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Name                | hexa-slice-01         |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Sst                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Sd                  | 010203                |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Device Group        | 5g-ue-01              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IP Domain Details   | pool1                 |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrUplink        | 20000000              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrDownlink      | 200000000             |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007487       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007488       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007489       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007490       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007491       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007492       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007401       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IMSI_LIST           | 001010100007494       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007495       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007496       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007497       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007498       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007499       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007500       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Device Group        | 5g-ue-02              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IP Domain Details   | pool2                 |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrUplink        | 10000000              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| DnnMbrDownlink      | 400000000             |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007501       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007502       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007503       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007504       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007505       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| IMSI_LIST           | 001010100007506       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007507       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007508       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007509       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|                     | 001010100007510       |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Site                | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| GNB                 | hexa-gnb-01           |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| TAC                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| GNB                 | hexa-gnb-02           |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| TAC                 | 2                     |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MCC                 | 001                   |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| MNC                 | 01                    |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| UPF                 | hexa-upf              |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Traffic Class       | IPV4                  |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Flow Direction      | BIDIRECTIONAL         |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Flow Status         | ENABLED               |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Rule ID             | ALLOW-ALL             |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m| Priority            | 250                   |
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][CONN][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0mReceived updateConfig in the udr app :
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Network Slice                               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Name                | hexa-slice-01         |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Sst                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Sd                  | 010203                |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Device Group        | 5g-ue-01              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| IP Domain Details   | pool1                 |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DnnMbrUplink        | 20000000              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DnnMbrDownlink      | 200000000             |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007487       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007488       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007489       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007490       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007491       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007492       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007401       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| IMSI_Supported      | 001010100007494       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007495       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007496       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007497       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007498       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007499       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007500       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Device Group        | 5g-ue-02              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| IP Domain Details   | pool2                 |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DNN Name            | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| UE Pool             | 172.250.1.0/16        |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DNS Primary         | 8.8.8.8               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| MTU                 | 1460                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DnnMbrUplink        | 10000000              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| DnnMbrDownlink      | 400000000             |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Traffic Class       | platinum              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007501       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007502       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007503       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007504       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007505       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| IMSI_Supported      | 001010100007506       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007507       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007508       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007509       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|                     | 001010100007510       |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Site                | hexa                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| GNB                 | hexa-gnb-01           |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| TAC                 | 1                     |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| GNB                 | hexa-gnb-02           |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| TAC                 | 2                     |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m|---------------------------------------------|
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| MCC                 | 001                   |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| MNC                 | 01                    |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| UPF                 | hexa-upf              |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Traffic Class       | IPV4                  |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Flow Direction      | BIDIRECTIONAL         |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Flow Status         | ENABLED               |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Rule ID             | ALLOW-ALL             |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m| Priority            | 250                   |
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0m+---------------------------------------------+
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0mNetwork Slice Name  hexa-slice-01
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0mNetwork Slice has site name present
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0mSite name  hexa
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][GRPC] [0mPlmn mcc  001
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007487 hexa 1 010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00062ed08 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007488 hexa 1 010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00062f158 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007489 hexa 1 010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00069e390 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007490 hexa 1 010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:04Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00069e660 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007491 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00062f5c0 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007492 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00069ea98 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007401 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00069ed68 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007494 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00062fd28 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007495 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000332090 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007496 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000332390 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007497 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00069f4d0 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007498 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc0005b7218 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007499 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00069f908 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007500 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][GRPC] [0mSend config trigger to main routine
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mMinimum configuration from config pod available true
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc00069fbd8 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007501 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000011890 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007502 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000332f30 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007503 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000011f08 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007504 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000333368 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007505 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mStarted KeepAlive Timer: 86400 sec
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mSent Register NF Instance with updated profile
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000333728 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007506 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc0009271b8 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007507 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000b164f8 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007508 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000b167c8 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007509 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000b16a98 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0mConfig update DB trigger
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mAddEntrySmPolicyTable
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mcollname, imsi, dnn, sst, sd :  policyData.ues.smData 001010100007510 hexa 1 010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB key   01010203
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][CFG] [0mentry in DB val   {0xc000b16d68 map[hexa:{hexa [] []   false false 0 0 false false <nil> map[] false false 0}]}
+2024-06-12T09:00:11Z[36m [INFO][HEXA_UDR][Init] [0madded entry to sm policy table success
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle QueryAuthSubsData
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.214 | GET     | /nudr-dr/v1/subscription-data/imsi-001010100007487/authentication-data/authentication-subscription |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle ModifyAuthentication
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 204 |  192.168.84.214 | PATCH   | /nudr-dr/v1/subscription-data/imsi-001010100007487/authentication-data/authentication-subscription |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle QueryAuthSubsData
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.214 | GET     | /nudr-dr/v1/subscription-data/imsi-001010100007487/authentication-data/authentication-subscription |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle ModifyAuthentication
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 204 |  192.168.84.214 | PATCH   | /nudr-dr/v1/subscription-data/imsi-001010100007487/authentication-data/authentication-subscription |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle CreateAuthenticationStatus
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 204 |  192.168.84.214 | PUT     | /nudr-dr/v1/subscription-data/imsi-001010100007487/authentication-data/authentication-status |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle QueryAmData
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.214 | GET     | /nudr-dr/v1/subscription-data/imsi-001010100007487/00101/provisioned-data/am-data?supported-features= |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle CreateAmfContext3gpp
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 204 |  192.168.84.214 | PUT     | /nudr-dr/v1/subscription-data/imsi-001010100007487/context-data/amf-3gpp-access |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle QueryAmData
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.214 | GET     | /nudr-dr/v1/subscription-data/imsi-001010100007487/00101/provisioned-data/am-data?supported-features=00101 |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle QuerySmfSelectData
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.214 | GET     | /nudr-dr/v1/subscription-data/imsi-001010100007487/00101/provisioned-data/smf-selection-subscription-data?supported-features= |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle QuerySmfRegList
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.214 | GET     | /nudr-dr/v1/subscription-data/imsi-001010100007487/context-data/smf-registrations?supported-features= |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle CreateSdmSubscriptions
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 201 |  192.168.84.214 | POST    | /nudr-dr/v1/subscription-data/imsi-001010100007487/context-data/sdm-subscriptions |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle PolicyDataUesUeIdAmDataGet
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.222 | GET     | /nudr-dr/v1/policy-data/ues/imsi-001010100007487/am-data |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle QuerySmData
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.214 | GET     | /nudr-dr/v1/subscription-data/imsi-001010100007487/00101/provisioned-data/sm-data?single-nssai=%7B%22sst%22%3A1%2C%22sd%22%3A%22010203%22%7D |
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][DRepo] [0mHandle PolicyDataUesUeIdSmDataGet
+2024-06-12T09:07:17Z[36m [INFO][HEXA_UDR][GIN] [0m| 200 |  192.168.84.222 | GET     | /nudr-dr/v1/policy-data/ues/imsi-001010100007487/sm-data?dnn=hexa&snssai=%7B%22sst%22%3A1%2C%22sd%22%3A%22010203%22%7D |
