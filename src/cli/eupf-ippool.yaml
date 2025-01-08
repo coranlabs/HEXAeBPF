@@ -1,0 +1,11 @@
+apiVersion: crd.projectcalico.org/v1
+kind: IPPool
+metadata:
+  name: eupf-pool
+spec:
+  cidr: 10.100.50.232/24
+  ipipMode: Never
+  vxlanMode: Always
+  natOutgoing: true
+  blockSize: 29
+  nodeSelector: all()
