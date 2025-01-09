@@ -5,7 +5,7 @@
 SHELL		:= /bin/bash
 MAKEDIR		:= $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 BUILD		?= $(MAKEDIR)/build
-M           	?= $(BUILD)/milestones
+M           ?= $(BUILD)/milestones
 SCRIPTDIR	:= $(MAKEDIR)/scripts
 RESOURCEDIR	:= $(MAKEDIR)/resources
 WORKSPACE	?= $(HOME)
@@ -15,7 +15,7 @@ NS?=hexa
 HELM_ARGS?=--create-namespace
 HELM_ACTION?=install
 
-GET_HELM              = get_helm.sh
+GET_HELM  = get_helm.sh
 
 # KUBESPRAY_VERSION ?= release-2.17
 DOCKER_VERSION    ?= '20.10'
@@ -48,8 +48,6 @@ NODE_IP ?= $(shell ip route get 8.8.8.8 | grep -oP 'src \K\S+')
 ifndef NODE_IP
 $(error NODE_IP is not set)
 endif
-
-# MME_IP  ?=
 
 HELM_GLOBAL_ARGS ?=
 
@@ -169,13 +167,6 @@ $(M)/helm-ready: | $(M)/k8s-ready
 	curl -fsSL -o ${GET_HELM} https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 	chmod 700 ${GET_HELM}
 	sudo DESIRED_VERSION=$(HELM_VERSION) ./${GET_HELM}
-	helm repo add incubator https://charts.helm.sh/incubator
-	helm repo add cord https://charts.opencord.org
-	helm repo add atomix https://charts.atomix.io
-	helm repo add onosproject https://charts.onosproject.org
-	helm repo add aether https://charts.aetherproject.org
-	helm repo add rancher http://charts.rancher.io/
-	#helm repo add hexaebpf https://coranlabs.github.io/HEXA_UPF_Helm_Charts/
 	touch $@
 endif
 
@@ -206,11 +197,12 @@ setup_k8s_resources:
 	@echo "Creating namespace 'hexa'..."
 	kubectl create ns hexa || echo "Namespace 'hexa' already exists."
 	@echo "Applying IPPool configuration..."
-	kubectl apply -f /home/ubuntu/HEXAeBPF/src/cli/eupf-ippool.yaml
+	kubectl apply -f $(MAKEDIR)/src/cli/eupf-ippool.yaml
 	sudo apt install tmux -y
 	touch $(M)/setup_k8s_resources-done
 
 # Target to run HEXAeBPF CLI
 run_hexaebpf: node-prep setup_k8s_resources
-	@echo "Running HEXAeBPF CLI..."
-	python3 /home/ubuntu/HEXAeBPF/src/cli/hexaebpf_cli.py
+	@echo "Running HEXAeBPF CLI in a new tmux session..."
+	tmux new-session -d -s hexaebpf "python3 $(MAKEDIR)/src/cli/hexaebpf_cli.py; tmux kill-session -t hexaebpf" \; attach
+

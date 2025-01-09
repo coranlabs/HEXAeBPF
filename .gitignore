@@ -1,0 +1,3 @@
+build/
+get_helm.sh
+logs/*
