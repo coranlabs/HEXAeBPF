@@ -1,0 +1,446 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+# Copyright 2019-present Open Networking Foundation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+omec-control-plane:
+  enable4G: false
+
+# Override values for 5g-control-plane helm chart
+# 5g-control-plane Helm Charts values - https://gerrit.opencord.org/sdcore-helm-charts/5g-control-plane/values.yaml
+
+5g-control-plane:
+  enable5G: true
+  images:
+    repository: "registry.opennetworking.org/docker.io/"
+    #tags:
+    #  amf: # add new image name
+    # refer above helm chart to add other NF images
+
+  kafka:
+    deploy: true
+
+  mongodb:
+    usePassword: false
+    persistence:
+      enabled: false
+    #enable following 2 lines if cluster needs to be enabled
+    architecture: replicaset
+    replicaCount: 2
+  resources:
+    enabled: false
+
+  config:
+    mongodb:
+      name: free5gc
+      url: mongodb://mongodb-arbiter-headless #enable if cluster deployment required
+
+    managedByConfigPod:
+      enabled: true
+      # syncUrl: http://sdcore-adapter-v2-1.aether-roc.svc:8080/synchronize
+
+    sctplb:
+      deploy: false # if enabled then deploy sctp pod. Once backend code is stable,
+                    # this option will be enabled by default
+
+    upfadapter:
+      deploy: false # if enabled then deploy upf adapter pod. Once backend code is stable,
+                    # this option will be enabled by default
+
+    metricfunc:
+      deploy: true
+
+    # Change AMF config here if rquired Most of the AMF config comes from Slice APIs
+    # but some of the config is directly provided  thorugh helm chart
+    amf:
+      # use externalIP if you need to access your AMF from remote setup and you don't
+      # want setup NodePort Service Type
+      #ngapp:
+        #externalIp: "128.110.219.37"
+        #port: 38412
+      cfgFiles:
+        amfcfg.conf:
+          configuration:
+            # storing AMF subscribers in the datastore is disabled by default. Once internal
+            # testing is complete we shall enable DBStore by default.
+            enableDBStore: false
+
+    # SMF config override. Refer helm chart values for more options
+    smf:
+      cfgFiles:
+        smfcfg.conf:
+          configuration:
+            # storing AMF subscribers in the datastore is disabled by default. Once internal
+            # testing is complete we shall enable DBStore by default.
+            enableDBStore: false
+
+    #pcf:
+    #  cfgFiles:
+    #    pcfcfg.conf:
+    #      configuration:
+
+    nrf:
+      cfgFiles:
+        nrfcfg.conf:
+          configuration:
+            mongoDBStreamEnable: false # enable/disable MongoDB stream in NRF. Keep it disabled for now.
+            nfProfileExpiryEnable: false  # if enabled then remove NF profile if no keepalive received
+            nfKeepAliveTime: 60  #default timeout for NF profiles. This value will be sent to registered NF during registration/update process.
+
+
+# Override values for omec-sub-provision helm chart
+# omec-control-plane Helm Charts values - https://gerrit.opencord.org/sdcore-helm-charts/omec-sub-provision/values.yaml
+omec-sub-provision:
+  enable: true
+  images:
+    repository: "registry.opennetworking.org/docker.io/"
+    #tags:
+    #  simapp: #add simapp override image
+
+  config:
+    simapp:
+      cfgFiles:
+        simapp.yaml:
+          configuration:
+            provision-network-slice: true # if enabled then Network Slices configured from simapp
+            sub-provision-endpt:
+              addr: webui.omec.svc.cluster.local  # subscriber configuation endpoint.
+            # sub-proxy-endpt:  #this is useful block if subscriber proxy is enabled in the ROC.
+            #   addr: subscriber-proxy.aether-roc.svc.cluster.local
+            #   port: 5000
+
+            # below block configures the subscribers and their security details.
+            # you can have any number of subscriber ranges
+            subscribers:
+            - ueId-start: "208930100007487"
+              ueId-end: "208930100007500"
+              plmnId: "20893"
+              opc: "981d464c7c52eb6e5036234984ad0bcf"
+              op: ""
+              key: "5122250214c33e723a5dd523fc145fc0"
+              sequenceNumber: "16f3b3f70fc2"
+            - ueId-start: "208930100007501"
+              ueId-end: "208930100007599"
+              plmnId: "20893"
+              opc: "981d464c7c52eb6e5036234984ad0bcf"
+              op: ""
+              key: "5122250214c33e723a5dd523fc145fc0"
+              sequenceNumber: "16f3b3f70fc2"
+
+            # Configure More than one device Group as per your need
+            device-groups:
+            - name:  "5g-gnbsim-user-group1"
+              imsis:
+                - "208930100007487"
+                - "208930100007488"
+                - "208930100007489"
+                - "208930100007490"
+                - "208930100007491"
+                - "208930100007492"
+                - "208930100007493"
+                - "208930100007494"
+                - "208930100007495"
+                - "208930100007496"
+                - "208930100007497"
+                - "208930100007498"
+                - "208930100007499"
+                - "208930100007500"
+              ip-domain-name: "pool1"
+              ip-domain-expanded:
+                dnn: internet
+                dns-primary: "8.8.8.8" # Change this as per your need. This value is sent to UE
+                mtu: 1460 # This value is sent to UE/Mobile/Subscriber during Subscriber PDU Session Est
+                ue-ip-pool: "172.250.1.0/16" # IP address pool for subscribers
+                ue-dnn-qos:
+                  dnn-mbr-downlink: 200000000 #ue level downlink qos
+                  dnn-mbr-uplink:    20000000 #ue level uplink qos
+                  bitrate-unit: bps #unit for qos rates mentioned above
+                  traffic-class:  #default bearer QCI/ARP. These values are not used in 5G as such
+                    name: "platinum"
+                    qci: 9
+                    arp: 6
+                    pdb: 300
+                    pelr: 6
+              site-info: "aiab"
+            #configure only 1 device group if you want UPF to allocate UE address.
+            #if smf is allocating IP address then having 2 separate pools is not a problem.
+            - name:  "5g-gnbsim-user-group2" # second device Group
+              imsis:
+                - "208930100007501"
+                - "208930100007502"
+                - "208930100007503"
+                - "208930100007504"
+                - "208930100007505"
+                - "208930100007506"
+                - "208930100007507"
+                - "208930100007508"
+                - "208930100007509"
+                - "208930100007510"
+              ip-domain-name: "pool2"
+              ip-domain-expanded:
+                dnn: internet
+                dns-primary: "8.8.8.8" # Change this as per your need. This value is sent to UE
+                mtu: 1460 # This value is sent to UE/Mobile/Subscriber during Subscriber PDU Session Est
+                ue-ip-pool: "172.250.1.0/16" # IP address pool for subscribers
+                ue-dnn-qos:
+                  dnn-mbr-downlink: 400000000
+                  dnn-mbr-uplink:    10000000
+                  bitrate-unit: bps # this value can be in gbps, mbps, kbps
+                  traffic-class:  #default bearer QCI/ARP
+                    name: "platinum"
+                    qci: 8
+                    arp: 6
+                    pdb: 300
+                    pelr: 6
+              site-info: "aiab2"
+            network-slices:
+            - name: "default" #provide any unique slice name
+              slice-id: #make sure this slice matches with slice configured in gNB, UE
+                sd: "010203"
+                sst: 1
+              site-device-group:
+              - "5g-gnbsim-user-group1"  #all UEs mentioned in this device group are assigned to this slice
+              - "5g-gnbsim-user-group2"
+              # below list of applicaiton filter controls what user can access.
+              # by default user can access all networks.
+              application-filtering-rules:
+              #all application information. Default, allow all applications
+              - rule-name: "ALLOW-ALL"
+                priority: 250
+                action: "permit"
+                endpoint: "0.0.0.0/0"
+              site-info:
+                # Provide gNBs and UPF details and also PLMN for the site
+                gNodeBs:
+                - name: "aiab-gnb1"
+                  tac: 1
+                - name: "aiab-gnb2"
+                  tac: 2
+                plmn:
+                  mcc: "208"
+                  mnc: "93"
+                site-name: "aiab"
+                upf:
+                  upf-name: "upf"  # associated UPF for this slice. One UPF per Slice. Provide fully qualified name
+                  upf-port: 8805
+
+# Override values for omec-user-plane helm chart
+# omec-user-plane Helm Charts values - https://gerrit.opencord.org/sdfabric-helm-charts/bess-upf/values.yaml
+
+omec-user-plane:
+  enable: true
+  resources:
+    enabled: false
+  images:
+    repository: "registry.opennetworking.org/docker.io/"
+    # uncomment below section to add update bess image tag
+    #tags:
+    #  bess: <bess image tag>
+    #  pfcpiface: <pfcp image tag>
+  config:
+    upf:
+      name: "oaisim"
+      sriov:
+        enabled: false #default sriov is disabled in AIAB setup
+      hugepage:
+        enabled: false #should be enabled if dpdk is enabled
+      #can be any other plugin as well, remember this plugin dictates how IP address are assigned.
+      cniPlugin: macvlan
+      ipam: static
+      routes:
+        - to: ${NODE_IP}
+          via: 169.254.1.1
+      enb:
+        subnet: ${RAN_SUBNET} #this is your gNB network
+      access:
+        iface: ${DATA_IFACE}
+      core:
+        iface: ${DATA_IFACE}
+      cfgFiles:
+        upf.json:
+          mode: af_packet  #this mode means no dpdk
+          hwcksum: true
+          log_level: "trace"
+          gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
+          cpiface:
+            dnn: "internet" #keep it matching with Slice dnn
+            hostname: "upf"
+            #http_port: "8080"
+            enable_ue_ip_alloc: false # if true then it means UPF allocates address from below pool
+            ue_ip_pool: "172.250.0.0/16" # UE ip pool is used if enable_ue_ip_alloc is set to true
+
+# Override values for 5g-ran-sim helm chart
+# 5g-ran-sim Helm Charts values - https://gerrit.opencord.org/sdcore-helm-charts/5g-ran-sim/values.yaml
+
+5g-ran-sim:
+  enable: ${ENABLE_GNBSIM}
+  resources:
+    enabled: false
+  images:
+    repository: "registry.opennetworking.org/docker.io/"
+    #tags:
+    #  gnbsim: 5gc-gnbsim:0.0.1-dev-local5
+  config:
+    gnbsim:
+      singleInterface: false #default multiInterface. Works well for AIAB
+      execInParallel: false #run all profiles in parallel
+      goProfile:
+        enable: false #enable/disable golang profile in gnbsim
+        port: 5000
+      httpServer:
+        enable: false #enable httpServer in gnbsim
+        port: 6000
+      yamlCfgFiles:
+        gnb.conf:
+          logger:
+            logLevel: trace # how detailed the log will be, values: trace, debug, info, warn, error, fatal, panic
+          configuration:
+             #gnbs: # pool of gNodeBs
+             #  gnb1:
+             #    n3IpAddr: "POD_IP" # set if singleInterface is true
+              gnbs: # pool of gNodeBs
+               gnb1:
+                 defaultAmf:
+                   hostName: amf # Host name of AMF
+                   port: 38412 # AMF port
+              customProfiles:
+                customProfiles1:
+                  profileType: custom # profile type
+                  profileName: custom1 # uniquely identifies a profile within application
+                  enable: false # Set true to execute the profile, false otherwise.
+                  execInParallel: false #run all subscribers in parallel.
+                  stepTrigger: false #wait for trigger to move to next step
+                  gnbName: gnb1 # gNB to be used for this profile
+                  startImsi: 208930100007487
+                  ueCount: 30
+                  defaultAs: "192.168.250.1" #default icmp pkt destination
+                  opc: "981d464c7c52eb6e5036234984ad0bcf"
+                  key: "5122250214c33e723a5dd523fc145fc0"
+                  sequenceNumber: "16f3b3f70fc2"
+                  plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>
+                    mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                    mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                  # start from "startiteration" and then move through all the iteration till quit
+                  startiteration: iteration1
+                  iterations:
+                    - "name": "iteration1"
+                      "1": "REGISTRATION-PROCEDURE 5"
+                      "2": "PDU-SESSION-ESTABLISHMENT-PROCEDURE 5"
+                      "3": "USER-DATA-PACKET-GENERATION-PROCEDURE 10"
+                      "next":  "iteration2"
+                    - "name": "iteration2"
+                      "1": "AN-RELEASE-PROCEDURE 10"
+                      "2": "UE-TRIGGERED-SERVICE-REQUEST-PROCEDURE 5"
+                      "repeat": 0 #default value 0 . i.e execute once
+                      "next":  "iteration3" #default value quit. i.e. no further iteration to run
+                    - "name": "iteration3"
+                      "1": "UE-INITIATED-DEREGISTRATION-PROCEDURE 10"
+                      "repeat": 0 #default value 0 . i.e execute once
+                      "next":  "quit" #default value quit. i.e. no further iteration to run
+              profiles: # profile information
+              - profileType: register # profile type
+                profileName: profile1 # uniqely identifies a profile within application
+                enable: false # Set true to execute the profile, false otherwise.
+                gnbName: gnb1 # gNB to be used for this profile
+                execInParallel: false #run all subscribers in this profile parallel
+                startImsi: 208930100007487 #First IMSI. Subsequent values will be used if ueCount is mo    re than 1
+                ueCount: 5 # Number of UEs for which the profile will be executed
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                opc: "981d464c7c52eb6e5036234984ad0bcf"
+                key: "5122250214c33e723a5dd523fc145fc0"
+                sequenceNumber: "16f3b3f70fc2"
+              - profileType: pdusessest
+                profileName: profile2
+                enable: true
+                gnbName: gnb1
+                execInParallel: false #run all subscribers in this profile parallel
+                startImsi: 208930100007487
+                ueCount: 5
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+                dataPktCount: 5 # Number of UL user data packets to be transmitted. Common for all UEs
+                opc: "981d464c7c52eb6e5036234984ad0bcf"
+                key: "5122250214c33e723a5dd523fc145fc0"
+                sequenceNumber: "16f3b3f70fc2"
+              - profileType: anrelease
+                profileName: profile3
+                enable: false
+                execInParallel: false #run all subscribers in this profile parallel
+                gnbName: gnb1
+                startImsi: 208930100007497
+                ueCount: 5
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+                opc: "981d464c7c52eb6e5036234984ad0bcf"
+                key: "5122250214c33e723a5dd523fc145fc0"
+                sequenceNumber: "16f3b3f70fc2"
+              - profileType: uetriggservicereq
+                profileName: profile4
+                enable: false
+                gnbName: gnb1
+                execInParallel: false #run all subscribers in this profile parallel
+                startImsi: 208930100007497
+                ueCount: 5
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                opc: "981d464c7c52eb6e5036234984ad0bcf"
+                key: "5122250214c33e723a5dd523fc145fc0"
+                sequenceNumber: "16f3b3f70fc2"
+              - profileType: deregister
+                profileName: profile5
+                enable: false
+                gnbName: gnb1
+                execInParallel: false #run all subscribers in this profile parallel
+                startImsi: 208930100007497
+                ueCount: 5
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                plmnId:
+                  mcc: 208
+                  mnc: 93
+                opc: "981d464c7c52eb6e5036234984ad0bcf"
+                key: "5122250214c33e723a5dd523fc145fc0"
+                sequenceNumber: "16f3b3f70fc2"
+              - profileType: nwtriggeruedereg # profile type
+                profileName: profile6 # uniqely identifies a profile within application
+                enable: false # Set true to execute the profile, false otherwise.
+                gnbName: gnb1 # gNB to be used for this profile
+                execInParallel: false #run all subscribers in this profile parallel
+                startImsi: 208930100007497 # First IMSI. Subsequent values will be used if ueCount is more than 1
+                ueCount: 5 # Number of UEs for which the profile will be executed
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>. Should match startImsi
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                opc: "981d464c7c52eb6e5036234984ad0bcf"
+                key: "5122250214c33e723a5dd523fc145fc0"
+                sequenceNumber: "16f3b3f70fc2"
+              - profileType: uereqpdusessrelease # profile type
+                profileName: profile7 # uniqely identifies a profile within application
+                enable: false # Set true to execute the profile, false otherwise.
+                gnbName: gnb1 # gNB to be used for this profile
+                execInParallel: false #run all subscribers in this profile parallel
+                startImsi: 208930100007497 # First IMSI. Subsequent values will be used if ueCount is more than 1
+                ueCount: 5 # Number of UEs for which the profile will be executed
+                plmnId: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>. Should match startImsi
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                defaultAs: "192.168.250.1" #default icmp pkt destination
+                perUserTimeout: 100 #if no expected event received in this time then treat it as failure
+                opc: "981d464c7c52eb6e5036234984ad0bcf"
+                key: "5122250214c33e723a5dd523fc145fc0"
+                sequenceNumber: "16f3b3f70fc2"

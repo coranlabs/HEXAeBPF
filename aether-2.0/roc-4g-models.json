@@ -1,0 +1,210 @@
+{
+    "default-target": "connectivity-service-v2",
+    "Updates": {
+        "connectivity-services-2.0.0": {
+            "connectivity-service": [
+                {
+                    "core-5g-endpoint": "http://config4g.omec.svc:5000/config",
+                    "description": "4G Integration Test",
+                    "display-name": "ROC 4G Test Connectivity Service",
+                    "connectivity-service-id": "aiab-cs"
+                }
+            ]
+        },
+        "enterprises-2.0.0": {
+            "enterprise": [
+                {
+                    "description": "This Enterprise holds discovered IMSIs that cannot be associated elsewhere.",
+                    "display-name": "Default Enterprise",
+                    "enterprise-id": "defaultent",
+                    "site": [
+                        {
+                            "description": "Global Default Site",
+                            "display-name": "Global Default Site",
+                            "site-id": "defaultent-defaultsite",
+                            "imsi-definition": {
+                                "mcc": "000",
+                                "mnc": "00",
+                                "enterprise": 0,
+                                "format": "SSSSSSSSSSSSSSS"
+                            },
+                            "device-group": [
+                                {
+                                    "display-name": "Unknown Inventory",
+                                    "device-group-id": "defaultent-defaultsite-default",
+                                    "mbr": {
+                                        "uplink": 1000000,
+                                        "downlink": 1000000
+                                    },
+                                    "traffic-class": "class-1",
+                                    "ip-domain": "defaultent-defaultip"
+                                }
+                            ],
+                            "ip-domain": [
+                                {
+                                    "admin-status": "ENABLE",
+                                    "description": "Global Default IP Domain",
+                                    "display-name": "Global Default IP Domain",
+                                    "dns-primary": "8.8.8.1",
+                                    "dns-secondary": "8.8.8.2",
+                                    "dnn": "dnnglobal",
+                                    "ip-domain-id": "defaultent-defaultip",
+                                    "mtu": 57600,
+                                    "subnet": "192.168.0.0/24"
+                                }
+                            ]
+                        }
+                    ],
+                    "traffic-class": [
+                        {
+                            "traffic-class-id": "class-1",
+                            "description": "High Priority TC",
+                            "display-name": "Class 1",
+                            "qci": 10,
+                            "arp": 1,
+                            "pelr": 10,
+                            "pdb": 100
+                        }
+                    ]
+                },
+                {
+                    "connectivity-service": [
+                        {
+                            "connectivity-service": "aiab-cs",
+                            "enabled": true
+                        }
+                    ],
+                    "description": "AiaB Enterprise",
+                    "display-name": "AiaB Corp.",
+                    "enterprise-id": "aiab-enterprise",
+                    "application": [],
+                    "site": [
+                        {
+                            "description": "AiaB test site",
+                            "display-name": "AiaB site",
+                            "site-id": "aiab-site",
+                            "imsi-definition": {
+                                "mcc": "208",
+                                "mnc": "01",
+                                "enterprise": 1,
+                                "format": "CCCNNEESSSSSSSS"
+                            },
+                            "device": [
+                                {
+                                    "device-id": "aiab-ue-1",
+                                    "display-name": "UE 1",
+                                    "sim-card": "aiab-sim-1"
+                                },
+                                {
+                                    "device-id": "aiab-ue-2",
+                                    "display-name": "UE 2",
+                                    "sim-card": "aiab-sim-2"
+                                }
+                            ],
+                            "sim-card": [
+                                {
+                                    "sim-id": "aiab-sim-1",
+                                    "display-name": "UE 1 Sim",
+                                    "imsi": 208010167891201
+                                },
+                                {
+                                    "sim-id": "aiab-sim-2",
+                                    "display-name": "UE 2 Sim",
+                                    "imsi": 208010167891202
+                                } 
+                            ],
+                            "device-group": [
+                                {
+                                    "display-name": "AiaB Users",
+                                    "device-group-id": "aiab-device-group",
+                                    "device": [
+                                        {
+                                            "device-id": "aiab-ue-1",
+                                            "enable": true
+                                        },
+                                        {
+                                            "device-id": "aiab-ue-2",
+                                            "enable": true
+                                        }
+                                    ],
+                                    "ip-domain": "aiab-ip-pool",
+                                    "mbr": {
+                                        "uplink": 1000000,
+                                        "downlink": 1000000
+                                    },
+                                    "traffic-class": "aiab-class-1"
+                                }
+                            ],
+                            "ip-domain": [
+                                {
+                                    "admin-status": "ENABLE",
+                                    "display-name": "IP pool",
+                                    "dnn": "internet",
+                                    "dns-primary": "8.8.8.8",
+                                    "ip-domain-id": "aiab-ip-pool",
+                                    "mtu": 1460,
+                                    "subnet": "172.250.0.0/16"
+                                }
+                            ],
+                            "small-cell": [
+                                {
+                                    "small-cell-id": "gnb1",
+                                    "display-name": "gNodeB 1",
+                                    "address": "aiab-gnb1",
+                                    "enable": true,
+                                    "tac": "0001"
+                                }
+                            ],
+                            "upf": [
+                                {
+                                    "address": "upf",
+                                    "display-name": "AiaB UPF",
+                                    "upf-id": "aiab-upf",
+                                    "port": 8805,
+                                    "config-endpoint": "http://upf-http.omec.svc:8080"
+                                }
+                            ],
+                            "slice": [
+                                {
+                                    "default-behavior": "ALLOW-ALL",
+                                    "display-name": "AiaB Slice",
+                                    "device-group": [
+                                        {
+                                            "device-group": "aiab-device-group",
+                                            "enable": true
+                                        }
+                                    ],
+                                    "filter": [],
+                                    "slice-id": "aiab-vcs",
+                                    "sd": 66051,
+                                    "sst": 1,
+                                    "upf": "aiab-upf",
+                                    "mbr": {
+                                        "uplink": 100000000,
+                                        "downlink": 100000000
+                                    },
+                                    "priority-traffic-rule": []
+                                }
+                            ]
+                        }
+                    ],
+                    "traffic-class": [
+                        {
+                            "display-name": "Default bearer QCI/ARP",
+                            "traffic-class-id": "aiab-class-1",
+                            "pdb": 300,
+                            "arp": 6,
+                            "pelr": 6,
+                            "qci": 9
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Deletes": {},
+    "Extensions": {
+        "model-version-101": "2.0.x",
+        "model-type-102": "Aether"
+    }
+}
