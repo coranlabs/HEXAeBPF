@@ -1,0 +1,1108 @@
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/sdcore_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+hexacp.sdcore.coranlabs.com "hexacp-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-sdcore-eupf-cp-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexacps.sdcore.coranlabs.com" deleted
+serviceaccount "hexa-sdcore-eupf-cp-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-rolebinding" deleted
+service "hexa-sdcore-eupf-cp-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-sdcore-eupf-cp-operator-controller-manager" deleted
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+hexaup.eupf.coranlabs.com "hexaup-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-sdcore-eupf-up-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" deleted
+serviceaccount "hexa-sdcore-eupf-up-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-rolebinding" deleted
+service "hexa-sdcore-eupf-up-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-sdcore-eupf-up-operator-controller-manager" deleted
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml": no matches for kind "HexaOAI" in version "oai.ebpf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-ebpf-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoais.oai.ebpf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-ebpf-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-ebpf-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-ebpf-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator && make undeploy
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/bin/kustomize build config/default | kubectl delete -f -
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml": no matches for kind "HexaOAInrUE" in version "oai.nr.ue.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-nr-ue-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoainrues.oai.nr.ue.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-nr-ue-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-nr-ue-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-nr-ue-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml": no matches for kind "HexaOAIgNB" in version "oai.gnb.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-gnb-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoaignbs.oai.gnb.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-gnb-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-gnb-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-gnb-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/open5gs_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator && make undeploy
+
+========================================
+STDOUT:
+hexaueransim.ueransim.coranlabs.com "hexaueransim-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-ueransim-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexaueransims.ueransim.coranlabs.com" deleted
+serviceaccount "hexa-ueransim-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-rolebinding" deleted
+service "hexa-ueransim-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-ueransim-operator-controller-manager" deleted
+
+========================================
+STDERR:
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/config/samples/open5gs_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/config/samples/open5gs_v1_hexacp.yaml": no matches for kind "HexaCP" in version "open5gs.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-open5gs-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.open5gs.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-open5gs-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-open5gs-eupf-cp-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-open5gs-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-open5gs-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-open5gs-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-open5gs-eupf-up-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-open5gs-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/config/samples/free5gc_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/config/samples/free5gc_v1_hexacp.yaml": no matches for kind "HexaCP" in version "free5gc.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-free5gc-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.free5gc.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-free5gc-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-free5gc-eupf-cp-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-free5gc-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-free5gc-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-free5gc-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-free5gc-eupf-up-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-free5gc-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/sdcore_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+hexacp.sdcore.coranlabs.com "hexacp-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-sdcore-eupf-cp-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexacps.sdcore.coranlabs.com" deleted
+serviceaccount "hexa-sdcore-eupf-cp-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-rolebinding" deleted
+service "hexa-sdcore-eupf-cp-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-sdcore-eupf-cp-operator-controller-manager" deleted
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+hexaup.eupf.coranlabs.com "hexaup-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-sdcore-eupf-up-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" deleted
+serviceaccount "hexa-sdcore-eupf-up-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-rolebinding" deleted
+service "hexa-sdcore-eupf-up-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-sdcore-eupf-up-operator-controller-manager" deleted
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml": no matches for kind "HexaOAI" in version "oai.ebpf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-ebpf-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoais.oai.ebpf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-ebpf-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-ebpf-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-ebpf-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator && make undeploy
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/bin/kustomize build config/default | kubectl delete -f -
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml": no matches for kind "HexaOAInrUE" in version "oai.nr.ue.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-nr-ue-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoainrues.oai.nr.ue.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-nr-ue-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-nr-ue-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-nr-ue-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml": no matches for kind "HexaOAIgNB" in version "oai.gnb.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-gnb-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoaignbs.oai.gnb.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-gnb-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-gnb-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-gnb-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/open5gs_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator && make undeploy
+
+========================================
+STDOUT:
+hexaueransim.ueransim.coranlabs.com "hexaueransim-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-ueransim-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexaueransims.ueransim.coranlabs.com" deleted
+serviceaccount "hexa-ueransim-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-rolebinding" deleted
+service "hexa-ueransim-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-ueransim-operator-controller-manager" deleted
+
+========================================
+STDERR:
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/config/samples/open5gs_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/config/samples/open5gs_v1_hexacp.yaml": no matches for kind "HexaCP" in version "open5gs.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-open5gs-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.open5gs.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-open5gs-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-open5gs-eupf-cp-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-open5gs-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-open5gs-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-open5gs-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-open5gs-eupf-up-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-open5gs-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/config/samples/free5gc_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/config/samples/free5gc_v1_hexacp.yaml": no matches for kind "HexaCP" in version "free5gc.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-free5gc-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.free5gc.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-free5gc-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-free5gc-eupf-cp-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-free5gc-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-free5gc-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-free5gc-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-free5gc-eupf-up-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-free5gc-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/sdcore_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/sdcore_v1_hexacp.yaml": no matches for kind "HexaCP" in version "sdcore.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-sdcore-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.sdcore.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-sdcore-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-sdcore-eupf-cp-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-sdcore-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+hexaup.eupf.coranlabs.com "hexaup-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+customresourcedefinition.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" deleted
+
+========================================
+STDERR:
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-sdcore-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-sdcore-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-sdcore-eupf-up-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-sdcore-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml": no matches for kind "HexaOAI" in version "oai.ebpf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-ebpf-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoais.oai.ebpf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-ebpf-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-ebpf-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-ebpf-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator && make undeploy
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/bin/kustomize build config/default | kubectl delete -f -
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml": no matches for kind "HexaOAInrUE" in version "oai.nr.ue.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-nr-ue-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoainrues.oai.nr.ue.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-nr-ue-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-nr-ue-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-nr-ue-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml": no matches for kind "HexaOAIgNB" in version "oai.gnb.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-gnb-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoaignbs.oai.gnb.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-gnb-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-gnb-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-gnb-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/open5gs_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator && make undeploy
+
+========================================
+STDOUT:
+hexaueransim.ueransim.coranlabs.com "hexaueransim-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-ueransim-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexaueransims.ueransim.coranlabs.com" deleted
+serviceaccount "hexa-ueransim-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-rolebinding" deleted
+service "hexa-ueransim-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-ueransim-operator-controller-manager" deleted
+
+========================================
+STDERR:
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/config/samples/open5gs_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/config/samples/open5gs_v1_hexacp.yaml": no matches for kind "HexaCP" in version "open5gs.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-open5gs-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.open5gs.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-open5gs-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-open5gs-eupf-cp-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-open5gs-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-open5gs-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-open5gs-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-open5gs-eupf-up-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-open5gs-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/config/samples/free5gc_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+hexacp.free5gc.coranlabs.com "hexacp-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-free5gc-eupf-cp-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexacps.free5gc.coranlabs.com" deleted
+serviceaccount "hexa-free5gc-eupf-cp-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-rolebinding" deleted
+service "hexa-free5gc-eupf-cp-operator-controller-metrics-service" deleted
+deployment.apps "hexa-free5gc-eupf-cp-operator-controller-manager" deleted
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-free5gc-eupf-up-operator-system" deleted
+serviceaccount "hexa-free5gc-eupf-up-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-rolebinding" deleted
+service "hexa-free5gc-eupf-up-operator-controller-metrics-service" deleted
+deployment.apps "hexa-free5gc-eupf-up-operator-controller-manager" deleted
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/sdcore_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/sdcore_v1_hexacp.yaml": no matches for kind "HexaCP" in version "sdcore.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-sdcore-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.sdcore.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-sdcore-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-sdcore-eupf-cp-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-sdcore-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+hexaup.eupf.coranlabs.com "hexaup-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+customresourcedefinition.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" deleted
+
+========================================
+STDERR:
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-sdcore-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-sdcore-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-sdcore-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-sdcore-eupf-up-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-sdcore-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-ebpf-operator/hexa-oai-ebpf-operator/config/samples/oai.ebpf_v1_hexaoai.yaml": no matches for kind "HexaOAI" in version "oai.ebpf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-ebpf-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoais.oai.ebpf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-ebpf-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-hexaoai-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-ebpf-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-ebpf-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-ebpf-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator && make undeploy
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/bin/kustomize build config/default | kubectl delete -f -
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-nr-ue-operator/config/samples/oai.nr.ue_v1_hexaoainrue.yaml": no matches for kind "HexaOAInrUE" in version "oai.nr.ue.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-nr-ue-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoainrues.oai.nr.ue.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-nr-ue-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-hexaoainrue-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-nr-ue-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-nr-ue-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-nr-ue-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator/config/samples/oai.gnb_v1_hexaoaignb.yaml": no matches for kind "HexaOAIgNB" in version "oai.gnb.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-oai-gnb-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaoaignbs.oai.gnb.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-oai-gnb-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-hexaoaignb-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-oai-gnb-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-oai-gnb-operator-controller-manager-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-oai-gnb-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/open5gs_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator && make undeploy
+
+========================================
+STDOUT:
+hexaueransim.ueransim.coranlabs.com "hexaueransim-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-ueransim-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexaueransims.ueransim.coranlabs.com" deleted
+serviceaccount "hexa-ueransim-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-hexaueransim-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-ueransim-operator-metrics-auth-rolebinding" deleted
+service "hexa-ueransim-operator-controller-manager-metrics-service" deleted
+deployment.apps "hexa-ueransim-operator-controller-manager" deleted
+
+========================================
+STDERR:
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+Error from server (NotFound): error when deleting "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml": hexaueransims.ueransim.coranlabs.com "hexaueransim-sample" not found
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/config/samples/open5gs_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+hexacp.open5gs.coranlabs.com "hexacp-sample" deleted
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-open5gs-eupf-cp-operator-system" deleted
+customresourcedefinition.apiextensions.k8s.io "hexacps.open5gs.coranlabs.com" deleted
+serviceaccount "hexa-open5gs-eupf-cp-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-hexacp-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-open5gs-eupf-cp-operator-metrics-auth-rolebinding" deleted
+service "hexa-open5gs-eupf-cp-operator-controller-metrics-service" deleted
+deployment.apps "hexa-open5gs-eupf-cp-operator-controller-manager" deleted
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+namespace "hexa-open5gs-eupf-up-operator-system" deleted
+serviceaccount "hexa-open5gs-eupf-up-operator-controller-manager" deleted
+role.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-editor-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-hexaup-viewer-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-role" deleted
+clusterrole.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-reader" deleted
+rolebinding.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-leader-election-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-manager-rolebinding" deleted
+clusterrolebinding.rbac.authorization.k8s.io "hexa-open5gs-eupf-up-operator-metrics-auth-rolebinding" deleted
+service "hexa-open5gs-eupf-up-operator-controller-metrics-service" deleted
+deployment.apps "hexa-open5gs-eupf-up-operator-controller-manager" deleted
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-open5gs-eupf-operator/hexa-open5gs-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/config/samples/free5gc_v1_hexacp.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/config/samples/free5gc_v1_hexacp.yaml": no matches for kind "HexaCP" in version "free5gc.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-free5gc-eupf-cp-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexacps.free5gc.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-free5gc-eupf-cp-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-hexacp-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-cp-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-free5gc-eupf-cp-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-free5gc-eupf-cp-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
+
+Executing: 
+kubectl delete -f ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
+cd ~/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator && make undeploy
+
+========================================
+STDOUT:
+/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/bin/kustomize build config/default | kubectl delete -f -
+
+========================================
+STDERR:
+error: unable to recognize "/home/ubuntu/HEXAeBPF_OP8R/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml": no matches for kind "HexaUP" in version "eupf.coranlabs.com/v1"
+Error from server (NotFound): error when deleting "STDIN": namespaces "hexa-free5gc-eupf-up-operator-system" not found
+Error from server (NotFound): error when deleting "STDIN": customresourcedefinitions.apiextensions.k8s.io "hexaups.eupf.coranlabs.com" not found
+Error from server (NotFound): error when deleting "STDIN": serviceaccounts "hexa-free5gc-eupf-up-operator-controller-manager" not found
+Error from server (NotFound): error when deleting "STDIN": roles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-editor-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-hexaup-viewer-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-role" not found
+Error from server (NotFound): error when deleting "STDIN": clusterroles.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-reader" not found
+Error from server (NotFound): error when deleting "STDIN": rolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-leader-election-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-manager-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": clusterrolebindings.rbac.authorization.k8s.io "hexa-free5gc-eupf-up-operator-metrics-auth-rolebinding" not found
+Error from server (NotFound): error when deleting "STDIN": services "hexa-free5gc-eupf-up-operator-controller-metrics-service" not found
+Error from server (NotFound): error when deleting "STDIN": deployments.apps "hexa-free5gc-eupf-up-operator-controller-manager" not found
+make: *** [Makefile:121: undeploy] Error 1
+
+========================================
