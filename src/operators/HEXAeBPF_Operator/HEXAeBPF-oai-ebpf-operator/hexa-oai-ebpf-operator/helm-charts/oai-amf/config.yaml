@@ -1,0 +1,108 @@
+# OAI CN Configuration File
+### This file can be used by all OAI NFs
+### Some fields are specific to an NF and will be ignored by other NFs
+
+## NOTE ON YAML ANCHORS ##
+# We use YAML anchors to ease the configuration and to avoid duplicating parts of the configuration.
+# This is especially true for the SNSSAIs, as we have to define them for multiple NFs.
+# Please note that the use of anchors is not mandatory, and you can define the SNSSAI in each NF yourself.
+# You can read more about anchors here: https://yaml.org/spec/1.2.2/#anchors-and-aliases
+############# Common configuration
+
+# Log level
+log_level:
+  general: debug
+
+# If you enable registration, the NF will use the NRF discovery mechanism
+register_nf:
+  general: yes
+
+http_version: 2  # allowed value 1 and 2, make sure all NFs use the same HTTP version
+
+## general single_nssai configuration
+## Defines YAML anchors, which are reused in the config file
+## only hex values are supported for sst
+snssais:
+  - &embb_slice1
+    sst: 1
+  - &embb_slice2
+    sst: 1
+    sd: 000001
+
+############## SBI Interfaces
+### Each NF takes its local SBI interfaces and remote interfaces from here, unless it gets them using NRF discovery mechanisms
+nfs:
+  amf:
+    host: oai-amf
+    sbi:
+      port: 80
+      api_version: v1
+      interface_name: eth0
+    n2:
+      interface_name: eth0
+      port: 38412
+  smf:
+    host: oai-smf
+    sbi:
+      port: 80
+      api_version: v1
+  ausf:
+    host: oai-ausf
+    sbi:
+      port: 80
+      api_version: v1
+  nrf:
+    host: oai-nrf
+    sbi:
+      port: 80
+      api_version: v1
+  nssf:
+    host: oai-nssf
+    sbi:
+      port: 80
+      api_version: v1
+
+#### Only if using mini deployment of core network
+database:
+  host: mysql
+  user: test
+  type: mysql
+  password: test
+  database_name: oai_db
+  generate_random: true
+  connection_timeout: 300 # seconds
+
+############## NF-specific configuration
+amf:
+  amf_name: "OAI-AMF"
+  # This really depends on if we want to keep the "mini" version or not
+  support_features_options:
+    enable_simple_scenario: no # "no" by default with the normal deployment scenarios with AMF/SMF/UPF/AUSF/UDM/UDR/NRF.
+                               # set it to "yes" to use with the minimalist deployment scenario (including only AMF/SMF/UPF) by using the internal AUSF/UDM implemented inside AMF.
+                               # There's no NRF in this scenario, SMF info is taken from "nfs" section.
+    enable_nssf: no
+    enable_smf_selection: yes
+  relative_capacity: 30
+  statistics_timer_interval: 20  # in seconds
+  emergency_support: false
+  served_guami_list:
+    - mcc: 001
+      mnc: 01
+      amf_region_id: 01
+      amf_set_id: 001
+      amf_pointer: 01
+  plmn_support_list:
+    - mcc: 001
+      mnc: 01
+      tac: 0x0001
+      nssai:
+        - *embb_slice1
+        - *embb_slice2
+  supported_integrity_algorithms:
+    - "NIA0"
+    - "NIA1"
+    - "NIA2"
+  supported_encryption_algorithms:
+    - "NEA0"
+    - "NEA1"
+    - "NEA2"

@@ -1,0 +1,85 @@
+apiVersion: ueransim.coranlabs.com/v1
+kind: HexaUERANSIM
+metadata:
+  name: hexaueransim-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/ueransim-gnb/values.yaml
+  affinity: {}
+  amf:
+    ip: hexacp-sample-amf-ngap
+  clusterDomain: cluster.local
+  common:
+    exampleValue: common-chart
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      storageClass: ""
+  commonAnnotations: {}
+  commonLabels: {}
+  containerSecurityContext:
+    enabled: false
+  extraDeploy: []
+  fullnameOverride: ""
+  global:
+    imagePullSecrets: []
+    imageRegistry: ""
+    storageClass: ""
+  image:
+    debug: false
+    pullPolicy: Always
+    pullSecrets: []
+    registry: docker.io
+    repository: gradiant/ueransim
+    tag: 3.2.6
+  interfaces:
+    n2:
+      dev: eth0
+    n3:
+      dev: eth0
+    radio:
+      dev: eth0
+  kubeVersion: ""
+  mcc: "999"
+  mnc: "70"
+  name: ueransim-gnb
+  nameOverride: ""
+  nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext:
+    enabled: false
+  resources:
+    limits: {}
+    requests: {}
+  sd: "0x111111"
+  sst: 1
+  tac: "0001"
+  tolerations: []
+  ues:
+    affinity: {}
+    apnList:
+    - apn: internet
+      emergency: false
+      slice:
+        sd: "0x111111"
+        sst: 1
+      type: IPv4
+    containerSecurityContext:
+      enabled: false
+    count: 1
+    enabled: true
+    initialMSISDN: "0000000001"
+    key: 465B5CE8B199B49FAA5F0A2EE238A6BC
+    nodeSelector: {}
+    op: E8ED289DEBA952E4283B54E88E6183CA
+    opType: OPC
+    podAnnotations: {}
+    podLabels: {}
+    podSecurityContext:
+      enabled: false
+    resources:
+      limits: {}
+      requests: {}
+    tolerations: []
+  
+  

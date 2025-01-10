@@ -1,0 +1,257 @@
+global:
+  kubernetesDistribution: Vanilla #Openshift/Vanilla Kubernetes for Upstream Kubernetes
+  coreNetworkConfigMap: oai-5g-basic
+  clusterIpServiceIpAllocation: true #this will allocate ip-address to cluster Ip service
+  waitForNRF: true
+  waitForUDR: true
+  http2Param: "--http2-prior-knowledge"  # if waitForNRF is true and http2 is used for all NF then this param is needed
+  timeout: 1
+mysql:
+  enabled: true
+  imagePullPolicy: IfNotPresent
+  oai5gdatabase: basic
+  imagePullSecrets:
+    - name: "regcred"
+  persistence:
+    enabled: false
+oai-nrf:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-nrf          ## The image will be pulled from dockerhub
+    version: v2.1.0                          ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  ## Only if you want to store all pcaps in persistent volume
+  persistent:
+    sharedvolume: false
+    #storageClass: "nfs-client" #If value is "-" default storageClass will be used
+    storageClass: "-"
+    size: 1Gi
+  start:
+    nrf: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  imagePullSecrets:
+    - name: "regcred"
+  config:
+    logLevel: "debug"   #allowed info/error/debug
+  nodeSelector: {}
+oai-lmf:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-lmf          ## The image will be pulled from dockerhub
+    version: v2.1.0                          ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  persistent:
+    sharedvolume: false
+  start:
+    lmf: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  imagePullSecrets:
+    - name: "regcred"
+  config:
+    logLevel: "debug"   #allowed info/error/debug
+  nodeSelector: {}
+oai-udr:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-udr           ## The image will be pulled from dockerhub
+    version: v2.1.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  ## Only if you want to store all pcaps in persistent volume
+  persistent:
+    sharedvolume: false
+  start:
+    udr: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  imagePullSecrets:
+    - name: "regcred"
+  config:
+    logLevel: "debug"   #allowed info/error/debug
+  nodeSelector: {}
+oai-udm:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-udm           ## The image will be pulled from dockerhub
+    version: v2.1.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  ## Only if you want to store all pcaps in persistent volume
+  persistent:
+    sharedvolume: false
+  start:
+    udm: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  imagePullSecrets:
+    - name: "regcred"
+  config:
+    logLevel: "debug"   #allowed info/error/debug
+  nodeSelector: {}
+oai-ausf:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-ausf           ## The image will be pulled from dockerhub
+    version: v2.1.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  ## Only if you want to store all pcaps in persistent volume
+  persistent:
+    sharedvolume: false
+  start:
+    ausf: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  imagePullSecrets:
+    - name: "regcred"
+  config:
+    logLevel: "debug"   #allowed info/error/debug
+  nodeSelector: {}
+oai-amf:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-amf           ## The image will be pulled from dockerhub
+    version: v2.1.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  ## Only if you want to store all pcaps in persistent volume
+  persistent:
+    sharedvolume: false
+  start:
+    amf: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  imagePullSecrets:
+    - name: "regcred"
+  multus:
+    ## If you don't want to add a default route in your pod then replace this field with ""
+    defaultGateway: ""
+    n2Interface:
+      create: true
+      ipAdd: "172.21.6.94"
+      netmask: "22"
+      name: "n2"
+      ## If you do not have a gateway leave the field empty
+      gateway:
+      ## If you do not want to add any routes in your pod then leave this field empty
+      routes: ""
+      hostInterface: "eth0" # Interface of the host machine on which this pod will be scheduled
+  nodeSelector: {}
+oai-upf:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-upf    ## The image will be pulled from dockerhub
+    version: v2.1.0                                    ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  ## Only if you want to store all pcaps in persistent volume
+  persistent:
+    sharedvolume: false
+  start:
+    upf: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  imagePullSecrets:
+    - name: "regcred"
+  # create an extra interface for N3 incase the gNB is outside the cluster network or there is a need to have dedicated interface for N3
+  ## Change these ip-addresses according to your environment
+  ## N4, N6 are optional only if you want that UPF uses different subnets for different 3gpp interfaces. 
+  multus:
+    ## If you don't want to add a default route in your pod then replace this field with ""
+    defaultGateway: ""
+    n3Interface:
+      create: true
+      ipAdd: "172.21.8.95"
+      netmask: "22"
+      name: "n3"
+      ## If you do not have a gateway leave the field empty
+      gateway: ""
+      ## If you don't want to add a default route in your pod then replace this field with ""
+      routes: ""
+      hostInterface: "eth0"
+    ## For n4 it is better to re-use eth0 interface inside the pod (primary CNI of Kubernetes)
+    n4Interface:
+      create: false
+      ipAdd: "192.168.24.2"
+      netmask: "24"
+      name: "n4"
+      ## If you do not have a gateway leave the field empty
+      gateway: ""
+      ## If you do not want to add any routes in your pod then leave this field empty
+      routes: ""
+      hostInterface: "eth0"
+    n6Interface:
+      create: true
+      ipAdd: "192.168.22.2"
+      name: "n6"
+      netmask: "24"
+      ## If you do not have a gateway leave the field empty
+      gateway: ""
+      ## If you do not want to add any routes in your pod then leave this field empty
+      routes: ""
+      hostInterface: "eth0"
+  #NOTE: If the interface you selected for n6If is wrong then traffic will not be routed towards internet
+  nodeSelector: {}
+oai-traffic-server:
+  enabled: true
+  trafficServer:
+    repository: docker.io/oaisoftwarealliance/trf-gen-cn5g
+    version: latest
+    #pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  multus:
+    create: true
+    ipAdd: "192.168.22.4"
+    netmask: "24"
+    defaultGateway: "192.168.22.254"
+    hostInterface: "eth0"  # Interface of the host machine on which this pod will be scheduled
+  config:
+    ueroute: 12.1.1.0/24
+    upfHost: 192.168.22.2
+    routeInterface: eth0
+    noOfIperf3Server: 2
+  resources:
+    define: false
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  nodeSelector: {}
+  nodeName: ""
+oai-smf:
+  enabled: true
+  nfimage:  # image name either locally present or in a public/private repository
+    repository: docker.io/oaisoftwarealliance/oai-smf           ## The image will be pulled from dockerhub
+    version: v2.1.0                         ## The branch to be used to pull from dockerhub
+    # pullPolicy: IfNotPresent or Never or Always
+    pullPolicy: IfNotPresent
+  includeTcpDumpContainer: false #only for taking pcaps inside network function pod
+  ## Only if you want to store all pcaps in persistent volume
+  persistent:
+    sharedvolume: false
+  start:
+    smf: true #If false the network function container will run in sleep mode for manually testing
+    tcpdump: false
+  multus:
+    ## If you don't want to add a default route in your pod then replace this field with ""
+    defaultGateway: ""
+    n4Interface:
+      create: false
+      ipAdd: "192.168.24.3"
+      netmask: "24"
+      name: "n4"
+      ## If you do not have a gateway leave the field empty
+      gateway: ""
+      ## If you do not want to add any routes in your pod then leave this field empty
+      #routes: [{'dst': '10.8.0.0/24','gw': '172.21.7.254'}, {'dst': '10.9.0.0/24','gw': '172.21.7.254'}]
+      hostInterface: "eth0"
+  nodeSelector: {}
+  imagePullSecrets:
+    - name: "regcred"
+  # nodeSelector: {}

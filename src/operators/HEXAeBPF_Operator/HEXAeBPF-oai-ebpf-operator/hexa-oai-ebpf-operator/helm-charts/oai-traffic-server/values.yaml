@@ -1,0 +1,68 @@
+kubernetesDistribution: Vanilla  # Vanilla (Community Kubernetes) or Openshift (For RedHat Openshift)
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+trafficServer:
+  repository: docker.io/oaisoftwarealliance/trf-gen-cn5g
+  version: latest
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+# good to use when pulling images from docker-hub mention for RHEL images it can be commented
+# imagePullSecrets: 
+#   - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "oai-traffic-server"
+
+multus:
+  create: false
+  ipAdd: "172.21.6.99"
+  netmask: "22"
+  defaultGateway: "172.21.7.254"
+  hostInterface: "bond0"      # Interface of the host machine on which this pod will be scheduled
+
+config:
+  ueroute: 12.1.1.0/24
+  upfHost: 172.21.6.95
+  noOfIperf3Server: 10
+
+securityContext:
+ capabilities:
+    add:
+     - NET_ADMIN
+     - NET_RAW
+    drop:
+     - ALL
+
+## NF is the network function and tcpdump is the tcpdump container. 
+## To know more about request and limit it is better to understand that how Kubernetes QoS works. 
+## https://kubernetes.io/docs/concepts/configuration/manage-resources-containers
+## https://kubernetes.io/docs/concepts/workloads/pods/pod-qos
+resources:
+  define: false
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+readinessProbe: true
+
+livenessProbe: false
+
+# Control if the charts will be deployed or not
+enabled: true
+
+terminationGracePeriodSeconds: 2
+
+nodeSelector: {}
+
+nodeName: 

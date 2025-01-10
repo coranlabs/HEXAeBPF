@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- eupf_v1_hexaup.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

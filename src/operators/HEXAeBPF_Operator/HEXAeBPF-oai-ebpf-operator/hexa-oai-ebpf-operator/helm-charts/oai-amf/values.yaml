@@ -1,0 +1,106 @@
+kubernetesDistribution: Vanilla  #Vanilla for community kubernetes distribution else Openshift for Openshift
+
+## In case of using these charts on Openshift then please use UBI images
+## To know more about them follow this tutorial https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/tree/master/openshift
+nfimage:  # image name either locally present or in a public/private repository
+  repository: docker.io/oaisoftwarealliance/oai-amf           ## The image will be pulled from dockerhub
+  version: develop                                  #image tag, develop tag for experimental features 
+  # pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+## good to use when pulling images from docker-hub mention
+#imagePullSecrets:
+#  - name: "regcred"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+
+exposedPorts:
+  sctp: 38412
+  sbi: 80
+
+#service type is fixed to clusterIP, it is only support for non multus interface (eth0)
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+# AMF needs two separate interface one for http (for SBI) and other one for SCTP (N1/N2) to communicate with gNB. 
+# But for experimentation only one interface can be used. 
+# When you need multus:
+# 1. you want separate interface for N1/N2 and Namf 
+# 2. Your gnB is outside the cluster and the host machine can communicate but pods can not then you can provide ip-address in the same range as your host machine
+# 3. You want static ip-address for N1/N2 interface, Namf can be discovered by its service name
+
+## Change these ip-addresses according to your environment
+multus:
+  ## If you don't want to add a default route in your pod then leave this field empty
+  defaultGateway: "172.21.7.254"
+  n2Interface:
+    create: false
+    ipAdd: "172.21.6.94"
+    netmask: "22"
+    ## If you do not have a gateway leave the field empty
+    gateway:
+    ## If you do not want to add any routes in your pod then leave this field empty
+    routes: [{'dst': '10.8.0.0/24','gw': '172.21.7.254'}]
+    name: 'n2'
+    hostInterface: "bond0" # Interface of the host machine on which this pod will be scheduled
+
+## Incase the pod is not able to resolve the FQDN of other network 
+## functions example nrf then you can disable useFqdnDns feature this way AMF will talk to other network functions using their ip-address. 
+## Debugging section
+
+start:
+  amf: true #If false the network function container will run in sleep mode for manually testing
+  tcpdump: false
+
+includeTcpDumpContainer: false #If true it will add a tcpdump container inside network function pod for debugging
+
+tcpdumpimage:
+  repository: docker.io/oaisoftwarealliance/oai-tcpdump-init
+  version: alpine-3.20
+  #pullPolicy: IfNotPresent or Never or Always
+  pullPolicy: IfNotPresent
+
+#To store PCAP of NF in a sharedVolume so it can be easily fetched (PVC is created with NRF charts so make sure in NRF it is true)
+persistent:
+  sharedvolume: false
+
+config: 
+  udrHost: oai-udr
+
+## NF is the network function and tcpdump is the tcpdump container. 
+## To know more about request and limit it is better to understand that how Kubernetes QoS works. 
+## https://kubernetes.io/docs/concepts/configuration/manage-resources-containers
+## https://kubernetes.io/docs/concepts/workloads/pods/pod-qos
+resources:
+  define: false
+  limits:
+    nf:
+      cpu: 100m
+      memory: 128Mi
+    #If tcpdump container is disabled this value will not be used
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+  requests:
+    nf:
+      cpu: 100m
+      memory: 128Mi
+    #If tcpdump container is disabled this value will not be used
+    tcpdump:
+      cpu: 100m
+      memory: 128Mi
+
+readinessProbe: true
+
+livenessProbe: false
+
+terminationGracePeriodSeconds: 5
+
+nodeSelector: {}
+
+nodeName:
