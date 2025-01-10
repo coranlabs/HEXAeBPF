@@ -483,3 +483,71 @@ STDERR:
 sed: can't read config/samples/_v1_hexaueransim.yaml: No such file or directory
 
 ========================================
+
+Executing: 
+# cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator
+# make install
+# make deploy IMG=evershalik/hexa-sdcore-eupf-cp-operator:v2.0
+# sleep 30
+# echo "AMF_IP to be used in configuration: 192.168.6.16"
+# sed -i 's/externalIp: .*/externalIp: 192.168.6.16/' config/samples/sdcore_v1_hexacp.yaml
+# cat config/samples/sdcore_v1_hexacp.yaml | grep externalIp
+# kubectl apply -f config/samples/sdcore_v1_hexacp.yaml -n hexa
+
+========================================
+
+Executing: 
+# cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator
+# make install
+# make deploy IMG=evershalik/hexa-sdcore-eupf-up-operator:v2.0
+# sleep 30
+# kubectl apply -f config/samples/eupf_v1_hexaup.yaml -n hexa
+
+========================================
+
+Executing: 
+# cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator
+# make install
+# make deploy IMG=evershalik/hexa-ueransim-operator:v2.0
+# sleep 30
+# echo "AMF_IP to be used in configuration: 192.168.6.16"
+# sed -i '/amf:/{n;s/^[ 	]*ip:.*/    ip: 192.168.6.16/;}' config/samples/sdcore_v1_hexaueransim.yaml
+# echo "Updated Configuration:"
+# cat config/samples/sdcore_v1_hexaueransim.yaml | grep ip
+# kubectl apply -f config/samples/sdcore_v1_hexaueransim.yaml -n hexa
+
+========================================
+
+Executing: 
+# cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator
+# make install
+# make deploy IMG=evershalik/hexa-free5gc-eupf-cp-operator:v2.0
+# sleep 30
+# kubectl apply -f config/samples/free5gc_v1_hexacp.yaml -n hexa
+
+========================================
+
+Executing: 
+# cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-up-operator
+# make install
+# make deploy IMG=evershalik/hexa-free5gc-eupf-up-operator:v2.0
+# sleep 30
+# kubectl apply -f config/samples/eupf_v1_hexaup.yaml -n hexa
+# sleep 30
+# cd /home/ubuntu/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator/webui_automation
+# bash add_subscriber.sh
+
+========================================
+
+Executing: 
+# cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator
+# make install
+# make deploy IMG=evershalik/hexa-ueransim-operator:v2.0
+# sleep 30
+# echo "AMF_IP to be used in configuration: None"
+# sed -i '/amf:/{n;s/^[ 	]*ip:.*/    ip: None/;}' config/samples/_v1_hexaueransim.yaml
+# echo "Updated Configuration:"
+# cat config/samples/free5gc_v1_hexaueransim.yaml | grep ip
+# kubectl apply -f config/samples/free5gc_v1_hexaueransim.yaml -n hexa
+
+========================================

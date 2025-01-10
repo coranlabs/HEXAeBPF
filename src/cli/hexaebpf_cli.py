@@ -70,42 +70,6 @@ cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hex
 """,
 }
 
-
-# def undeploy_menu():
-#     console.print("\n[bold cyan]Undeploy HEXAeBPF Operators[/bold cyan]\n")
-
-#     undeploy_options = list(undeploy_commands.keys()) + ["All Operators", "Go Back"]
-#     console.print("[bold yellow]Available Components for Undeployment:[/bold yellow]")
-#     for idx, option in enumerate(undeploy_options, start=1):
-#         console.print(f"  {idx}. {option}")
-
-#     choice = IntPrompt.ask("Select Component to Undeploy (enter number)")
-    
-#     if choice == len(undeploy_options):  # Go Back
-#         return main_menu()
-
-#     elif choice == len(undeploy_options) - 1:  # All Operators
-#         log_file = "logs/undeployment_logs.txt"
-#         os.makedirs("logs", exist_ok=True)
-#         console.print("\n[bold yellow]Undeploying All Operators...[/bold yellow]")
-#         for operator, command in undeploy_commands.items():
-#             console.print(f"[bold cyan]Undeploying {operator}...[/bold cyan]")
-#             execute_command(command, log_file)
-#         console.print("[bold green]All operators undeployed successfully![/bold green]")
-#     elif 1 <= choice < len(undeploy_options) - 1:
-#         selected_operator = undeploy_options[choice - 1]
-#         log_file = "logs/undeployment_logs.txt"
-#         os.makedirs("logs", exist_ok=True)
-#         console.print(f"[bold yellow]Undeploying {selected_operator}...[/bold yellow]")
-#         execute_command(undeploy_commands[selected_operator], log_file)
-#         console.print(f"[bold green]{selected_operator} undeployed successfully![/bold green]")
-#     else:
-#         # console.print("[bold red]Invalid choice. Returning to main menu.[/bold red]")
-#         show_error("Invalid choice. Please select a valid option.")
-
-
-#     main_menu()
-
 def undeploy_menu():
     console.print("\n[bold cyan]Undeploy HEXAeBPF Operators[/bold cyan]\n")
 
