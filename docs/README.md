@@ -1,5 +1,5 @@
 
-# **HEXAeBPF: The Future of Interoperable 5G Core Solutions**
+# **HEXAeBPF: The Future of Interoperable eBPF Defined 5G Core (eDC)**
 *Empowering the next generation of 5G core deployments with simplicity, interoperability, and automation.*
 
 ---
@@ -49,6 +49,8 @@ Kubernetes Operators are ideal for automated, scalable, and flexible management.
 Simplified deployment is the cornerstone of HEXAeBPF. Use the following command for an interactive CLI experience:
 
 ```bash
+git clone https://github.com/coranlabs/HEXAeBPF.git ~/
+cd ~/HEXAeBPF
 make run_hexaebpf
 ```
 
@@ -64,15 +66,15 @@ make run_hexaebpf
 ### **Combined Phases**
 | Control Plane       | User Plane           | RAN Simulator  |
 |---------------------|----------------------|----------------|
-| SD Core             | edgecomllc/eUPF     | UERANSIM       |
+| Aether SD Core             | edgecomllc/eUPF     | UERANSIM       |
 | Free5gc             | edgecomllc/eUPF     | UERANSIM       |
 | Open5GS             | edgecomllc/eUPF     | UERANSIM       |
 | OAI                 | OAI-UPF-eBPF        | OAI-RFSimulator|
-| SD Core             | OAI-UPF-eBPF        | UERANSIM       |
+| Aether SD Core             | OAI-UPF-eBPF        | UERANSIM       |
 | Free5gc             | OAI-UPF-eBPF        | UERANSIM       |
 | Open5GS             | OAI-UPF-eBPF        | UERANSIM       |
 | OAI                 | edgecomllc/eUPF     | OAI-RFSimulator|
-| SD Core             | e3-UPF              | UERANSIM       |
+| Aether SD Core             | e3-UPF              | UERANSIM       |
 | Free5gc             | e3-UPF              | UERANSIM       |
 | Open5GS             | e3-UPF              | UERANSIM       |
 | OAI                 | e3-UPF              | UERANSIM       |

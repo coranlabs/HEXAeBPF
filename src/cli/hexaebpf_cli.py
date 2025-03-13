@@ -21,18 +21,18 @@ AMF_IP = None
 console = Console()
 
 # Example Control Plane and User Plane options
-control_planes = ["SD Core", "Free5GC", "Open5GS", "OAI"]
+control_planes = ["Aether SD Core", "Free5GC", "Open5GS", "OAI"]
 user_planes = ["edgecomllc/eUPF", "OAI-UPF-eBPF"]
 ran_simulators_common = ["UERANSIM"]
 ran_simulators_oai = ["OAI-RFSimulator"]
 
 # Operator commands for undeployment
 undeploy_commands = {
-    "SD Core-edgecomllc/eUPF": """
-kubectl delete -f ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/sdcore_v1_hexacp.yaml -n hexa
+    "Aether SD Core-edgecomllc/eUPF": """
+kubectl delete -f ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator/config/samples/aether_sdcore_v1_hexacp.yaml -n hexa
 cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator && make undeploy
 """,
-    "SD Core-OAI-UPF-eBPF": """
+    "Aether SD Core-OAI-UPF-eBPF": """
 kubectl delete -f ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator/config/samples/eupf_v1_hexaup.yaml -n hexa
 cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator && make undeploy
 """,
@@ -49,7 +49,7 @@ cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/
     "UERANSIM": """
 kubectl delete -f ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/open5gs_v1_hexaueransim.yaml -n hexa
 kubectl delete -f ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/free5gc_v1_hexaueransim.yaml -n hexa
-kubectl delete -f ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/sdcore_v1_hexaueransim.yaml -n hexa
+kubectl delete -f ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator/config/samples/aether_sdcore_v1_hexaueransim.yaml -n hexa
 cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-ueransim-operator/hexa-ueransim-operator && make undeploy
 """,
     "Open5GS-edgecomllc/eUPF": """
@@ -124,15 +124,15 @@ def undeploy_menu():
 # Operator commands for deployment
 deployment_commands = {
     "Control Plane": {
-        "SD Core": lambda amf_ip: f"""
+        "Aether SD Core": lambda amf_ip: f"""
 cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-cp-operator
 make install
 make deploy IMG=evershalik/hexa-sdcore-eupf-cp-operator:v2.0
 sleep 30
 echo "AMF_IP to be used in configuration: {amf_ip}"
-sed -i 's/externalIp: .*/externalIp: {amf_ip}/' config/samples/sdcore_v1_hexacp.yaml
-cat config/samples/sdcore_v1_hexacp.yaml | grep externalIp
-kubectl apply -f config/samples/sdcore_v1_hexacp.yaml -n hexa
+sed -i 's/externalIp: .*/externalIp: {amf_ip}/' config/samples/aether_sdcore_v1_hexacp.yaml
+cat config/samples/aether_sdcore_v1_hexacp.yaml | grep externalIp
+kubectl apply -f config/samples/aether_sdcore_v1_hexacp.yaml -n hexa
 """,
         "Free5GC": """
 cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-free5gc-eupf-operator/hexa-free5gc-eupf-cp-operator
@@ -158,7 +158,7 @@ kubectl apply -f config/samples/oai.ebpf_v1_hexaoai.yaml -n hexa
     },
     "User Plane": {
         "edgecomllc/eUPF": {
-            "SD Core": """
+            "Aether SD Core": """
 cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-sdcore-eupf-operator/hexa-sdcore-eupf-up-operator
 make install
 make deploy IMG=evershalik/hexa-sdcore-eupf-up-operator:v2.0
@@ -199,10 +199,10 @@ make install
 make deploy IMG=evershalik/hexa-ueransim-operator:v2.0
 sleep 30
 echo "AMF_IP to be used in configuration: {AMF_IP}"
-sed -i '/amf:/{{n;s/^[ \t]*ip:.*/    ip: {AMF_IP}/;}}' config/samples/{'sdcore' if control_plane == 'SD Core' else ''}_v1_hexaueransim.yaml
+sed -i '/amf:/{{n;s/^[ \t]*ip:.*/    ip: {AMF_IP}/;}}' config/samples/{'aether_sdcore' if control_plane == 'Aether SD Core' else ''}_v1_hexaueransim.yaml
 echo "Updated Configuration:"
-cat config/samples/{'sdcore' if control_plane == 'SD Core' else control_plane.lower().replace(' ', '_')}_v1_hexaueransim.yaml | grep ip
-kubectl apply -f config/samples/{'sdcore' if control_plane == 'SD Core' else control_plane.lower().replace(' ', '_')}_v1_hexaueransim.yaml -n hexa
+cat config/samples/{'aether_sdcore' if control_plane == 'Aether SD Core' else control_plane.lower().replace(' ', '_')}_v1_hexaueransim.yaml | grep ip
+kubectl apply -f config/samples/{'aether_sdcore' if control_plane == 'Aether SD Core' else control_plane.lower().replace(' ', '_')}_v1_hexaueransim.yaml -n hexa
 """,
         "OAI-RFSimulator": """
 cd ~/HEXAeBPF/src/operators/HEXAeBPF_Operator/HEXAeBPF-oai-rfsimulator-operator/hexa-oai-gnb-operator
@@ -358,7 +358,7 @@ def deploy_menu():
     )
     console.print("\n")
 
-    if control_plane == "SD Core":
+    if control_plane == "Aether SD Core":
         while True:
             console.print(
                 Panel.fit(
@@ -391,7 +391,7 @@ def deploy_menu():
                 )
                 continue  # Re-prompt the user
             
-        control_plane_command = deployment_commands["Control Plane"]["SD Core"](AMF_IP)
+        control_plane_command = deployment_commands["Control Plane"]["Aether SD Core"](AMF_IP)
     else:
         control_plane_command = deployment_commands["Control Plane"][control_plane]
 
